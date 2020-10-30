@@ -9,5 +9,6 @@ namespace CapaPersistencia.ADO_SQLServer
     class GestorSQL
     {
         //Escribe un comentario
+        //aaaaaaaaaaaaaaaaaaaaaa
     }
 }
