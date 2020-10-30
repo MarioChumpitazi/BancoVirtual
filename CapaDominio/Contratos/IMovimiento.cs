@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Contratos
 {
-    class IMovimiento
+    public class IMovimiento
     {
+        void guardarMovimiento(Movimiento movimiento);
+        List<Movimiento> obtenerListaDeMovimientos();
+        Movimiento buscarPorCodigo(string codigo);
     }
 }
