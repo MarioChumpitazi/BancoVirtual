@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Contratos
 {
-    class IUsuario
+    public class IUsuario
     {
+        void guardarUsuario(Usuario usuario);
+        List<Usuario> obtenerListaDeUsuarios();
+        Usuario buscarPorDni(string dni);
     }
 }
