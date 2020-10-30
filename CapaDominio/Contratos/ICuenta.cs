@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Contratos
 {
-    class ICuenta
+    public class ICuenta
     {
+        void guardarCuenta(Cuenta cuenta);
+        List<Cuenta> obtenerListaDeCuentas();
+        Cuenta buscarPorNumeroCuenta(string numero);
+        Cuenta buscarPorNumeroInterbancario(string numero);
     }
 }

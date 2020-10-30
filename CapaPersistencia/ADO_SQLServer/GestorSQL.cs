@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaPersistencia.FabricaDatos
+namespace CapaPersistencia.ADO_SQLServer
 {
-    public class FabricaAbstracta
+    class GestorSQL
     {
+        //Escribe un comentario
     }
 }

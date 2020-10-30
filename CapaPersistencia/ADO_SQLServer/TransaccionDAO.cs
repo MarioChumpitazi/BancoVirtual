@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    class CuentaSQLServer
+    class TransaccionDAO
     {
     }
 }

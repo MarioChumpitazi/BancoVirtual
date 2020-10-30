@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADO_SQLServer\CuentaSQLServer.cs" />
+    <Compile Include="ADO_SQLServer\CuentaDAO.cs" />
+    <Compile Include="ADO_SQLServer\GestorSQL.cs" />
+    <Compile Include="ADO_SQLServer\MovimientoDAO.cs" />
+    <Compile Include="ADO_SQLServer\TransaccionDAO.cs" />
+    <Compile Include="ADO_SQLServer\UsuarioDAO.cs" />
     <Compile Include="FabricaDatos\FabricaAbstracta.cs" />
     <Compile Include="FabricaDatos\FabricaSQLServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
