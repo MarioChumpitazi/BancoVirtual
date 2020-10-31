@@ -52,7 +52,7 @@
     <Compile Include="Entidades\Transaccion.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicios\RegistroMovimiento.cs" />
+    <Compile Include="Servicios\RegistroUsuario.cs" />
     <Compile Include="Servicios\RegistroTransaccion.cs" />
   </ItemGroup>
   <ItemGroup />

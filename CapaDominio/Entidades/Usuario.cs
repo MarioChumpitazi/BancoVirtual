@@ -8,6 +8,7 @@ namespace CapaDominio.Entidades
 {
     public class Usuario
     {
+        private string usuarioID;
         private string nombres;
         private string apellidos;
         private string dni;
@@ -19,9 +20,10 @@ namespace CapaDominio.Entidades
 
         public Usuario() { }
 
-        public Usuario(string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave)
+        public Usuario(string usuarioID, string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave)
         {
             listaDeCuentas = new List<Cuenta>();
+            this.usuarioID = usuarioID;
             this.nombres = nombres;
             this.apellidos = apellidos;
             this.dni = dni;
@@ -30,6 +32,7 @@ namespace CapaDominio.Entidades
             this.estado = true;
         }
 
+        public string UsuarioID { get => usuarioID; set => usuarioID = value; }
         public string Nombres { get => nombres; set => nombres = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
         public string Dni { get => dni; set => dni = value; }
@@ -54,14 +57,41 @@ namespace CapaDominio.Entidades
             return comision;
         }
 
+        /*
         public bool validarInicioSesion(Usuario usuario)
         {
-            return usuario.Dni == dni && usuario.NumeroDeTarjeta == numeroDeTarjeta && usuario.Clave == clave;
+            return usuario.UsuarioID == dni && usuario.NumeroDeTarjeta == numeroDeTarjeta && usuario.Clave == clave;
+        }
+        */
+
+        public bool validarUsuarioID(Usuario usuario)
+        {
+            if (usuario.UsuarioID == usuarioID)
+                return true;
+            else
+            {
+                return false;
+            }
         }
 
-        public bool verificarCodigo(string claveaux)
+        public bool validarNumeroTarjeta(Usuario usuario)
         {
-            return clave == claveaux;
+            if (usuario.NumeroDeTarjeta == numeroDeTarjeta)
+                return true;
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool validarClave(Usuario usuario)
+        {
+            if (usuario.Clave == clave)
+                return true;
+            else
+            {
+                return false;
+            }
         }
     }
 }

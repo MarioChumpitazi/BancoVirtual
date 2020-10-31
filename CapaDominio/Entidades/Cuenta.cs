@@ -13,7 +13,7 @@ namespace CapaDominio.Entidades
     }
     public class Cuenta
     {
-        private string numero;
+        private string cuentaID;
         private float saldo;
         private Moneda moneda;
         private bool estado;
@@ -22,9 +22,9 @@ namespace CapaDominio.Entidades
 
         public Cuenta() { }
 
-        public Cuenta(string numero, float saldo, Moneda moneda, Usuario usuario)
+        public Cuenta(string cuentaID, float saldo, Moneda moneda, Usuario usuario)
         {
-            this.numero = numero;
+            this.cuentaID = cuentaID;
             this.saldo = saldo;
             this.moneda = moneda;
             this.estado = true;
@@ -32,7 +32,7 @@ namespace CapaDominio.Entidades
             this.listaDeTransacciones = new List<Transaccion>();
         }
 
-        public string Numero { get => numero; set => numero = value; }
+        public string CuentaID { get => cuentaID; set => cuentaID = value; }
         public float Saldo { get => saldo; set => saldo = value; }
         public bool Estado { get => estado; set => estado = value; }
         public Moneda Moneda { get => moneda; set => moneda = value; }

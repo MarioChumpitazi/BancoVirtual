@@ -16,7 +16,7 @@ namespace CapaDominio.Entidades
 
     public class Transaccion
     {
-        private string codigo;
+        private string transaccionID;
         private DateTime fecha;
         private float monto;
         private TipoTransaccion tipo;
@@ -24,7 +24,7 @@ namespace CapaDominio.Entidades
         private int codigoDeMovimiento;
         private Cuenta cuenta;
 
-        public string Codigo { get => codigo; set => codigo = value; }
+        public string TransaccionID { get => transaccionID; set => transaccionID = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public float Monto { get => monto; set => monto = value; }
         public TipoTransaccion Tipo { get => tipo; set => tipo = value; }
@@ -74,10 +74,10 @@ namespace CapaDominio.Entidades
             return monto;
         }
 
-        public bool verificarCodigo(string codigoaux, string codigoaux2)
+        public bool verificarCodigo(string codigoaux, string transaccionID2)
         {
-            codigo = codigoaux2;
-            return (codigo == codigoaux);
+            transaccionID = transaccionID2;
+            return (transaccionID == transaccionID);
         }
 
         public bool validarMonto(Cuenta cuenta)
@@ -108,3 +108,4 @@ namespace CapaDominio.Entidades
             return transferencia;
         }
     }
+}
