@@ -8,7 +8,7 @@ namespace CapaDominio.Entidades
 {
     public class Banco
     {
-        private string idBanco;
+        private string bancoID;
         private string nombreBanco;
 
         private List<Usuario> listaDeUsuarios;
@@ -16,11 +16,11 @@ namespace CapaDominio.Entidades
         public Banco(string idBanco, string nombreBanco)
         {
             listaDeUsuarios = new List<Usuario>();
-            this.idBanco = idBanco;
+            this.bancoID = bancoID;
             this.nombreBanco = nombreBanco;
         }
 
-        public string IdBanco { get => idBanco; set => idBanco = value; }
+        public string BancoID { get => bancoID; set => bancoID = value; }
         public string NombreBanco { get => nombreBanco; set => nombreBanco = value; }
         public List<Usuario> ListaDeUsuarios { get => listaDeUsuarios; set => listaDeUsuarios = value; }
         public bool validarUsuario(Usuario usuario)
