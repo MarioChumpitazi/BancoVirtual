@@ -13,7 +13,7 @@ namespace CapaDominio.Servicios
         {
             if (!transaccion.validarMonto())
             {
-                throw new Exception("ERROR");
+                throw new Exception("ERROR en Transaccion");
             }
         }
         //12312
