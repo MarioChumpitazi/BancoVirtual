@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDominio.Entidades;
 
 namespace CapaDominio.Contratos
 {
-    public class ITransaccion
+    public interface ITransaccion
     {
         void guardarTransaccion(Transaccion transaccion);
         List<Transaccion> obtenerListaDeTransacciones();
-        Transaccion buscarPorCodigo(string codigo);
+        Transaccion buscarPorTransaccion(string transaccionID);
     }
 }

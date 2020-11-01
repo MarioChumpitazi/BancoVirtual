@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CapaDominio.Entidades;
 
 namespace CapaDominio.Contratos
 {
-    public class IUsuario
+    public interface IUsuario
     {
-        void guardarUsuario(Usuario usuario);
-        List<Usuario> obtenerListaDeUsuarios();
+
+        Usuario buscarPorID(string ID);
         Usuario buscarPorDni(string dni);
     }
 }

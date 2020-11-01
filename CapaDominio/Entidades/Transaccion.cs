@@ -32,6 +32,10 @@ namespace CapaDominio.Entidades
         public int CodigoDeMovimiento { get => codigoDeMovimiento; set => codigoDeMovimiento = value; }
         public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
 
+        public void realizarTransaccion()
+        {
+
+        }
         public bool validarMonto()
         {
             return monto <= cuenta.Saldo;
@@ -77,7 +81,7 @@ namespace CapaDominio.Entidades
         public bool verificarCodigo(string codigoaux, string transaccionID2)
         {
             transaccionID = transaccionID2;
-            return (transaccionID == transaccionID);
+            return (transaccionID == transaccionID2);
         }
 
         public bool validarMonto(Cuenta cuenta)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Contratos
 {
-    public class IGestorAccesoDatos
+    public interface IGestorAccesoDatos
     {
         void abrirConexion();
         void cerrarConexion();

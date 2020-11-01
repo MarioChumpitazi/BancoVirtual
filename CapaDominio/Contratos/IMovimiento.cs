@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDominio.Entidades;
+
 namespace CapaDominio.Contratos
 {
-    public class IMovimiento
+    public interface IMovimiento
     {
         void guardarMovimiento(Movimiento movimiento);
-        List<Movimiento> obtenerListaDeMovimientos();
-        Movimiento buscarPorCodigo(string codigo);
+        List<Movimiento> obtenerListaDeMovimientos(Usuario usuario);
+        Movimiento buscarPorCodigoID(string movimientoID);
     }
 }

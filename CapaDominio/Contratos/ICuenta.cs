@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDominio.Entidades;
+
 namespace CapaDominio.Contratos
 {
-    public class ICuenta
+    public interface ICuenta
     {
         void guardarCuenta(Cuenta cuenta);
         List<Cuenta> obtenerListaDeCuentas();
-        Cuenta buscarPorNumeroCuenta(string numero);
+
+        Cuenta buscarPorID(string cuentaID);
         Cuenta buscarPorNumeroInterbancario(string numero);
     }
 }
