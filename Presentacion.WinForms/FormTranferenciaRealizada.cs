@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Presentacion.WinForms
 {
-    public partial class Form1 : Form
+    public partial class FormTranferenciaRealizada : Form
     {
-        public Form1()
+        public FormTranferenciaRealizada()
         {
             InitializeComponent();
+        }
+
+        private void txtIdUsuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
