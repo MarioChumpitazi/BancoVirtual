@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using CapaDominio.Entidades;
+using CapaDominio.Contratos;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
@@ -17,34 +20,65 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public void guardarTransaccion(Transaccion transaccion)
         {
-            string consultaSQL = String.Format("INSERT or IGNORE into Transaccion " +
-                "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\")",
-                transaccion.Codigo, transaccion.Fecha.ToString(), transaccion.Monto, transaccion.Valoracion, transaccion.CodigoDeMovimiento, transaccion.Cuenta.Usuario.Dni);
+            //string consultaSQL = String.Format("INSERT or IGNORE into Transaccion " +
+                //"values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\")",
+                //transaccion.Codigo, transaccion.Fecha.ToString(), transaccion.Monto, transaccion.Valoracion, transaccion.CodigoDeMovimiento, transaccion.Cuenta.Usuario.Dni);
 
+            //try
+            //{
+                //IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
+                //resultadoSQL.ExecuteScalar();
+                //resultadoSQL.Dispose();
+            //}
+            //catch (Exception err)
+            //{
+                //throw new Exception("Ocurrio un problema al intentar guardar.", err);
+            //}
+
+
+            // CREANDO LAS SENTENCIAS SQL
+            string insertarTransaccion1SQL;
+
+            insertarTransaccion1SQL = "insert into Transaccion(codigo, fecha, monto, tipo, valoracion, codigoDeMovimiento) " +
+                 "values(@codigo, @fecha, @monto, @tipo, @valoracion, @codigoDeMovimiento)";
+         
             try
             {
-                IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
-                resultadoSQL.ExecuteScalar();
-                resultadoSQL.Dispose();
+                SqlCommand comando;
+
+                // GUARDANDO EL OBJETO Transaccion
+                { 
+                    comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
+                }
+                comando.Parameters.AddWithValue("@codigo", transaccion.Codigo);
+                comando.Parameters.AddWithValue("@fecha", transaccion.Fecha.Date);
+                comando.Parameters.AddWithValue("@monto", transaccion.Monto);
+                comando.Parameters.AddWithValue("@tipo", transaccion.Tipo);
+                comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
+                comando.Parameters.AddWithValue("@codigoDeMovimiento", transaccion.CodigoDeMovimiento);
+                comando.ExecuteNonQuery();
             }
             catch (Exception err)
             {
                 throw new Exception("Ocurrio un problema al intentar guardar.", err);
             }
+
+
         }
 
         public List<Transaccion> obtenerListaDeTransacciones()
         {
             List<Transaccion> transacciones = new List<Transaccion>();
-
-            string consultaSQL = "select * from Movimiento";
+            Transaccion transaccion;
+            string consultaSQL = "select * from Transaccion";
             try
             {
-                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
                 while (resultadoSQL.Read())
                 {
-                    transacciones.Add(obtenerTransaccion(resultadoSQL));
+                    //transacciones.Add(obtenerTransaccion(resultadoSQL));
+                    transaccion = obtenerTransaccion(resultadoSQL);
                 }
             }
             catch (Exception err)
@@ -60,11 +94,11 @@ namespace CapaPersistencia.ADO_SQLServer
             string consultaSQL = "select * from Transaccion where codigo = \"" + codigo + "\"";
             try
             {
-                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
                 if (resultadoSQL.Read())
                 {
                     transaccion = obtenerTransaccion(resultadoSQL);
-                    resultadoSQL.Close();
+                    //resultadoSQL.Close();
                 }
                 else
                 {
@@ -78,14 +112,15 @@ namespace CapaPersistencia.ADO_SQLServer
             return transaccion;
         }
 
-        private Transaccion obtenerTransaccion(IDataReader resultadoSQL)
+        private Transaccion obtenerTransaccion(SqlDataReader resultadoSQL)
         {
             Transaccion transaccion = new Transaccion();
-            transaccion.Codigo = resultadoSQL.GetString(1);
-            //transaccion.Fecha = resultadoSQL.GetString(2);
-            transaccion.Monto = resultadoSQL.GetFloat(3);
-            //transaccion.Tipo = resultadoSQL.GetString(4);
-            transaccion.Valoracion = resultadoSQL.GetInt32(5);
+            transaccion.Codigo = resultadoSQL.GetString(0);
+            transaccion.Fecha = resultadoSQL.GetString(1);
+            transaccion.Monto = resultadoSQL.GetFloat(2);
+            transaccion.Tipo = resultadoSQL.GetString(3);
+            transaccion.Valoracion = resultadoSQL.GetInt32(4);
+            transaccion.CodigoDeMovimiento = resultadoSQL.GetInt32(5);
             return transaccion;
         }
     }
