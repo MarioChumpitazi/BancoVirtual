@@ -33,10 +33,13 @@ namespace CapaPersistencia.ADO_SQLServer
             
 
             // CREANDO LAS SENTENCIAS SQL
-            string insertarUsuarioSQL;
+            string insertarUsuarioSQL, insertarCuenta1SQL;
 
             insertarUsuarioSQL = "insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave, estado) " +
                  "values(@nombres, @apellidos, @dni, @numeroTarjeta, @clave, @estado)";
+
+            insertarCuenta1SQL = "insert into Cuenta(numero, saldo, moneda, estado, listaDeTransacciones) " +
+                 "values(@numero,@saldo,@moneda,@estado, @listaDeTransacciones)";
          
             try
             {
@@ -53,6 +56,19 @@ namespace CapaPersistencia.ADO_SQLServer
                 comando.Parameters.AddWithValue("@clave", usuario.Clave);
                 comando.Parameters.AddWithValue("@estado", usuario.Estado);
                 comando.ExecuteNonQuery();
+
+                 // GUARDANDO LOS OBJETOS CUENTAS
+                foreach (Cuenta cuenta in usuario.listaDeCuentas)
+                {
+                    // Agregando una cuenta
+                    comando = gestorSQL.obtenerComandoSQL(insertarCuenta1SQL);
+                    comando.Parameters.AddWithValue("@numero", cuenta.Numero);
+                    comando.Parameters.AddWithValue("@saldo", cuenta.Saldo);
+                    comando.Parameters.AddWithValue("@moneda", cuenta.Moneda);
+                    comando.Parameters.AddWithValue("@estado", cuenta.Estado);
+                    comando.Parameters.AddWithValue("@listaDeTransacciones", cuenta.ListaDeTransacciones);
+                    comando.ExecuteNonQuery();
+                }
             }
             catch (Exception err)
             {
