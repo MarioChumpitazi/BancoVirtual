@@ -11,7 +11,7 @@ namespace CapaDominio.Contratos
     public interface IMovimiento
     {
         void guardarMovimiento(Movimiento movimiento);
-        List<Movimiento> obtenerListaDeMovimientos(Usuario usuario);
-        Movimiento buscarPorCodigoID(string movimientoID);
+        List<Movimiento> obtenerListaDeMovimientos();
+        Movimiento buscarPorCodigo(string movimientoID);
     }
 }

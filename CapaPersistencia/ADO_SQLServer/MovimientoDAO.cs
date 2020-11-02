@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using CapaDominio.Entidades;
+using CapaDominio.Contratos;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class MovimientoDAO
+    public class MovimientoDAO: IMovimiento
     {
         private GestorSQL gestorSQL;
 
@@ -17,35 +20,48 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public void guardarMovimiento(Movimiento movimiento)
         {
-            string consultaSQL = String.Format("insert into Movimiento" +
-                "(codigo, hora, moneda, monto, nombreDestinatario) " +
-                "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")",
-                movimiento.Codigo, movimiento.Hora, movimiento.Moneda, movimiento.Monto, movimiento.NombreDestinatario);
+  
+            // CREANDO LAS SENTENCIAS SQL
+            string insertarMovimientoSQL;
+
+            insertarMovimientoSQL = "insert into Movimiento(codigo, hora, moneda, monto, nombreDestinatario) " +
+                 "values(@codigo, @hora, @moneda, @monto, @nombreDestinatario)";
 
             try
             {
-                IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
-                resultadoSQL.ExecuteScalar();
-                resultadoSQL.Dispose();
+                SqlCommand comando;
+
+                // GUARDANDO EL OBJETO Movimiento
+                {
+                    comando = gestorSQL.obtenerComandoSQL(insertarMovimientoSQL);
+                }
+                comando.Parameters.AddWithValue("@movimientoID", movimiento.MovimientoID);
+                comando.Parameters.AddWithValue("@hora", movimiento.Hora.Date);
+                comando.Parameters.AddWithValue("@moneda", movimiento.Moneda);
+                comando.Parameters.AddWithValue("@monto", movimiento.Monto);
+                comando.Parameters.AddWithValue("@nombreDestinatario", movimiento.NombreDestinatario);
+                comando.ExecuteNonQuery();
             }
             catch (Exception err)
             {
                 throw new Exception("Ocurrio un problema al intentar guardar.", err);
             }
+
         }
 
         public List<Movimiento> obtenerListaDeMovimientos()
         {
             List<Movimiento> movimientos = new List<Movimiento>();
-
+            Movimiento movimiento;
             string consultaSQL = "select * from Movimiento";
             try
             {
-                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
                 while (resultadoSQL.Read())
                 {
-                    movimientos.Add(obtenerMovimiento(resultadoSQL));
+                    //movimientos.Add(obtenerMovimiento(resultadoSQL));
+                    movimiento = obtenerMovimiento(resultadoSQL);
                 }
             }
             catch (Exception err)
@@ -61,11 +77,11 @@ namespace CapaPersistencia.ADO_SQLServer
             string consultaSQL = "select * from Movimiento where codigo = \"" + codigo + "\"";
             try
             {
-                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
                 if (resultadoSQL.Read())
                 {
                     movimiento = obtenerMovimiento(resultadoSQL);
-                    resultadoSQL.Close();
+                    //resultadoSQL.Close();
                 }
                 else
                 {
@@ -79,14 +95,14 @@ namespace CapaPersistencia.ADO_SQLServer
             return movimiento;
         }
 
-        private Movimiento obtenerMovimiento(IDataReader resultadoSQL)
+        private Movimiento obtenerMovimiento(SqlDataReader resultadoSQL)
         {
             Movimiento movimiento = new Movimiento();
-            movimiento.Codigo = resultadoSQL.GetString(1);
-            //movimiento.Hora = resultadoSQL.GetString(2);
-            //movimiento.Moneda = resultadoSQL.GetString(3);
-            movimiento.Monto = resultadoSQL.GetFloat(4);
-            movimiento.NombreDestinatario = resultadoSQL.GetString(5);
+            movimiento.MovimientoID = resultadoSQL.GetString(0);
+            movimiento.Hora = resultadoSQL.GetDateTime(1);
+            movimiento.Moneda = resultadoSQL.GetString(2);
+            movimiento.Monto = resultadoSQL.GetFloat(3);
+            movimiento.NombreDestinatario = resultadoSQL.GetString(4);
             return movimiento;
         }
     }

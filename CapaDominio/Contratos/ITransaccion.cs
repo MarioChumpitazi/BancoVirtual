@@ -12,6 +12,6 @@ namespace CapaDominio.Contratos
     {
         void guardarTransaccion(Transaccion transaccion);
         List<Transaccion> obtenerListaDeTransacciones();
-        Transaccion buscarPorTransaccion(string transaccionID);
+        Transaccion buscarPorID(string transaccionID);
     }
 }

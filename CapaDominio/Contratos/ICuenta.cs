@@ -12,8 +12,6 @@ namespace CapaDominio.Contratos
     {
         void guardarCuenta(Cuenta cuenta);
         List<Cuenta> obtenerListaDeCuentas();
-
-        Cuenta buscarPorID(string cuentaID);
         Cuenta buscarPorNumeroInterbancario(string numero);
     }
 }
