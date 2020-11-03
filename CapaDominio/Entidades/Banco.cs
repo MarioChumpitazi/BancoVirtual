@@ -47,6 +47,5 @@ namespace CapaDominio.Entidades
             }
             return null;
         }
-        ///ffffffff
     }
 }
