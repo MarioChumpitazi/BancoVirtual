@@ -15,9 +15,6 @@ namespace CapaDominio.Entidades
         private float monto;
         private bool tipo;  //0 entre cuentas y 1 a terceros
         private int valoracion;
-        private int codigoDeMovimiento;
-
-        private Cuenta cuenta;
 
         private List<Usuario> listaUsuarios;
 
@@ -27,7 +24,6 @@ namespace CapaDominio.Entidades
         public bool Tipo { get => tipo; set => tipo = value; }
         public int Valoracion { get => valoracion; set => valoracion = value; }
         public int CodigoDeMovimiento { get => codigoDeMovimiento; set => codigoDeMovimiento = value; }
-        public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
         public List<Usuario> ListaUsuario { get { return listaUsuarios; } set { listaUsuarios = value; } }
 
         
@@ -35,7 +31,7 @@ namespace CapaDominio.Entidades
         {
 
         }
-        public bool validarMonto(float monto, Cuenta cuenta)
+        public bool verificarMonto(float monto, Cuenta cuenta)
         {
             if (monto <= cuenta.Saldo)
                 return true;
@@ -43,18 +39,6 @@ namespace CapaDominio.Entidades
                 return false;
         }
 
-
-        public float calcularComision(bool tipo, float montoAux)
-        {
-            float comision = 0f;
-            if (tipo == false)  //entre cuentas
-                comision = 0.50f;
-
-            else   //a terceros
-                comision = montoAux * 0.15f;
-
-            return comision;
-        }
 
         public float verificarComision(bool tipo)
         {
