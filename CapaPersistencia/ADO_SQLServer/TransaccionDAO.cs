@@ -18,14 +18,14 @@ namespace CapaPersistencia.ADO_SQLServer
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
 
-        public void guardarTransaccion(Transaccion transaccion)
+        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID)
         {
 
             // CREANDO LAS SENTENCIAS SQL
             string insertarTransaccion1SQL;
 
-            insertarTransaccion1SQL = "insert into Transaccion(codigo, fecha, monto, tipo, valoracion, codigoDeMovimiento) " +
-                 "values(@codigo, @fecha, @monto, @tipo, @valoracion, @codigoDeMovimiento)";
+            insertarTransaccion1SQL = "insert into Transaccion(transaccionID, fechaTransaccion, monto, tipoTransaccion, valoracion, cuentaOrigenID, cuentaDestinoID) " +
+                 "values(@transaccionID, @fechaTransaccion, @monto, @tipoTransaccion, @valoracion, @cuentaOrigenID,@cuentaDestinoID)";
 
             try
             {
@@ -36,11 +36,11 @@ namespace CapaPersistencia.ADO_SQLServer
                     comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
                 }
                 comando.Parameters.AddWithValue("@transaccionID", transaccion.TransaccionID);
-                comando.Parameters.AddWithValue("@fecha", transaccion.Fecha.Date);
+
                 comando.Parameters.AddWithValue("@monto", transaccion.Monto);
-                comando.Parameters.AddWithValue("@tipo", transaccion.TipoTransaccion);
                 comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
-                comando.Parameters.AddWithValue("@codigoDeMovimiento", transaccion.CodigoDeMovimiento);
+             
+
                 comando.ExecuteNonQuery();
             }
             catch (Exception err)
@@ -103,9 +103,8 @@ namespace CapaPersistencia.ADO_SQLServer
             transaccion.TransaccionID = resultadoSQL.GetString(0);
             transaccion.Fecha = resultadoSQL.GetDateTime(1);
             transaccion.Monto = resultadoSQL.GetFloat(2);
-            transaccion.TipoTransaccion = resultadoSQL.GetInt32(3) == 1 ? true : false;
+            transaccion.TipoTransaccion = resultadoSQL.GetBoolean(3);
             transaccion.Valoracion = resultadoSQL.GetInt32(4);
-            transaccion.CodigoDeMovimiento = resultadoSQL.GetInt32(5);
             return transaccion;
         }
     }

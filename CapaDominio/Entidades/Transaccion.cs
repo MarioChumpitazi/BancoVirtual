@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Entidades
 {
-   
-
     public class Transaccion
     {
+
         private string transaccionID;
         private DateTime fecha;
-        private float monto;
+        private double monto;
         private bool tipoTransaccion;
         private int valoracion;
-        private int codigoDeMovimiento;
-        private Cuenta cuenta;
+        private Cuenta cuentaOrigen;
+        private Cuenta cuentaDestino;
 
         public string TransaccionID { get => transaccionID; set => transaccionID = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
-        public float Monto { get => monto; set => monto = value; }
+        public double Monto { get => monto; set => monto = value; }
         public bool TipoTransaccion { get => tipoTransaccion; set => tipoTransaccion = value; }
         public int Valoracion { get => valoracion; set => valoracion = value; }
-        public int CodigoDeMovimiento { get => codigoDeMovimiento; set => codigoDeMovimiento = value; }
-        public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
+        public Cuenta CuentaOrigen { get => cuentaOrigen; set => cuentaOrigen = value; }
+        public Cuenta CuentaDestino { get => cuentaDestino; set => cuentaDestino = value; }
 
         public void realizarTransaccion()
         {
@@ -37,17 +36,16 @@ namespace CapaDominio.Entidades
         }
 
 
-
-        public float calcularComision()
+        public double calcularComision()
         {
-            float comision = 0.0f;
+            double comision = 0;
 
-            comision += tipoTransaccion ? 0.5f : 0.0f;
-            comision +=  tipoTransaccion? monto * 0.15f : 0.0f;
+            comision += tipoTransaccion ? 0.5 : 0.0;
+            comision +=  tipoTransaccion? monto * 0.15 : 0.0;
 
             return comision;
         }
-        public float calcularMontoTotal()
+        public double calcularMontoTotal()
         {
 
             return monto + calcularComision();
@@ -57,11 +55,11 @@ namespace CapaDominio.Entidades
             return valoracion >= 1 && valoracion <= 5;
         }
 
-        public float calcularTransferencia(Cuenta cuenta)
+        public double calcularTransferencia(Cuenta cuenta)
         {
-            float transferencia = 0.0f;
-            transferencia += cuenta.TipoMoneda? monto : 0.0f;
-            transferencia += cuenta.TipoMoneda ? monto * 3.45f : 0.0f;
+            double transferencia = 0.0f;
+            transferencia += cuenta.TipoMoneda? monto : monto * 3.45;
+          
 
             return transferencia;
         }

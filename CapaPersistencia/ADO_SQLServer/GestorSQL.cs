@@ -19,7 +19,7 @@ namespace CapaPersistencia.ADO_SQLServer
             try
             {
                 conexion = new SqlConnection();
-                conexion.ConnectionString = "Data Source=DESKTOP-5MML0NJ;Initial Catalog=BaseBancoVirtual;Integrated Security=true";
+                conexion.ConnectionString = "Data Source=(local);Initial Catalog=BaseBancoVirtual;Integrated Security=true";
                 conexion.Open();
             }
             catch (Exception err)
@@ -101,7 +101,7 @@ namespace CapaPersistencia.ADO_SQLServer
         public SqlCommand obtenerComandoSQL(string sentenciaSQL)
         {
             try
-            {
+            { 
                 SqlCommand comandoSQL = conexion.CreateCommand();
                 if (transaccion != null)
                     comandoSQL.Transaction = transaccion;

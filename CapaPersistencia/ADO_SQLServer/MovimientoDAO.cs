@@ -37,9 +37,9 @@ namespace CapaPersistencia.ADO_SQLServer
                 }
                 comando.Parameters.AddWithValue("@movimientoID", movimiento.MovimientoID);
                 comando.Parameters.AddWithValue("@hora", movimiento.Hora.Date);
-                comando.Parameters.AddWithValue("@moneda", movimiento.Moneda);
+                comando.Parameters.AddWithValue("@moneda", movimiento.TipoMoneda);
                 comando.Parameters.AddWithValue("@monto", movimiento.Monto);
-                comando.Parameters.AddWithValue("@nombreDestinatario", movimiento.NombreDestinatario);
+                comando.Parameters.AddWithValue("@usuario", movimiento.Usuario.UsuarioID);
                 comando.ExecuteNonQuery();
             }
             catch (Exception err)
@@ -100,9 +100,9 @@ namespace CapaPersistencia.ADO_SQLServer
             Movimiento movimiento = new Movimiento();
             movimiento.MovimientoID = resultadoSQL.GetString(0);
             movimiento.Hora = resultadoSQL.GetDateTime(1);
-            movimiento.Moneda = resultadoSQL.GetString(2);
+            movimiento.TipoMoneda = resultadoSQL.GetInt32(2) == 1 ? true : false;
             movimiento.Monto = resultadoSQL.GetFloat(3);
-            movimiento.NombreDestinatario = resultadoSQL.GetString(4);
+            movimiento.Usuario.UsuarioID = resultadoSQL.GetString(4);
             return movimiento;
         }
     }

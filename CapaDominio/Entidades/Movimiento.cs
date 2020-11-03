@@ -10,14 +10,14 @@ namespace CapaDominio.Entidades
     {
         private string movimientoID;
         private DateTime hora;
-        private Moneda moneda;
+        private bool tipoMoneda;
         private float monto;
-        private string nombreDestinatario;
+        private Usuario usuario;
 
         public string MovimientoID { get => movimientoID; set => movimientoID = value; }
         public DateTime Hora { get => hora; set => hora = value; }
-        public Moneda Moneda { get => moneda; set => moneda = value; }
+        public bool TipoMoneda { get => tipoMoneda; set => tipoMoneda = value; }
         public float Monto { get => monto; set => monto = value; }
-        public string NombreDestinatario { get => nombreDestinatario; set => nombreDestinatario = value; }
+        public Usuario Usuario { get => usuario; set => usuario = value; }
     }
 }

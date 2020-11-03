@@ -6,43 +6,49 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Entidades
 {
-   
+
     public class Cuenta
     {
         private string cuentaID;
-        private float saldo;
+        private double saldo;
         private bool tipoMoneda;
         private bool estado;
-        private List<Transaccion> listaDeTransacciones;
         private Usuario usuario;
+
+
 
         public Cuenta() { }
 
-        public Cuenta(string cuentaID, float saldo, bool tipoMoneda, Usuario usuario)
+        public Cuenta(string cuentaID, double saldo, bool tipoMoneda, bool estado, Usuario usuario)
         {
             this.cuentaID = cuentaID;
             this.saldo = saldo;
             this.tipoMoneda = tipoMoneda;
-            this.estado = true;
+            this.estado = estado;
             this.usuario = usuario;
-            this.listaDeTransacciones = new List<Transaccion>();
         }
 
         public string CuentaID { get => cuentaID; set => cuentaID = value; }
-        public float Saldo { get => saldo; set => saldo = value; }
-        public bool Estado { get => estado; set => estado = value; }
+        public double Saldo { get => saldo; set => saldo = value; }
         public bool TipoMoneda { get => tipoMoneda; set => tipoMoneda = value; }
-        public List<Transaccion> ListaDeTransacciones { get => listaDeTransacciones; set => listaDeTransacciones = value; }
+        public bool Estado { get => estado; set => estado = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
 
-        virtual public float calcularComision()
+
+        public Boolean ValidarCuenta()
         {
-            float comision = 0.0f;
-            foreach (var transaccion in listaDeTransacciones)
+            if (estado == true)
             {
-                //comision += transaccion.calcularComision();
+                return true;
             }
-            return comision;
+            else
+            {
+                return false;
+            }
+
         }
+
     }
+
+
 }

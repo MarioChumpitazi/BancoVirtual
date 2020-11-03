@@ -45,13 +45,15 @@
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtMontoDescontado = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(250, 30);
+            this.label10.Location = new System.Drawing.Point(285, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(255, 16);
             this.label10.TabIndex = 47;
@@ -69,7 +71,7 @@
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(311, 288);
+            this.txtMonto.Location = new System.Drawing.Point(297, 291);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(107, 20);
             this.txtMonto.TabIndex = 50;
@@ -78,15 +80,15 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(121, 92);
+            this.label1.Location = new System.Drawing.Point(115, 93);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 16);
+            this.label1.Size = new System.Drawing.Size(132, 16);
             this.label1.TabIndex = 51;
-            this.label1.Text = "ID Usuario Destino";
+            this.label1.Text = "ID Cuenta Destino";
             // 
             // btnRealizarOtraTransferencia
             // 
-            this.btnRealizarOtraTransferencia.Location = new System.Drawing.Point(577, 122);
+            this.btnRealizarOtraTransferencia.Location = new System.Drawing.Point(577, 133);
             this.btnRealizarOtraTransferencia.Name = "btnRealizarOtraTransferencia";
             this.btnRealizarOtraTransferencia.Size = new System.Drawing.Size(103, 40);
             this.btnRealizarOtraTransferencia.TabIndex = 52;
@@ -124,7 +126,7 @@
             // 
             // txtIdUsuario
             // 
-            this.txtIdUsuario.Location = new System.Drawing.Point(288, 88);
+            this.txtIdUsuario.Location = new System.Drawing.Point(288, 93);
             this.txtIdUsuario.Name = "txtIdUsuario";
             this.txtIdUsuario.Size = new System.Drawing.Size(130, 20);
             this.txtIdUsuario.TabIndex = 56;
@@ -195,11 +197,30 @@
             this.txtMontoDescontado.Size = new System.Drawing.Size(151, 20);
             this.txtMontoDescontado.TabIndex = 64;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(115, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 16);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "ID Cuenta Origen";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(288, 59);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(130, 20);
+            this.textBox1.TabIndex = 66;
+            // 
             // FormTranferenciaRealizada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtMontoDescontado);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtComision);
@@ -243,5 +264,7 @@
         private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMontoDescontado;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

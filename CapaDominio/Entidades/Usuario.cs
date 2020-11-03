@@ -15,21 +15,23 @@ namespace CapaDominio.Entidades
         private string numeroDeTarjeta;
         private string clave;
         private bool estado;
-
+        private Banco banco;
         private List<Cuenta> listaDeCuentas;
+
 
         public Usuario() { }
 
-        public Usuario(string usuarioID, string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave)
+        public Usuario(string usuarioID, string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave, bool estado, Banco banco, List<Cuenta> listaDeCuentas)
         {
-            listaDeCuentas = new List<Cuenta>();
             this.usuarioID = usuarioID;
             this.nombres = nombres;
             this.apellidos = apellidos;
             this.dni = dni;
             this.numeroDeTarjeta = numeroDeTarjeta;
             this.clave = clave;
-            this.estado = true;
+            this.estado = estado;
+            this.banco = banco;
+            this.listaDeCuentas = listaDeCuentas;
         }
 
         public string UsuarioID { get => usuarioID; set => usuarioID = value; }
@@ -39,6 +41,7 @@ namespace CapaDominio.Entidades
         public string NumeroDeTarjeta { get => numeroDeTarjeta; set => numeroDeTarjeta = value; }
         public string Clave { get => clave; set => clave = value; }
         public bool Estado { get => estado; set => estado = value; }
+        public Banco Banco { get => banco; set => banco = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
         public float calcularComision()
@@ -47,22 +50,7 @@ namespace CapaDominio.Entidades
             return 0.0f;
         }
 
-        public float calcularComisionCuentas()
-        {
-            float comision = 0.0f;
-            foreach (var cuenta in listaDeCuentas)
-            {
-                comision += cuenta.calcularComision();
-            }
-            return comision;
-        }
 
-        /*
-        public bool validarInicioSesion(Usuario usuario)
-        {
-            return usuario.UsuarioID == dni && usuario.NumeroDeTarjeta == numeroDeTarjeta && usuario.Clave == clave;
-        }
-        */
 
         public bool validarUsuarioID(Usuario usuario)
         {

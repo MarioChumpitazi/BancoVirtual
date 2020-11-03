@@ -9,6 +9,7 @@ using CapaDominio.Entidades;
 using CapaDominio.Servicios;
 using CapaPersistencia.FabricaDatos;
 
+
 namespace CapaAplicacion.Servicios
 {
     public class GenerarReporteMovimientosServicio
@@ -20,7 +21,7 @@ namespace CapaAplicacion.Servicios
         private IUsuario usarioDAO;
 
 
-        public GenerarReporteDeMovimientosServicio()
+        public GenerarReporteMovimientosServicio()
         {
             FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
@@ -35,7 +36,7 @@ namespace CapaAplicacion.Servicios
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
-        public Movimiento buscarMovimiento(string codigoDeMovimiento)
+        public Movimiento buscarMovimientoPorCodigo(string codigoDeMovimiento)
         {
             gestorDatos.abrirConexion();
             Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigoDeMovimiento);
@@ -43,10 +44,10 @@ namespace CapaAplicacion.Servicios
             return movimiento;
         }
 
-        public Transaccion buscarTransaccion(string codigo)
+        public Transaccion buscarTransaccion(string transaccionID)
         {
             gestorDatos.abrirConexion();
-            Transaccion transaccion = transaccionDAO.buscarPorCodigo(codigo);
+            Transaccion transaccion = transaccionDAO.buscarPorID(transaccionID);
             gestorDatos.cerrarConexion();
             return transaccion;
         }

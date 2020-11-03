@@ -9,14 +9,23 @@ namespace CapaDominio.Servicios
 {
     public class RegistroTransaccion
     {
-        public void validarTransaccion(Transaccion transaccion)
+       
+
+
+      
+
+
+        public void validarTransaccion(Transaccion transaccion, Cuenta cuenta)
         {
-            if (!transaccion.validarMonto())
+            if (!transaccion.validarMonto(cuenta))
             {
                 throw new Exception("ERROR en Transaccion");
             }
         }
-        //12312
-        //123
+
+
+
+
+
     }
 }

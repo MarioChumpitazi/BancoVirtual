@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using CapaDominio.Servicios;
+using CapaPersistencia.ADO_SQLServer;
 using CapaPersistencia.FabricaDatos;
 
 namespace CapaAplicacion.Servicios
@@ -34,6 +35,24 @@ namespace CapaAplicacion.Servicios
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
+        
+        public List<Cuenta> buscarCuentasUsuario(string usuarioID)
+        {
+            gestorDatos.abrirConexion();
+            List<Cuenta> cuentas = cuentaDAO.obtenerListaDeCuentas(usuarioID);
+            gestorDatos.cerrarConexion();
+            return cuentas;
+        }
+        
+
+        public Cuenta buscarCuenta(string cuentaID)
+        {
+            gestorDatos.abrirConexion();
+            Cuenta cuenta = cuentaDAO.buscarPorNumeroCuenta(cuentaID);
+            gestorDatos.cerrarConexion();
+            return cuenta;
+        }
+
         public Movimiento buscarMovimiento(string codigo)
         {
             gestorDatos.abrirConexion();
@@ -41,12 +60,28 @@ namespace CapaAplicacion.Servicios
             gestorDatos.cerrarConexion();
             return movimiento;
         }
-        public void guardarTransaccion(Transaccion transaccion)
+        public Usuario buscarUsuario(string usuarioID)
+        {
+            gestorDatos.abrirConexion();
+            Usuario usuario = usarioDAO.buscarPorID(usuarioID);
+            gestorDatos.cerrarConexion();
+            return usuario;
+        }
+        public Usuario buscarUsuarioPorCuenta(string idCuenta)
+        {
+            gestorDatos.abrirConexion();
+            Usuario usuario = cuentaDAO.buscarUsuarioPorCuenta(idCuenta);
+            gestorDatos.cerrarConexion();
+            return usuario;
+        }
+
+      
+        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigen, String cuentaDestino, Cuenta cuenta)
         {
             RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
-            //registroDeTransaccion.validarTransaccion(transaccion);
+            registroDeTransaccion.validarTransaccion(transaccion, cuenta);
             gestorDatos.iniciarTransaccion();
-            transaccionDAO.guardarTransaccion(transaccion);
+            transaccionDAO.guardarTransaccion(transaccion, cuentaOrigen,cuentaDestino);
             gestorDatos.terminarTransaccion();
         }
     }

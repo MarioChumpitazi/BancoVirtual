@@ -13,13 +13,6 @@ namespace CapaDominio.Entidades
 
         private List<Usuario> listaDeUsuarios;
 
-        public Banco(string bancoID, string nombreBanco)
-        {
-            listaDeUsuarios = new List<Usuario>();
-            this.bancoID = bancoID;
-            this.nombreBanco = nombreBanco;
-        }
-
         public string BancoID { get => bancoID; set => bancoID = value; }
         public string NombreBanco { get => nombreBanco; set => nombreBanco = value; }
         public List<Usuario> ListaDeUsuarios { get => listaDeUsuarios; set => listaDeUsuarios = value; }

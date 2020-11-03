@@ -9,7 +9,8 @@ namespace CapaDominio.Contratos
 {
     public interface IUsuario
     {
+        Usuario buscarPorID(string usuarioID);
+      
 
-        Usuario buscarPorDni(string dni);
     }
 }
