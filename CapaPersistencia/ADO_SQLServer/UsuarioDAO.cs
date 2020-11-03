@@ -89,7 +89,7 @@ namespace CapaPersistencia.ADO_SQLServer
         public Usuario buscarPorDni(string dni)
         {
             Usuario usuario;
-            string consultaSQL = "select * from Usuario where dni = \"" + dni + "\"";
+            string consultaSQL = "select * from Usuario where dni = '" + dni + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);

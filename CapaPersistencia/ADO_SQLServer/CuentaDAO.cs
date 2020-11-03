@@ -91,21 +91,20 @@ namespace CapaPersistencia.ADO_SQLServer
             return listaDecuentas;
         }
 
-        public Cuenta buscarPorNumeroCuenta(string numero)
+        public Cuenta buscarPorNumeroCuenta(string cuentaID)
         {
             Cuenta cuenta;
-            string consultaSQL = "select * from Cuenta where numero = \"" + numero + "\"";
+            string consultaSQL = "select * from Cuenta where cuentaID = \"" + cuentaID + "\"";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
                 if (resultadoSQL.Read())
                 {
                     cuenta = obtenerCuenta(resultadoSQL);
-                    //resultadoSQL.Close();
                 }
                 else
                 {
-                    throw new Exception("No existe cuenta.");
+                    throw new Exception("No existe la cuenta.");
                 }
             }
             catch (Exception err)
@@ -114,6 +113,54 @@ namespace CapaPersistencia.ADO_SQLServer
             }
             return cuenta;
         }
+
+        public List<Cuenta> buscarCuentasDelUsuario(string usuarioID)
+        {
+            List<Cuenta> cuentas = new List<Cuenta>();
+            Cuenta cuenta;
+            string consultaSQL = "select cuentaID,estadoCuenta from Cuenta c where c.usuarioID = '" + usuarioID+ "'";
+             try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                while (resultadoSQL.Read())
+                {
+                    cuenta = obtenerCuenta(resultadoSQL);
+                    cuentas.Add(cuenta);
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+            return cuentas;
+        }
+
+        /*  public Cuenta buscarPorNumeroCuenta(string numero)
+         {
+             Cuenta cuenta;
+             string consultaSQL = "select * from Cuenta where numero = \"" + numero + "\"";
+             try
+             {
+                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                 if (resultadoSQL.Read())
+                 {
+                     cuenta = obtenerCuenta(resultadoSQL);
+                     //resultadoSQL.Close();
+                 }
+                 else
+                 {
+                     throw new Exception("No existe cuenta.");
+                 }
+             }
+             catch (Exception err)
+             {
+                 throw err;
+             }
+             return cuenta;
+         }
+         }*/
+
 
         public Cuenta buscarPorNumeroInterbancario(string numero)
         {

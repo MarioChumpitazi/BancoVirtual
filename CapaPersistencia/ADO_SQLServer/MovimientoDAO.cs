@@ -71,10 +71,10 @@ namespace CapaPersistencia.ADO_SQLServer
             return movimientos;
         }
 
-        public Movimiento buscarPorCodigo(string codigo)
+        public Movimiento buscarPorCodigo(string movimientoID)
         {
             Movimiento movimiento;
-            string consultaSQL = "select * from Movimiento where codigo = \"" + codigo + "\"";
+            string consultaSQL = "select * from Movimiento where movimientoID = '" + movimientoID + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);

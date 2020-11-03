@@ -73,10 +73,10 @@ namespace CapaPersistencia.ADO_SQLServer
             return transacciones;
         }
 
-        public Transaccion buscarPorID(string codigo)
+        public Transaccion buscarPorID(string transaccionID)
         {
             Transaccion transaccion;
-            string consultaSQL = "select * from Transaccion where codigo = \"" + codigo + "\"";
+            string consultaSQL = "select * from Transaccion where transaccionID = '" + transaccionID + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
