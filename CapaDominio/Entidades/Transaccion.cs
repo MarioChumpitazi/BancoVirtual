@@ -1,74 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CapaDominio.Entidades
 {
-    public enum TipoTransaccion
-    {
-        OTRA_CUENTA,
-        OTRO_BANCO,
-        CUENTA_PROPIA,
-        EXTERIOR
-    }
 
     public class Transaccion
     {
         private string transaccionID;
         private DateTime fecha;
         private float monto;
-        private TipoTransaccion tipo;
+        private bool tipo;  //0 entre cuentas y 1 a terceros
         private int valoracion;
         private int codigoDeMovimiento;
+
         private Cuenta cuenta;
+
+        private List<Usuario> listaUsuarios;
 
         public string TransaccionID { get => transaccionID; set => transaccionID = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public float Monto { get => monto; set => monto = value; }
-        public TipoTransaccion Tipo { get => tipo; set => tipo = value; }
+        public bool Tipo { get => tipo; set => tipo = value; }
         public int Valoracion { get => valoracion; set => valoracion = value; }
         public int CodigoDeMovimiento { get => codigoDeMovimiento; set => codigoDeMovimiento = value; }
         public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
+        public List<Usuario> ListaUsuario { get { return listaUsuarios; } set { listaUsuarios = value; } }
 
+        
         public void realizarTransaccion()
         {
 
         }
-        public bool validarMonto()
+        public bool validarMonto(float monto, Cuenta cuenta)
         {
-            return monto <= cuenta.Saldo;
+            if (monto <= cuenta.Saldo)
+                return true;
+            else
+                return false;
         }
 
-        public float calcularComision(TipoTransaccion a, float montoaux)
-        {
-            float comision = 0.0f;
-            if (a == TipoTransaccion.CUENTA_PROPIA)
-                comision = 0.5f;
 
-            else
-                comision = montoaux * 0.15f;
+        public float calcularComision(bool tipo, float montoAux)
+        {
+            float comision = 0f;
+            if (tipo == false)  //entre cuentas
+                comision = 0.50f;
+
+            else   //a terceros
+                comision = montoAux * 0.15f;
 
             return comision;
         }
 
-        public bool validarMonto(float monto1, float cuenta1)
+        public float verificarComision(bool tipo)
         {
-            return monto1 <= cuenta1;
+            float comision = 0f;
+            if (tipo == false)
+                comision = 0.50f;
+            else
+                comision = 0.15f;
+            return comision;
+        }
+        public float calcularMontoTotal(bool tipo, float montoAux)
+        {
+            float montoTotal= 0f;
+            if (tipo== false)
+            {
+                montoTotal = montoAux + verificarComision(tipo);
+            }
+            else
+            {
+                montoTotal = montoAux * verificarComision(tipo);
+            }
+
+            return montoTotal;
         }
 
-        public float calcularMontoTotal(TipoTransaccion a, float montoaux)
+        public bool validarValoracion(int valorizacion)
         {
-            monto = montoaux;
-            return monto + calcularComision(a, montoaux);
+            if (valoracion >= 1 && valoracion <= 5)
+                return true;
+            else
+                return false;
         }
 
-        public bool validarValoracion()
-        {
-            return valoracion >= 1 && valoracion <= 5;
-        }
-
+        /*
         public float calcularTransferencia(float monto, string tipomoneda1)
         {
             if (tipomoneda1.Equals("DOLAR"))
@@ -78,38 +98,50 @@ namespace CapaDominio.Entidades
             return monto;
         }
 
+        
+
         public bool verificarCodigo(string codigoaux, string transaccionID2)
         {
             transaccionID = transaccionID2;
             return (transaccionID == transaccionID2);
         }
-
-        public bool validarMonto(Cuenta cuenta)
+        */
+        public bool existeUsuario(Usuario usuarioAux)
         {
-            return monto <= cuenta.Saldo;
+            string existenteID;
+            foreach (Usuario usuario in listaUsuarios)
+            {
+                existenteID = usuario.UsuarioID;
+                if (existenteID == usuarioAux.UsuarioID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public float calcularComision()
+        public Usuario buscarUsuarioID(Usuario usuario)
         {
-            float comision = 0.0f;
+            if (existeUsuario(usuario))
+            {
+                return usuario;
+            }
 
-            comision += tipo == TipoTransaccion.CUENTA_PROPIA ? 0.5f : 0.0f;
-            comision += tipo == TipoTransaccion.OTRA_CUENTA ? monto * 0.15f : 0.0f;
-
-            return comision;
-        }
-        public float calcularMontoTotal()
-        {
-            return monto + calcularComision();
+            return null;
         }
 
-        public float calcularTransferencia(Cuenta cuenta)
+        public bool verificarIntentos()
         {
-            float transferencia = 0.0f;
-            transferencia += cuenta.Moneda == Moneda.SOL ? monto : 0.0f;
-            transferencia += cuenta.Moneda == Moneda.DOLAR ? monto * 3.45f : 0.0f;
+            return false;
+        }
 
-            return transferencia;
+        public void generarClaveTransaccion()
+        {
+
+        }
+
+        public void verificarClaveTransaccion()
+        { 
         }
     }
 }

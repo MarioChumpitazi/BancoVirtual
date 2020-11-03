@@ -6,23 +6,18 @@ using System.Threading.Tasks;
 
 namespace CapaDominio.Entidades
 {
-    public enum Moneda
-    {
-        SOL,
-        DOLAR
-    }
     public class Cuenta
     {
         private string cuentaID;
         private float saldo;
-        private Moneda moneda;
+        private bool moneda;
         private bool estado;
         private List<Transaccion> listaDeTransacciones;
         private Usuario usuario;
 
         public Cuenta() { }
 
-        public Cuenta(string cuentaID, float saldo, Moneda moneda, Usuario usuario)
+        public Cuenta(string cuentaID, float saldo, bool moneda, Usuario usuario)
         {
             this.cuentaID = cuentaID;
             this.saldo = saldo;
@@ -35,18 +30,10 @@ namespace CapaDominio.Entidades
         public string CuentaID { get => cuentaID; set => cuentaID = value; }
         public float Saldo { get => saldo; set => saldo = value; }
         public bool Estado { get => estado; set => estado = value; }
-        public Moneda Moneda { get => moneda; set => moneda = value; }
+        public bool Moneda { get => moneda; set => moneda = value; }
         public List<Transaccion> ListaDeTransacciones { get => listaDeTransacciones; set => listaDeTransacciones = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
 
-        virtual public float calcularComision()
-        {
-            float comision = 0.0f;
-            foreach (var transaccion in listaDeTransacciones)
-            {
-                //comision += transaccion.calcularComision();
-            }
-            return comision;
-        }
+        
     }
 }

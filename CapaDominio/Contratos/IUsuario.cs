@@ -12,5 +12,6 @@ namespace CapaDominio.Contratos
 
         Usuario buscarPorID(string ID);
         Usuario buscarPorDni(string dni);
+        Cuenta buscarCuentaID(Cuenta cuenta);
     }
 }

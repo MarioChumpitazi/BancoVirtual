@@ -41,12 +41,14 @@ namespace CapaDominio.Entidades
         public bool Estado { get => estado; set => estado = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
+        /*
         public float calcularComision()
         {
             //return 0.5f * dia;
             return 0.0f;
         }
 
+        /*
         public float calcularComisionCuentas()
         {
             float comision = 0.0f;
@@ -93,5 +95,32 @@ namespace CapaDominio.Entidades
                 return false;
             }
         }
+
+        
+
+        public bool existeCuenta(Cuenta cuentaAux)
+        {
+            string existenteID;
+            foreach(Cuenta cuenta in listaDeCuentas)
+            {
+                existenteID = cuenta.CuentaID;
+                if(existenteID == cuentaAux.CuentaID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Cuenta buscarCuentaID(Cuenta cuenta)
+        {
+            if (existeCuenta(cuenta))
+            {
+               return cuenta;
+            }
+            
+            return null;
+        }
+        
     }
 }
