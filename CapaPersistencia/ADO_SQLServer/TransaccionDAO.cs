@@ -18,7 +18,7 @@ namespace CapaPersistencia.ADO_SQLServer
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
 
-        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID)
+        public void guardarTransaccion(Transaccion transaccion)
         {
 
             // CREANDO LAS SENTENCIAS SQL
@@ -36,10 +36,13 @@ namespace CapaPersistencia.ADO_SQLServer
                     comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
                 }
                 comando.Parameters.AddWithValue("@transaccionID", transaccion.TransaccionID);
-
+                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha.Date);
                 comando.Parameters.AddWithValue("@monto", transaccion.Monto);
+                comando.Parameters.AddWithValue("@tipoTransaccion", transaccion.TipoTransaccion);
                 comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
-             
+                comando.Parameters.AddWithValue("@cuentaOrigenID", transaccion.CuentaOrigen);
+                comando.Parameters.AddWithValue("@cuentaDestinoID", transaccion.CuentaDestino);
+
 
                 comando.ExecuteNonQuery();
             }
