@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using CapaDominio.Servicios;
-using CapaPersistencia.FabricaDatos;z
+using CapaPersistencia.FabricaDatos;
 
 namespace CapaAplicacion.Servicios
 {

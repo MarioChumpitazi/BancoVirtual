@@ -93,5 +93,10 @@ namespace CapaDominio.Entidades
                 return false;
             }
         }
+
+        public bool validarNumeroTarjeta()
+        {
+            return numeroDeTarjeta.Length == 16;
+        }
     }
 }
