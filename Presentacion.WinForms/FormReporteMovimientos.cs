@@ -16,5 +16,15 @@ namespace Presentacion.WinForms
         {
             InitializeComponent();
         }
+
+        private void FormReporteMovimientos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsuarioID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
