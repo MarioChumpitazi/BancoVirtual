@@ -32,6 +32,11 @@ namespace Presentacion.WinForms
 
         }
 
-        
+        private void FormRealizarTransaccion_Load(object sender, EventArgs e)
+        {
+
+        }
+
+   
     }
 }
