@@ -73,13 +73,17 @@ namespace Presentacion.WinForms
                          {
                         transaccion.TipoTransaccion = false;
                            }
-                    cuenta1.Saldo = cuenta1.Saldo - transaccion.Monto;
+                    txtComision.Text = transaccion.calcularComision().ToString();
+                    
                     txtMontoDescontado.Text = transaccion.Monto.ToString();
-                    transaccion.Monto = transaccion.calcularMontoTotal();
+                    double MontoAuxiliar= transaccion.calcularMontoTotal();
+                    cuenta1.Saldo = cuenta1.Saldo - MontoAuxiliar;
+
                     transaccion.Monto = transaccion.calcularTransferencia(cuenta1,cuenta2);
                     txtMontoTransferido.Text= transaccion.Monto.ToString();
                     cuenta2.Saldo = cuenta2.Saldo + transaccion.Monto;
                     servicio.guardarTransaccion(transaccion,cuentaOrigenID,cuentaDestinoID, cuenta1);
+
                     servicio.GuardarNuevoSaldo(cuenta1);
                     servicio.GuardarNuevoSaldo(cuenta2);
                    
@@ -105,7 +109,7 @@ namespace Presentacion.WinForms
                     txtNombreUsuario.Text = usuario1.Nombres.ToString();
                     txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
                     txtTipoMoneda.Text = cuenta1.TipoMoneda.ToString();
-                    txtComision.Text = transaccion.calcularComision().ToString();
+                   
 
 
 

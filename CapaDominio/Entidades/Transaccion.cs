@@ -44,7 +44,7 @@ namespace CapaDominio.Entidades
         }
         public double calcularMontoTotal()
         {
-            return monto - calcularComision();
+            return monto + calcularComision();
         }
         public bool validarValoracion()
         {
