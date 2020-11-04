@@ -52,40 +52,7 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
         }
-        public void guardarTransac(Transaccion transaccion)
-        {
-
-            // CREANDO LAS SENTENCIAS SQL
-            string insertarTransaccion1SQL;
-
-            insertarTransaccion1SQL = "insert into Prueba2(fechaTransaccion, monto, tipoTransaccion, valoracion) " +
-                 "values(@fechaTransaccion, @monto, @tipoTransaccion, @valoracion)";
-
-            try
-            {
-                SqlCommand comando;
-
-                // GUARDANDO EL OBJETO Transaccion
-                {
-                    comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
-                }
-             
-                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha.Date);
-                comando.Parameters.AddWithValue("@monto", transaccion.Monto);
-                comando.Parameters.AddWithValue("@tipoTransaccion", transaccion.TipoTransaccion);
-                comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
-           
-
-
-                comando.ExecuteNonQuery();
-            }
-            catch (Exception err)
-            {
-                throw new Exception("Ocurrio un problema al intentar guardar.", err);
-            }
-
-
-        }
+        
         public List<Transaccion> obtenerListaDeTransacciones()
         {
             List<Transaccion> transacciones = new List<Transaccion>();

@@ -85,11 +85,11 @@ namespace CapaAplicacion.Servicios
             gestorDatos.terminarTransaccion();
         }
 
-        public void guardarTransac(Transaccion transaccion)
+        public void GuardarNuevoSaldo(Cuenta cuenta)
         {
             RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
-            gestorDatos.iniciarTransaccion();
-            transaccionDAO.guardarTransac(transaccion);
+            gestorDatos.iniciarTransaccion();  
+            cuentaDAO.GuardarNuevoSaldo(cuenta);
             gestorDatos.terminarTransaccion();
         }
     }

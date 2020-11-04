@@ -39,30 +39,38 @@ namespace CapaDominio.Entidades
         public double calcularComision()
         {
             double comision = 0;
-
-            comision += tipoTransaccion ? 0.5 : 0.0;
-            comision +=  tipoTransaccion? monto * 0.15 : 0.0;
-
+            comision += tipoTransaccion ? 0.5 : monto * 0.15;
             return comision;
         }
         public double calcularMontoTotal()
         {
-
-            return monto + calcularComision();
+            return monto - calcularComision();
         }
         public bool validarValoracion()
         {
             return valoracion >= 1 && valoracion <= 5;
         }
 
-        public double calcularTransferencia(Cuenta cuenta)
+        public double calcularTransferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino)
         {
-            double transferencia = 0.0f;
-            transferencia += cuenta.TipoMoneda? monto : monto * 3.45;
-          
-
+            double transferencia = 0.0;
+            if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == true)
+            {
+                transferencia = monto;
+            }
+            else if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == false)
+            {
+                transferencia = monto / 3.45;
+            }
+            else if (cuentaOrigen.TipoMoneda == false && cuentaDestino.TipoMoneda == true)
+            {
+                transferencia = monto * 3.45;
+            }
+            else if (cuentaOrigen.TipoMoneda == false && cuentaDestino.TipoMoneda == false)
+            {
+                transferencia = monto ;
+            }
             return transferencia;
         }
-
     }
 }

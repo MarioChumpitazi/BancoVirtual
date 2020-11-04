@@ -44,7 +44,7 @@
             // 
             this.txtMenuUsuario.AutoSize = true;
             this.txtMenuUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuUsuario.Location = new System.Drawing.Point(147, 59);
+            this.txtMenuUsuario.Location = new System.Drawing.Point(245, 42);
             this.txtMenuUsuario.Name = "txtMenuUsuario";
             this.txtMenuUsuario.Size = new System.Drawing.Size(200, 24);
             this.txtMenuUsuario.TabIndex = 3;

@@ -101,6 +101,29 @@ namespace CapaPersistencia.ADO_SQLServer
             }
             return usuario;
         }
+
+
+
+        public void GuardarNuevoSaldo(Cuenta cuenta)
+        {
+     
+            string consultaSQL = "UPDATE Cuenta SET saldo = '" + cuenta.Saldo + "'WHERE cuentaID='" + cuenta.CuentaID + "'";
+            try
+            {
+                SqlCommand comando;
+
+                comando = gestorSQL.obtenerComandoSQL(consultaSQL);
+                comando.Parameters.AddWithValue("@saldo", cuenta.Saldo);
+
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar insertar saldo.", err);
+            }
+
+        }
         public Cuenta buscarPorNumeroCuenta(string cuentaID)
         {
             Cuenta cuenta;
