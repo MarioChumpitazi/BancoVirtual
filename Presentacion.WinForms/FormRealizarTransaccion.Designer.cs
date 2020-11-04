@@ -31,6 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataTransaccion = new System.Windows.Forms.DataGridView();
+            this.IDCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDeMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.text_idDestino = new System.Windows.Forms.TextBox();
@@ -44,10 +48,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textEstado = new System.Windows.Forms.TextBox();
-            this.IDCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDeMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textNombre = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
@@ -88,6 +88,30 @@
             this.dataTransaccion.TabIndex = 10;
             this.dataTransaccion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // IDCuenta
+            // 
+            this.IDCuenta.HeaderText = "IDCuenta";
+            this.IDCuenta.Name = "IDCuenta";
+            this.IDCuenta.Width = 150;
+            // 
+            // Saldo
+            // 
+            this.Saldo.HeaderText = "Saldo";
+            this.Saldo.Name = "Saldo";
+            this.Saldo.Width = 150;
+            // 
+            // TipoDeMoneda
+            // 
+            this.TipoDeMoneda.HeaderText = "TipoDeMoneda";
+            this.TipoDeMoneda.Name = "TipoDeMoneda";
+            this.TipoDeMoneda.Width = 150;
+            // 
+            // Apellidos
+            // 
+            this.Apellidos.HeaderText = "Estado";
+            this.Apellidos.Name = "Apellidos";
+            this.Apellidos.Width = 150;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -102,7 +126,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(524, 410);
+            this.label5.Location = new System.Drawing.Point(536, 410);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 13);
             this.label5.TabIndex = 27;
@@ -110,7 +134,7 @@
             // 
             // text_idDestino
             // 
-            this.text_idDestino.Location = new System.Drawing.Point(204, 240);
+            this.text_idDestino.Location = new System.Drawing.Point(198, 240);
             this.text_idDestino.Name = "text_idDestino";
             this.text_idDestino.Size = new System.Drawing.Size(142, 20);
             this.text_idDestino.TabIndex = 28;
@@ -127,7 +151,7 @@
             // 
             // btnTercero
             // 
-            this.btnTercero.Location = new System.Drawing.Point(515, 345);
+            this.btnTercero.Location = new System.Drawing.Point(527, 345);
             this.btnTercero.Name = "btnTercero";
             this.btnTercero.Size = new System.Drawing.Size(127, 51);
             this.btnTercero.TabIndex = 31;
@@ -147,7 +171,7 @@
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(178, 273);
+            this.txtMonto.Location = new System.Drawing.Point(166, 273);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(144, 20);
             this.txtMonto.TabIndex = 33;
@@ -156,7 +180,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 277);
+            this.label2.Location = new System.Drawing.Point(97, 277);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 34;
@@ -174,7 +198,7 @@
             // 
             // txtValoracion
             // 
-            this.txtValoracion.Location = new System.Drawing.Point(178, 302);
+            this.txtValoracion.Location = new System.Drawing.Point(178, 303);
             this.txtValoracion.Name = "txtValoracion";
             this.txtValoracion.Size = new System.Drawing.Size(144, 20);
             this.txtValoracion.TabIndex = 36;
@@ -205,30 +229,6 @@
             this.textEstado.Name = "textEstado";
             this.textEstado.Size = new System.Drawing.Size(142, 20);
             this.textEstado.TabIndex = 40;
-            // 
-            // IDCuenta
-            // 
-            this.IDCuenta.HeaderText = "IDCuenta";
-            this.IDCuenta.Name = "IDCuenta";
-            this.IDCuenta.Width = 150;
-            // 
-            // Saldo
-            // 
-            this.Saldo.HeaderText = "Saldo";
-            this.Saldo.Name = "Saldo";
-            this.Saldo.Width = 150;
-            // 
-            // TipoDeMoneda
-            // 
-            this.TipoDeMoneda.HeaderText = "TipoDeMoneda";
-            this.TipoDeMoneda.Name = "TipoDeMoneda";
-            this.TipoDeMoneda.Width = 150;
-            // 
-            // Apellidos
-            // 
-            this.Apellidos.HeaderText = "Estado";
-            this.Apellidos.Name = "Apellidos";
-            this.Apellidos.Width = 150;
             // 
             // textNombre
             // 

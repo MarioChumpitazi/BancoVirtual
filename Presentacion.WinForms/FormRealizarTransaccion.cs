@@ -21,8 +21,6 @@ namespace Presentacion.WinForms
         {
            
             InitializeComponent();
-            
-          
 
             }
 
@@ -57,28 +55,27 @@ namespace Presentacion.WinForms
                 DataGridViewRow fila = dataTransaccion.CurrentRow;
                 if (fila != null)
                 {
-                    string cuentaorigenID;
-                    string cuentadestinoID;
+                    string cuentaOrigenID;
+                    string cuentaDestinoID;
                     Transaccion transaccion = new Transaccion();
                     transaccion.Monto = double.Parse(txtMonto.Text.Trim());
                     transaccion.Fecha = DateTime.Now;
                     transaccion.TipoTransaccion = true;
                     transaccion.Valoracion = int.Parse(txtValoracion.Text.Trim());
-                    cuentaorigenID= fila.Cells[0].Value.ToString();
-                   cuentadestinoID = text_idDestino.Text.Trim();
+                    cuentaOrigenID= fila.Cells[0].Value.ToString();
+                    cuentaDestinoID = text_idDestino.Text.Trim();
 
 
                     RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
-                    Cuenta cuenta1 = servicio.buscarCuenta(cuentaorigenID);
-                    Cuenta cuenta2 = servicio.buscarCuenta(cuentadestinoID);
-                    transaccion.CuentaOrigen.CuentaID = cuenta1.CuentaID;
-                    transaccion.CuentaDestino.CuentaID = cuenta2.CuentaID;
-                    servicio.guardarTransaccion(transaccion, cuenta1);
+                    Cuenta cuenta1 = servicio.buscarCuenta(cuentaOrigenID);
+                  
+                    
+                    servicio.guardarTransaccion(transaccion,cuentaOrigenID,cuentaDestinoID, cuenta1);
 
                     if (transaccion != null)
                     {
 
-                        MessageBox.Show("Funciona");
+                        MessageBox.Show("Transaccion exitosa");
                     }
                 }
             }

@@ -18,14 +18,14 @@ namespace CapaPersistencia.ADO_SQLServer
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
 
-        public void guardarTransaccion(Transaccion transaccion)
+        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID)
         {
 
             // CREANDO LAS SENTENCIAS SQL
             string insertarTransaccion1SQL;
 
-            insertarTransaccion1SQL = "insert into Transaccion(transaccionID, fechaTransaccion, monto, tipoTransaccion, valoracion, cuentaOrigenID, cuentaDestinoID) " +
-                 "values(@transaccionID, @fechaTransaccion, @monto, @tipoTransaccion, @valoracion, @cuentaOrigenID,@cuentaDestinoID)";
+            insertarTransaccion1SQL = "insert into Transaccion(fechaTransaccion, monto, tipoTransaccion, valoracion, cuentaOrigenID, cuentaDestinoID) " +
+                 "values(@fechaTransaccion, @monto, @tipoTransaccion, @valoracion, @cuentaOrigenID,@cuentaDestinoID)";
 
             try
             {
@@ -35,13 +35,12 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
                 }
-                comando.Parameters.AddWithValue("@transaccionID", transaccion.TransaccionID);
-                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha.Date);
+                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha);
                 comando.Parameters.AddWithValue("@monto", transaccion.Monto);
                 comando.Parameters.AddWithValue("@tipoTransaccion", transaccion.TipoTransaccion);
                 comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
-                comando.Parameters.AddWithValue("@cuentaOrigenID", transaccion.CuentaOrigen);
-                comando.Parameters.AddWithValue("@cuentaDestinoID", transaccion.CuentaDestino);
+                comando.Parameters.AddWithValue("@cuentaOrigenID", cuentaOrigenID);
+                comando.Parameters.AddWithValue("@cuentaDestinoID", cuentaDestinoID);
 
 
                 comando.ExecuteNonQuery();
@@ -53,7 +52,40 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
         }
+        public void guardarTransac(Transaccion transaccion)
+        {
 
+            // CREANDO LAS SENTENCIAS SQL
+            string insertarTransaccion1SQL;
+
+            insertarTransaccion1SQL = "insert into Prueba2(fechaTransaccion, monto, tipoTransaccion, valoracion) " +
+                 "values(@fechaTransaccion, @monto, @tipoTransaccion, @valoracion)";
+
+            try
+            {
+                SqlCommand comando;
+
+                // GUARDANDO EL OBJETO Transaccion
+                {
+                    comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
+                }
+             
+                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha.Date);
+                comando.Parameters.AddWithValue("@monto", transaccion.Monto);
+                comando.Parameters.AddWithValue("@tipoTransaccion", transaccion.TipoTransaccion);
+                comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
+           
+
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar guardar.", err);
+            }
+
+
+        }
         public List<Transaccion> obtenerListaDeTransacciones()
         {
             List<Transaccion> transacciones = new List<Transaccion>();
