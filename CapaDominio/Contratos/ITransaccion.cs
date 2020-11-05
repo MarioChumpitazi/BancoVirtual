@@ -15,5 +15,6 @@ namespace CapaDominio.Contratos
         List<Transaccion> obtenerListaDeTransacciones();
         Transaccion buscarPorID(string transaccionID);
 
+
     }
 }

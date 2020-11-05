@@ -11,16 +11,15 @@ namespace CapaDominio.Servicios
     {
        
 
-
-      
-
-
         public void validarTransaccion(Transaccion transaccion, Cuenta cuenta)
         {
             if (!transaccion.validarMonto(cuenta))
             {
-                throw new Exception("ERROR en Transaccion");
+                throw new Exception("El monto a transferir es mayor que el saldo que tiene");
             }
+
+        
+
         }
 
 

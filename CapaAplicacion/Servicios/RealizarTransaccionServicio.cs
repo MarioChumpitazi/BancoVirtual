@@ -92,5 +92,12 @@ namespace CapaAplicacion.Servicios
             cuentaDAO.GuardarNuevoSaldo(cuenta);
             gestorDatos.terminarTransaccion();
         }
+        public void InhabilitarCuenta(Cuenta cuenta)
+        {
+            RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
+            gestorDatos.iniciarTransaccion();
+            cuentaDAO.InhabilitarCuenta(cuenta);
+            gestorDatos.terminarTransaccion();
+        }
     }
 }

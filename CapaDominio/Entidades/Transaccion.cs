@@ -32,10 +32,10 @@ namespace CapaDominio.Entidades
         public bool validarMonto(Cuenta cuenta)
         {
 
-            return monto <= cuenta.Saldo;
+            return monto <= cuenta.Saldo && monto <= 100;
         }
 
-
+     
         public double calcularComision()
         {
             double comision = 0;

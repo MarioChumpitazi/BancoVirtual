@@ -15,9 +15,11 @@ namespace Presentacion.WinForms
         public FormGenerarReporteMovimientos()
         {
             InitializeComponent();
+
         }
 
-        private void btnReporteEntreCuentas_Click(object sender, EventArgs e)
+
+        private void btnBuscarTransaccionesCuentaPropia_Click(object sender, EventArgs e)
         {
 
         }

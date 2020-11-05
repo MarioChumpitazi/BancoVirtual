@@ -174,7 +174,24 @@ namespace CapaPersistencia.ADO_SQLServer
         }
 
 
+        public void InhabilitarCuenta(Cuenta cuenta)
+        {
+            
+            string consultaSQL = "UPDATE Cuenta SET estado=0  where cuentaID='" + cuenta.CuentaID + "'";
+            try
+            {
+                SqlCommand comando;
 
+                comando = gestorSQL.obtenerComandoSQL(consultaSQL);
+                comando.Parameters.AddWithValue("@estado", cuenta.Estado);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            
+        }
         public Cuenta buscarPorNumeroInterbancario(string numero)
         {
             Cuenta cuenta;

@@ -51,7 +51,7 @@ namespace Presentacion.WinForms
 
         private void btnGenerarReporteMovimientos_Click(object sender, EventArgs e)
         {
-            FormGenerarReporteMovimientos formGenerarReporteMovimientos = new FormGenerarReporteMovimientos();
+             FormGenerarReporteMovimientos formGenerarReporteMovimientos = new FormGenerarReporteMovimientos();
             formGenerarReporteMovimientos.ShowDialog();
         }
 

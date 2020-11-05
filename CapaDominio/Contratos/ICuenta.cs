@@ -17,5 +17,8 @@ namespace CapaDominio.Contratos
         void GuardarNuevoSaldo(Cuenta cuenta);
         Cuenta buscarPorNumeroCuenta(string cuentaID);
         Cuenta buscarPorNumeroInterbancario(string numero);
+
+        void InhabilitarCuenta(Cuenta cuenta);
+
     }
 }
