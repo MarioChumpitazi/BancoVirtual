@@ -75,11 +75,12 @@ namespace CapaAplicacion.Servicios
             return usuario;
         }
         
-        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID, Cuenta cuenta)
+        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID, Cuenta cuenta1,Cuenta cuenta2)
         {
             RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
            
-            registroDeTransaccion.validarTransaccion(transaccion, cuenta);
+            registroDeTransaccion.validarTransaccion(transaccion, cuenta1);
+            registroDeTransaccion.verificarMontoDestinatario(transaccion, cuenta2);
             gestorDatos.iniciarTransaccion();
             transaccionDAO.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID );
             gestorDatos.terminarTransaccion();

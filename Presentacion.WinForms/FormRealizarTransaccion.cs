@@ -100,7 +100,7 @@ namespace Presentacion.WinForms
                                         cuenta2.Saldo = cuenta2.Saldo + transaccion.Monto;
 
 
-                                        servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuenta1);
+                                        servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuenta1,cuenta2);
 
                                         servicio.GuardarNuevoSaldo(cuenta1);
                                         servicio.GuardarNuevoSaldo(cuenta2);

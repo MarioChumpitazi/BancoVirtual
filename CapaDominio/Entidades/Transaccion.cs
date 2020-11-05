@@ -34,7 +34,11 @@ namespace CapaDominio.Entidades
             return monto>=5 && monto<=100;
         }
 
-     
+        public bool verificarMontoDestino(Cuenta cuenta)
+        {
+            return cuenta.Saldo+monto<= 1000;
+        }
+
         public double calcularComision()
         {
             double comision = 0;
@@ -71,5 +75,7 @@ namespace CapaDominio.Entidades
             }
             return transferencia;
         }
+
+        
     }
 }
