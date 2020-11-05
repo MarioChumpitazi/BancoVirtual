@@ -15,7 +15,7 @@ namespace CapaDominio.Servicios
         {
             if (!transaccion.validarMonto(cuenta))
             {
-                throw new Exception("El monto a transferir es mayor que el saldo que tiene");
+                throw new Exception("El monto a transferir no es el indicado");
             }
 
         

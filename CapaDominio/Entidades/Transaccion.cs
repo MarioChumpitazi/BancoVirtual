@@ -31,8 +31,7 @@ namespace CapaDominio.Entidades
         }
         public bool validarMonto(Cuenta cuenta)
         {
-
-            return monto <= cuenta.Saldo && monto <= 100;
+            return monto>=5 && monto<=100;
         }
 
      
@@ -50,10 +49,6 @@ namespace CapaDominio.Entidades
         {
             return valoracion >= 1 && valoracion <= 5;
         }
-
-   
-
-
 
         public double calcularTransferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino)
         {
