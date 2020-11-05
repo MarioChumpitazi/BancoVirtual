@@ -12,9 +12,10 @@ namespace CapaDominio.Contratos
     {
        
         void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID);
-        List<Transaccion> obtenerListaDeTransacciones();
+        List<Transaccion> obtenerListaDeTransacciones(string usuarioID, bool tipoTransaccion);
         Transaccion buscarPorID(string transaccionID);
 
+        Transaccion buscarTransaccion(string usuarioID, bool tipoTransaccion);
 
     }
 }

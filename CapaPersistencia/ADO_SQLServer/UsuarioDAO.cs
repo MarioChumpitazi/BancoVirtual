@@ -75,16 +75,6 @@ namespace CapaPersistencia.ADO_SQLServer
 
         
 
-
-
-
-
-
-
-
-
-
-
         public Usuario buscarPorID(string usuarioID)
         {
             Usuario usuario;
@@ -139,7 +129,7 @@ namespace CapaPersistencia.ADO_SQLServer
         private Usuario obtenerUsuario(SqlDataReader resultadoSQL)
         {
             Usuario usuario = new Usuario();
-            Banco banco = new Banco();
+        
             usuario.UsuarioID= resultadoSQL.GetString(0);
             usuario.Nombres = resultadoSQL.GetString(1);
             usuario.Apellidos = resultadoSQL.GetString(2);

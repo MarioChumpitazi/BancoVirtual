@@ -102,6 +102,29 @@ namespace CapaPersistencia.ADO_SQLServer
             return usuario;
         }
 
+        public Cuenta buscarCuentaPorUsuario(string usuarioID)
+        {
+            Cuenta cuenta;
+            string consultaSQL = "select cuenta.cuentaID,cuenta.saldo,cuenta.tipoMoneda,cuenta.estado,cuenta.clave,cuenta.usuarioID from Cuenta cuenta,Usuario usuario where cuenta.usuarioID=usuario.usuarioID  and usuario.usuarioID= '" + usuarioID + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                if (resultadoSQL.Read())
+                {
+                    cuenta = obtenerCuenta(resultadoSQL);
+
+                }
+                else
+                {
+                    throw new Exception("No existe cuenta.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return cuenta;
+        }
 
 
         public void GuardarNuevoSaldo(Cuenta cuenta)

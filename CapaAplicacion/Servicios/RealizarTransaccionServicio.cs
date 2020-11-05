@@ -53,13 +53,6 @@ namespace CapaAplicacion.Servicios
             return cuenta;
         }
 
-        public Movimiento buscarMovimiento(string codigo)
-        {
-            gestorDatos.abrirConexion();
-            Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigo);
-            gestorDatos.cerrarConexion();
-            return movimiento;
-        }
         public Usuario buscarUsuario(string usuarioID)
         {
             gestorDatos.abrirConexion();
@@ -100,5 +93,18 @@ namespace CapaAplicacion.Servicios
             cuentaDAO.InhabilitarCuenta(cuenta);
             gestorDatos.terminarTransaccion();
         }
+
+
+        public Cuenta buscarCuentaPorUsuario(string usuarioID)
+        {
+            gestorDatos.abrirConexion();
+           Cuenta cuenta=  cuentaDAO.buscarCuentaPorUsuario(usuarioID);
+            gestorDatos.cerrarConexion();
+            return cuenta;
+        }
+
+      
+
+
     }
 }

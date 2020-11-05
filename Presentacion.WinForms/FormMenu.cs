@@ -32,7 +32,6 @@ namespace Presentacion.WinForms
             formRealizarTransaccion.dataTransaccion.Visible = true;
             DataGridViewRow filas = formRealizarTransaccion.dataTransaccion.CurrentRow;
           
-
             usuario.UsuarioID = txtusuarioID.Text;
             RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
             List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuario.UsuarioID);
@@ -51,12 +50,20 @@ namespace Presentacion.WinForms
 
         private void btnGenerarReporteMovimientos_Click(object sender, EventArgs e)
         {
-             FormGenerarReporteMovimientos formGenerarReporteMovimientos = new FormGenerarReporteMovimientos();
+            Usuario usuario = new Usuario();
+            FormGenerarReporteMovimientos formGenerarReporteMovimientos = new FormGenerarReporteMovimientos();
+            usuario.UsuarioID = txtusuarioID.Text;
+            formGenerarReporteMovimientos.txtusuarioID.Text = usuario.UsuarioID;
+            formGenerarReporteMovimientos.dataMovimientosEntreCuentas.Visible = true;
             formGenerarReporteMovimientos.ShowDialog();
         }
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
+            
+
+
+
 
         }
     }

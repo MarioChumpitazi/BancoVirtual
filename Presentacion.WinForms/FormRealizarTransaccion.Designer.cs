@@ -260,7 +260,7 @@
             // 
             // txtMontoDescontado
             // 
-            this.txtMontoDescontado.Location = new System.Drawing.Point(257, 702);
+            this.txtMontoDescontado.Location = new System.Drawing.Point(585, 531);
             this.txtMontoDescontado.Name = "txtMontoDescontado";
             this.txtMontoDescontado.ReadOnly = true;
             this.txtMontoDescontado.Size = new System.Drawing.Size(151, 20);
@@ -270,7 +270,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(113, 706);
+            this.label5.Location = new System.Drawing.Point(441, 535);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 16);
             this.label5.TabIndex = 82;
@@ -377,7 +377,7 @@
             // 
             // txtMontoTransferido
             // 
-            this.txtMontoTransferido.Location = new System.Drawing.Point(287, 664);
+            this.txtMontoTransferido.Location = new System.Drawing.Point(592, 493);
             this.txtMontoTransferido.Name = "txtMontoTransferido";
             this.txtMontoTransferido.ReadOnly = true;
             this.txtMontoTransferido.Size = new System.Drawing.Size(107, 20);
@@ -387,7 +387,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(113, 665);
+            this.label16.Location = new System.Drawing.Point(441, 494);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(138, 16);
             this.label16.TabIndex = 68;

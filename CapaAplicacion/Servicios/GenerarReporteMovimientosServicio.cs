@@ -44,19 +44,30 @@ namespace CapaAplicacion.Servicios
             return movimiento;
         }
 
-        public Transaccion buscarTransaccion(string transaccionID)
+        public Transaccion buscarTransaccion(string usuarioID, bool tipoTransaccion)
         {
             gestorDatos.abrirConexion();
-            Transaccion transaccion = transaccionDAO.buscarPorID(transaccionID);
+            Transaccion transaccion = transaccionDAO.buscarTransaccion(usuarioID,tipoTransaccion);
             gestorDatos.cerrarConexion();
             return transaccion;
         }
 
-        public void guardarMovimiento(Movimiento movimiento)
+        public void guardarMovimiento(Movimiento movimiento, string transaccionID)
         {
             gestorDatos.abrirConexion();
-            movimientoDAO.guardarMovimiento(movimiento);
+            movimientoDAO.guardarMovimiento(movimiento, transaccionID);
             gestorDatos.cerrarConexion();
         }
+
+        public List<Transaccion> obtenerListaDeTransacciones(string usuarioID, bool tipoTransaccion)
+        {
+            gestorDatos.abrirConexion();
+            List<Transaccion> transaccion = transaccionDAO.obtenerListaDeTransacciones(usuarioID, tipoTransaccion);
+            gestorDatos.cerrarConexion();
+            return transaccion;
+        }
+
+
+
     }
 }

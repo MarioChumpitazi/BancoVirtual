@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaDominio.Entidades;
 using CapaDominio.Contratos;
+using System.Diagnostics;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
@@ -52,28 +53,57 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
         }
-        
-        public List<Transaccion> obtenerListaDeTransacciones()
+        public List<Transaccion> obtenerListaDeTransacciones(String usuarioID, bool tipoTransaccion)
         {
-            List<Transaccion> transacciones = new List<Transaccion>();
+            List<Transaccion> listaDeTransacciones = new List<Transaccion>();
             Transaccion transaccion;
-            string consultaSQL = "select * from Transaccion";
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Usuario u,Cuenta c where t.cuentaOrigenID=c.cuentaID and c.usuarioID=u.usuarioID and u.usuarioID='" + usuarioID + "' and t.tipoTransaccion= '" + tipoTransaccion + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
                 while (resultadoSQL.Read())
                 {
-                    //transacciones.Add(obtenerTransaccion(resultadoSQL));
                     transaccion = obtenerTransaccion(resultadoSQL);
+                    listaDeTransacciones.Add(transaccion);
+
                 }
             }
             catch (Exception err)
             {
                 throw err;
             }
-            return transacciones;
+            return listaDeTransacciones;
         }
+       
+
+        public Transaccion buscarTransaccion(string usuarioID, bool tipoTransaccion)
+        {
+            Transaccion transaccion;
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Usuario u,Cuenta c where t.cuentaOrigenID=c.cuentaID and c.usuarioID=u.usuarioID and u.usuarioID='" + usuarioID + "' and t.tipoTransaccion= '" + tipoTransaccion + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                if (resultadoSQL.Read())
+                {
+                    transaccion = obtenerTransaccion(resultadoSQL);
+
+                }
+                else
+                {
+                    throw new Exception("No existe cuenta.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return transaccion;
+        }
+
+
+
+
 
         public Transaccion buscarPorID(string codigo)
         {
@@ -102,9 +132,8 @@ namespace CapaPersistencia.ADO_SQLServer
         private Transaccion obtenerTransaccion(SqlDataReader resultadoSQL)
         {
             Transaccion transaccion = new Transaccion();
-            transaccion.TransaccionID = resultadoSQL.GetString(0);
             transaccion.Fecha = resultadoSQL.GetDateTime(1);
-            transaccion.Monto = resultadoSQL.GetFloat(2);
+            transaccion.Monto = double.Parse(resultadoSQL.GetDecimal(2).ToString());
             transaccion.TipoTransaccion = resultadoSQL.GetBoolean(3);
             transaccion.Valoracion = resultadoSQL.GetInt32(4);
             return transaccion;
