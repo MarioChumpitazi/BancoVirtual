@@ -59,7 +59,7 @@ namespace CapaPersistencia.ADO_SQLServer
         {
             List<Cuenta> listaDecuentas = new List<Cuenta>();
             Cuenta cuenta;
-            string consultaSQL = "select cuenta.cuentaID, cuenta.saldo, cuenta.tipoMoneda, cuenta.estado from Cuenta cuenta,Usuario usuario where cuenta.usuarioID=usuario.usuarioID and usuario.usuarioID='" + usuarioID + "'";
+            string consultaSQL = "select cuenta.cuentaID, cuenta.saldo, cuenta.tipoMoneda, cuenta.estado,cuenta.clave from Cuenta cuenta,Usuario usuario where cuenta.usuarioID=usuario.usuarioID and usuario.usuarioID='" + usuarioID + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
@@ -206,6 +206,8 @@ namespace CapaPersistencia.ADO_SQLServer
             cuenta.Saldo = double.Parse(resultadoSQL.GetDecimal(1).ToString());
             cuenta.TipoMoneda = resultadoSQL.GetBoolean(2);
             cuenta.Estado = resultadoSQL.GetBoolean(3);
+            cuenta.Clave = resultadoSQL.GetString(4);
+
             return cuenta;
         }
 

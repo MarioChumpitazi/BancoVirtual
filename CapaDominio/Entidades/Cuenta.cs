@@ -13,18 +13,20 @@ namespace CapaDominio.Entidades
         private double saldo;
         private bool tipoMoneda;
         private bool estado;
+        private string clave;
         private Usuario usuario;
 
 
 
         public Cuenta() { }
 
-        public Cuenta(string cuentaID, double saldo, bool tipoMoneda, bool estado, Usuario usuario)
+        public Cuenta(string cuentaID, double saldo, bool tipoMoneda, bool estado, string clave, Usuario usuario)
         {
             this.cuentaID = cuentaID;
             this.saldo = saldo;
             this.tipoMoneda = tipoMoneda;
             this.estado = estado;
+            this.clave = clave;
             this.usuario = usuario;
         }
 
@@ -32,12 +34,12 @@ namespace CapaDominio.Entidades
         public double Saldo { get => saldo; set => saldo = value; }
         public bool TipoMoneda { get => tipoMoneda; set => tipoMoneda = value; }
         public bool Estado { get => estado; set => estado = value; }
+        public string Clave { get => clave; set => clave = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
-
 
         public Boolean ValidarCuenta()
         {
-            if (estado == true)
+            if (Estado == true)
             {
                 return true;
             }
@@ -47,6 +49,19 @@ namespace CapaDominio.Entidades
             }
 
         }
+
+        public bool verificarCuenta(String cuentaaux)
+        {
+             if (clave == cuentaaux)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
     }
 

@@ -39,11 +39,11 @@
             this.TotalSoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalGeneral = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnBuscarID = new System.Windows.Forms.Button();
-            this.cmbMes = new System.Windows.Forms.ComboBox();
-            this.txtCuentaID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,52 +125,53 @@
             this.TotalGeneral.HeaderText = "TotalGeneral";
             this.TotalGeneral.Name = "TotalGeneral";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(104, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 16);
-            this.label2.TabIndex = 50;
-            this.label2.Text = "Numero de Mes";
-            // 
             // btnBuscarID
             // 
-            this.btnBuscarID.Location = new System.Drawing.Point(506, 93);
+            this.btnBuscarID.Location = new System.Drawing.Point(185, 112);
             this.btnBuscarID.Name = "btnBuscarID";
             this.btnBuscarID.Size = new System.Drawing.Size(83, 23);
             this.btnBuscarID.TabIndex = 49;
             this.btnBuscarID.Text = "Buscar";
             this.btnBuscarID.UseVisualStyleBackColor = true;
             // 
-            // cmbMes
-            // 
-            this.cmbMes.FormattingEnabled = true;
-            this.cmbMes.Items.AddRange(new object[] {
-            "Soles",
-            "Dolares"});
-            this.cmbMes.Location = new System.Drawing.Point(236, 55);
-            this.cmbMes.Name = "cmbMes";
-            this.cmbMes.Size = new System.Drawing.Size(121, 21);
-            this.cmbMes.TabIndex = 48;
-            // 
-            // txtCuentaID
-            // 
-            this.txtCuentaID.Location = new System.Drawing.Point(246, 96);
-            this.txtCuentaID.Name = "txtCuentaID";
-            this.txtCuentaID.Size = new System.Drawing.Size(236, 20);
-            this.txtCuentaID.TabIndex = 47;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(104, 100);
+            this.label3.Location = new System.Drawing.Point(127, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 16);
+            this.label3.Size = new System.Drawing.Size(206, 16);
             this.label3.TabIndex = 46;
-            this.label3.Text = "ID Cuenta Destino:";
+            this.label3.Text = "Transaccion a cuenta propia";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(551, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 16);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Transaccion a cuenta propia";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(615, 112);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(83, 23);
+            this.button1.TabIndex = 51;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(370, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(206, 16);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Transaccion a cuenta propia";
             // 
             // FormReporteMovimientosEntreCuentas
             // 
@@ -178,9 +179,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 450);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscarID);
-            this.Controls.Add(this.cmbMes);
-            this.Controls.Add(this.txtCuentaID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.btnSalir);
@@ -206,10 +207,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalSoles;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalGeneral;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBuscarID;
-        private System.Windows.Forms.ComboBox cmbMes;
-        private System.Windows.Forms.TextBox txtCuentaID;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -51,6 +51,10 @@ namespace CapaDominio.Entidades
             return valoracion >= 1 && valoracion <= 5;
         }
 
+   
+
+
+
         public double calcularTransferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino)
         {
             double transferencia = 0.0;
