@@ -30,7 +30,7 @@ namespace Presentacion.WinForms
                 string usuarioID=txtusuarioID.Text;
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
 
-
+                Movimiento movimiento= new Movimiento();
                 DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
 
@@ -39,16 +39,23 @@ namespace Presentacion.WinForms
                 List<Transaccion> listadeTransacciones = servicioMovimientos.obtenerListaDeTransacciones(usuarioID, true);
                 dataMovimientosEntreCuentas.Rows.Clear();
 
-                foreach (Cuenta cuenta in listaDeCuentas)
-                {
+   
                     foreach (Transaccion transaccion in listadeTransacciones)
                     {
-                       
-                    }
-                    String moneda = cuenta.TipoMoneda ? "Sol" : "Dolar";
-                    String estado = cuenta.Estado ? "Habilitado" : "Inhabilitado";
-                    Object[] fila = { cuenta.CuentaID, cuenta.Saldo, moneda, estado };
+
+                            Object[] fila = { transaccion.TransaccionID, transaccion.Fecha,  transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                            dataMovimientosEntreCuentas.Rows.Add(fila);
+                            dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+               
+                    
+
+
                 }
+
+                // movimiento.mes = DateTime.Now;
+               // servicioMovimientos.guardarMovimiento(movimiento, transaccion.TransaccionID);
+
+
             }
             catch (Exception err)
             {
@@ -62,8 +69,28 @@ namespace Presentacion.WinForms
             {
                 string usuarioID = txtusuarioID.Text;
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
-                servicioMovimientos.buscarTransaccion(usuarioID, false);
-                Transaccion transaccion = servicioMovimientos.buscarTransaccion(usuarioID, true);
+
+
+                DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
+                RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
+
+                List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuarioID);
+                dataMovimientosEntreCuentas.Rows.Clear();
+                List<Transaccion> listadeTransacciones = servicioMovimientos.obtenerListaDeTransacciones(usuarioID, false);
+                dataMovimientosEntreCuentas.Rows.Clear();
+
+
+                foreach (Transaccion transaccion in listadeTransacciones)
+                {
+
+                    Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion,transaccion.CuentaOrigen.CuentaID,transaccion.CuentaDestino.CuentaID};
+                    dataMovimientosEntreCuentas.Rows.Add(fila);
+                    dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                }
+
+
+
+
             }
             catch (Exception err)
             {

@@ -14,7 +14,6 @@ namespace CapaDominio.Entidades
 
         public string MovimientoID { get => movimientoID; set => movimientoID = value; }
         public DateTime Mes { get => mes; set => mes = value; }
-     
         public Transaccion Transaccion { get => transaccion; set => transaccion = value; }
     }
 }

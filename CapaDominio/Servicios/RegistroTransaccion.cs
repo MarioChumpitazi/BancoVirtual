@@ -17,6 +17,10 @@ namespace CapaDominio.Servicios
             {
                 throw new Exception("El monto a transferir no es el indicado");
             }
+            if (!transaccion.validarValoracion())
+            {
+                throw new Exception("La valoracion debe ser entre 1 y 5");
+            }
         }
         public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
         {
@@ -26,10 +30,12 @@ namespace CapaDominio.Servicios
             }
 
         }
-
-
-
-
-
+        
     }
+
+
+
+
+
 }
+

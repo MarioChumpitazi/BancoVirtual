@@ -71,12 +71,23 @@ namespace CapaPersistencia.ADO_SQLServer
                    
                 }
             }
+
             catch (Exception err)
             {
                 throw err;
             }
             return listaDecuentas;
         }
+
+
+
+
+
+
+
+
+
+
 
         public Usuario buscarUsuarioPorCuenta(string cuentaID)
         {

@@ -52,7 +52,7 @@ namespace CapaAplicacion.Servicios
             return transaccion;
         }
 
-        public void guardarMovimiento(Movimiento movimiento, string transaccionID)
+        public void guardarMovimiento(Movimiento movimiento , string transaccionID)
         {
             gestorDatos.abrirConexion();
             movimientoDAO.guardarMovimiento(movimiento, transaccionID);

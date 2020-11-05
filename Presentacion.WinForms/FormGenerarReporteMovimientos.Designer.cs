@@ -30,19 +30,18 @@
         {
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataMovimientosEntreCuentas = new System.Windows.Forms.DataGridView();
-            this.UsuarioID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalSoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_buscarTransaccionesOtraCuenta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBuscarTransaccionesCuentaPropia = new System.Windows.Forms.Button();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,54 +59,16 @@
             this.dataMovimientosEntreCuentas.AllowUserToAddRows = false;
             this.dataMovimientosEntreCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMovimientosEntreCuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UsuarioID,
-            this.TotalSoles,
             this.TotalDolares,
+            this.fecha,
             this.CuentaID,
             this.TotalMonto,
             this.NivelValorizacion,
-            this.mes});
-            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(81, 152);
+            this.tipodemoneda});
+            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(134, 149);
             this.dataMovimientosEntreCuentas.Name = "dataMovimientosEntreCuentas";
-            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(795, 224);
+            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(684, 224);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
-            // 
-            // UsuarioID
-            // 
-            this.UsuarioID.FillWeight = 50F;
-            this.UsuarioID.HeaderText = "Nombre";
-            this.UsuarioID.Name = "UsuarioID";
-            // 
-            // TotalSoles
-            // 
-            this.TotalSoles.HeaderText = "Apellidos";
-            this.TotalSoles.Name = "TotalSoles";
-            // 
-            // TotalDolares
-            // 
-            this.TotalDolares.HeaderText = "CuentaID";
-            this.TotalDolares.Name = "TotalDolares";
-            // 
-            // CuentaID
-            // 
-            this.CuentaID.HeaderText = "Saldo";
-            this.CuentaID.Name = "CuentaID";
-            // 
-            // TotalMonto
-            // 
-            this.TotalMonto.HeaderText = "Monto Total Transferido";
-            this.TotalMonto.Name = "TotalMonto";
-            // 
-            // NivelValorizacion
-            // 
-            this.NivelValorizacion.HeaderText = "Promedio Valorización";
-            this.NivelValorizacion.Name = "NivelValorizacion";
-            this.NivelValorizacion.Width = 150;
-            // 
-            // mes
-            // 
-            this.mes.HeaderText = "Mes";
-            this.mes.Name = "mes";
             // 
             // label1
             // 
@@ -120,7 +81,7 @@
             // 
             // btn_buscarTransaccionesOtraCuenta
             // 
-            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(580, 98);
+            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(554, 84);
             this.btn_buscarTransaccionesOtraCuenta.Name = "btn_buscarTransaccionesOtraCuenta";
             this.btn_buscarTransaccionesOtraCuenta.Size = new System.Drawing.Size(129, 37);
             this.btn_buscarTransaccionesOtraCuenta.TabIndex = 51;
@@ -140,11 +101,11 @@
             // 
             // btnBuscarTransaccionesCuentaPropia
             // 
-            this.btnBuscarTransaccionesCuentaPropia.Location = new System.Drawing.Point(240, 98);
+            this.btnBuscarTransaccionesCuentaPropia.Location = new System.Drawing.Point(228, 84);
             this.btnBuscarTransaccionesCuentaPropia.Name = "btnBuscarTransaccionesCuentaPropia";
             this.btnBuscarTransaccionesCuentaPropia.Size = new System.Drawing.Size(129, 37);
             this.btnBuscarTransaccionesCuentaPropia.TabIndex = 53;
-            this.btnBuscarTransaccionesCuentaPropia.Text = "Transacciones a otra cuenta";
+            this.btnBuscarTransaccionesCuentaPropia.Text = "Transacciones a cuenta propia";
             this.btnBuscarTransaccionesCuentaPropia.UseVisualStyleBackColor = true;
             this.btnBuscarTransaccionesCuentaPropia.Click += new System.EventHandler(this.btnBuscarTransaccionesCuentaPropia_Click);
             // 
@@ -164,6 +125,38 @@
             this.label9.Size = new System.Drawing.Size(85, 16);
             this.label9.TabIndex = 54;
             this.label9.Text = "Usuario ID:";
+            // 
+            // tipodemoneda
+            // 
+            this.tipodemoneda.HeaderText = "Cuenta Destino";
+            this.tipodemoneda.Name = "tipodemoneda";
+            this.tipodemoneda.Width = 120;
+            // 
+            // NivelValorizacion
+            // 
+            this.NivelValorizacion.HeaderText = "Cuenta Origen";
+            this.NivelValorizacion.Name = "NivelValorizacion";
+            this.NivelValorizacion.Width = 120;
+            // 
+            // TotalMonto
+            // 
+            this.TotalMonto.HeaderText = "Valoracion";
+            this.TotalMonto.Name = "TotalMonto";
+            // 
+            // CuentaID
+            // 
+            this.CuentaID.HeaderText = "MontoTransferido";
+            this.CuentaID.Name = "CuentaID";
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Hora y fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // TotalDolares
+            // 
+            this.TotalDolares.HeaderText = "TransaccionID";
+            this.TotalDolares.Name = "TotalDolares";
             // 
             // FormGenerarReporteMovimientos
             // 
@@ -195,12 +188,11 @@
         public System.Windows.Forms.DataGridView dataMovimientosEntreCuentas;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalSoles;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn CuentaID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
     }
 }

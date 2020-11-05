@@ -32,10 +32,8 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarMovimientoSQL);
                 }
-                comando.Parameters.AddWithValue("@mes", movimiento.mes.Date);
+                comando.Parameters.AddWithValue("@mes", movimiento.mes);
                 comando.Parameters.AddWithValue("@transaccionID",transaccionID);
-
-
                 comando.ExecuteNonQuery();
             }
             catch (Exception err)
@@ -44,23 +42,6 @@ namespace CapaPersistencia.ADO_SQLServer
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
        
         public Movimiento buscarPorCodigo(string codigo)
         {
@@ -89,9 +70,11 @@ namespace CapaPersistencia.ADO_SQLServer
         private Movimiento obtenerMovimiento(SqlDataReader resultadoSQL)
         {
             Movimiento movimiento = new Movimiento();
-            movimiento.MovimientoID = resultadoSQL.GetString(0);
+            Transaccion transaccion = new Transaccion();
+            movimiento.MovimientoID = resultadoSQL.GetInt32(0).ToString();
             movimiento.mes = resultadoSQL.GetDateTime(1);
-
+            transaccion.TransaccionID= resultadoSQL.GetString(2);
+            movimiento.Transaccion = transaccion;
             return movimiento;
         }
     }

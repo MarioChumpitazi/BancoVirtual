@@ -132,10 +132,17 @@ namespace CapaPersistencia.ADO_SQLServer
         private Transaccion obtenerTransaccion(SqlDataReader resultadoSQL)
         {
             Transaccion transaccion = new Transaccion();
+            Cuenta cuenta1 = new Cuenta();
+            Cuenta cuenta2 = new Cuenta();
+            transaccion.TransaccionID= resultadoSQL.GetInt32(0).ToString();
             transaccion.Fecha = resultadoSQL.GetDateTime(1);
             transaccion.Monto = double.Parse(resultadoSQL.GetDecimal(2).ToString());
             transaccion.TipoTransaccion = resultadoSQL.GetBoolean(3);
             transaccion.Valoracion = resultadoSQL.GetInt32(4);
+            cuenta1.CuentaID= resultadoSQL.GetString(5);
+            transaccion.CuentaOrigen = cuenta1;
+            cuenta2.CuentaID = resultadoSQL.GetString(6);
+            transaccion.CuentaDestino = cuenta2;
             return transaccion;
         }
     }
