@@ -67,6 +67,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtVerificarCuenta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtMonedaDestino = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransaccion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -278,7 +280,7 @@
             // 
             // txtComision
             // 
-            this.txtComision.Location = new System.Drawing.Point(209, 626);
+            this.txtComision.Location = new System.Drawing.Point(230, 639);
             this.txtComision.Name = "txtComision";
             this.txtComision.ReadOnly = true;
             this.txtComision.Size = new System.Drawing.Size(199, 20);
@@ -288,7 +290,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(113, 626);
+            this.label11.Location = new System.Drawing.Point(126, 639);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 16);
             this.label11.TabIndex = 80;
@@ -296,7 +298,7 @@
             // 
             // txtTipoMoneda
             // 
-            this.txtTipoMoneda.Location = new System.Drawing.Point(243, 584);
+            this.txtTipoMoneda.Location = new System.Drawing.Point(243, 577);
             this.txtTipoMoneda.Name = "txtTipoMoneda";
             this.txtTipoMoneda.ReadOnly = true;
             this.txtTipoMoneda.Size = new System.Drawing.Size(165, 20);
@@ -306,11 +308,11 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(111, 588);
+            this.label12.Location = new System.Drawing.Point(61, 581);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 16);
+            this.label12.Size = new System.Drawing.Size(176, 16);
             this.label12.TabIndex = 78;
-            this.label12.Text = "Tipo de Moneda:";
+            this.label12.Text = "Tipo de Moneda Origen:";
             // 
             // txtApellidosUsuario
             // 
@@ -410,11 +412,31 @@
             this.label10.TabIndex = 87;
             this.label10.Text = "Ingresar clave Cuenta:";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(61, 611);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(183, 16);
+            this.label17.TabIndex = 88;
+            this.label17.Text = "Tipo de Moneda Destino:";
+            // 
+            // txtMonedaDestino
+            // 
+            this.txtMonedaDestino.Location = new System.Drawing.Point(243, 607);
+            this.txtMonedaDestino.Name = "txtMonedaDestino";
+            this.txtMonedaDestino.ReadOnly = true;
+            this.txtMonedaDestino.Size = new System.Drawing.Size(165, 20);
+            this.txtMonedaDestino.TabIndex = 89;
+            // 
             // FormRealizarTransaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 749);
+            this.Controls.Add(this.txtMonedaDestino);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtVerificarCuenta);
             this.Controls.Add(this.txtCuentaOrigen);
@@ -500,5 +522,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtVerificarCuenta;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtMonedaDestino;
     }
 }

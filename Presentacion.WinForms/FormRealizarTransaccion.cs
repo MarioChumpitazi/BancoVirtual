@@ -122,8 +122,10 @@ namespace Presentacion.WinForms
                                         txtCuentaDestino.Text = cuenta2.CuentaID.ToString();
                                         txtNombreUsuario.Text = usuario1.Nombres.ToString();
                                         txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
-                                        txtTipoMoneda.Text = cuenta1.TipoMoneda.ToString();
-
+                                        String monedaOrigen = cuenta1.TipoMoneda ? "Sol" : "Dolar";
+                                        txtTipoMoneda.Text = monedaOrigen;
+                                        String monedaDestino = cuenta2.TipoMoneda ? "Sol" : "Dolar";
+                                        txtMonedaDestino.Text = monedaDestino;
                                         if (transaccion != null)
                                         {
 
