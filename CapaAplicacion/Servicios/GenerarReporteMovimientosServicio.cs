@@ -19,7 +19,7 @@ namespace CapaAplicacion.Servicios
         private ITransaccion transaccionDAO;
         private IUsuario usarioDAO;
 
-
+        //sobrescrito de rama mario prueba 1
         public GenerarReporteDeMovimientosServicio()
         {
             FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
