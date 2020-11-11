@@ -9,7 +9,7 @@ using CapaDominio.Contratos;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class MovimientoDAO: IMovimiento
+    public class MovimientoDAO
     {
         private GestorSQL gestorSQL;
 
@@ -20,22 +20,38 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public void guardarMovimiento(Movimiento movimiento)
         {
-  
+            //string consultaSQL = String.Format("insert into Movimiento" +
+                //"(codigo, hora, moneda, monto, nombreDestinatario) " +
+                //"values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")",
+                //movimiento.Codigo, movimiento.Hora, movimiento.Moneda, movimiento.Monto, movimiento.NombreDestinatario);
+
+            //try
+            //{
+                //IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
+                //resultadoSQL.ExecuteScalar();
+                //resultadoSQL.Dispose();
+            //}
+            //catch (Exception err)
+            //{
+                //throw new Exception("Ocurrio un problema al intentar guardar.", err);
+            //}
+
+
             // CREANDO LAS SENTENCIAS SQL
             string insertarMovimientoSQL;
 
             insertarMovimientoSQL = "insert into Movimiento(codigo, hora, moneda, monto, nombreDestinatario) " +
                  "values(@codigo, @hora, @moneda, @monto, @nombreDestinatario)";
-
+         
             try
             {
                 SqlCommand comando;
 
                 // GUARDANDO EL OBJETO Movimiento
-                {
+                { 
                     comando = gestorSQL.obtenerComandoSQL(insertarMovimientoSQL);
                 }
-                comando.Parameters.AddWithValue("@movimientoID", movimiento.MovimientoID);
+                comando.Parameters.AddWithValue("@codigo", movimiento.Codigo);
                 comando.Parameters.AddWithValue("@hora", movimiento.Hora.Date);
                 comando.Parameters.AddWithValue("@moneda", movimiento.Moneda);
                 comando.Parameters.AddWithValue("@monto", movimiento.Monto);
@@ -71,10 +87,10 @@ namespace CapaPersistencia.ADO_SQLServer
             return movimientos;
         }
 
-        public Movimiento buscarPorCodigo(string movimientoID)
+        public Movimiento buscarPorCodigo(string codigo)
         {
             Movimiento movimiento;
-            string consultaSQL = "select * from Movimiento where movimientoID = '" + movimientoID + "'";
+            string consultaSQL = "select * from Movimiento where codigo = \"" + codigo + "\"";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
@@ -98,8 +114,8 @@ namespace CapaPersistencia.ADO_SQLServer
         private Movimiento obtenerMovimiento(SqlDataReader resultadoSQL)
         {
             Movimiento movimiento = new Movimiento();
-            movimiento.MovimientoID = resultadoSQL.GetString(0);
-            movimiento.Hora = resultadoSQL.GetDateTime(1);
+            movimiento.Codigo = resultadoSQL.GetString(0);
+            movimiento.Hora = resultadoSQL.GetString(1);
             movimiento.Moneda = resultadoSQL.GetString(2);
             movimiento.Monto = resultadoSQL.GetFloat(3);
             movimiento.NombreDestinatario = resultadoSQL.GetString(4);

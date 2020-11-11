@@ -9,7 +9,7 @@ using CapaDominio.Contratos;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class UsuarioDAO : IUsuario
+    public class UsuarioDAO
     {
         private GestorSQL gestorSQL;
         public UsuarioDAO(IGestorAccesoDatos gestorSQL)
@@ -19,7 +19,18 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public void guardarUsuario(Usuario usuario)
         {
-
+            //string consultaSQL = String.Format("insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave) values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", usuario.Nombres, usuario.Apellidos, usuario.Dni, usuario.NumeroDeTarjeta, usuario.Clave);
+            //try
+            //{
+                //IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
+                //resultadoSQL.ExecuteScalar();
+                //resultadoSQL.Dispose();
+            //}
+            //catch (Exception err)
+            //{
+                //throw new Exception("Ocurrio un problema al intentar guardar.", err);
+            //}
+            
 
             // CREANDO LAS SENTENCIAS SQL
             string insertarUsuarioSQL, insertarCuenta1SQL;
@@ -29,13 +40,13 @@ namespace CapaPersistencia.ADO_SQLServer
 
             insertarCuenta1SQL = "insert into Cuenta(numero, saldo, moneda, estado, listaDeTransacciones) " +
                  "values(@numero,@saldo,@moneda,@estado, @listaDeTransacciones)";
-
+         
             try
             {
                 SqlCommand comando;
 
                 // GUARDANDO EL OBJETO Usuario
-                {
+                { 
                     comando = gestorSQL.obtenerComandoSQL(insertarUsuarioSQL);
                 }
                 comando.Parameters.AddWithValue("@nombres", usuario.Nombres);
@@ -46,14 +57,14 @@ namespace CapaPersistencia.ADO_SQLServer
                 comando.Parameters.AddWithValue("@estado", usuario.Estado);
                 comando.ExecuteNonQuery();
 
-                // GUARDANDO LOS OBJETOS CUENTAS
-                foreach (Cuenta cuenta in usuario.ListaDeCuentas)
+                 // GUARDANDO LOS OBJETOS CUENTAS
+                foreach (Cuenta cuenta in usuario.listaDeCuentas)
                 {
                     // Agregando una cuenta
                     comando = gestorSQL.obtenerComandoSQL(insertarCuenta1SQL);
-                    comando.Parameters.AddWithValue("@cuentaID", cuenta.CuentaID);
+                    comando.Parameters.AddWithValue("@numero", cuenta.Numero);
                     comando.Parameters.AddWithValue("@saldo", cuenta.Saldo);
-                    comando.Parameters.AddWithValue("@moneda", cuenta.TipoMoneda);
+                    comando.Parameters.AddWithValue("@moneda", cuenta.Moneda);
                     comando.Parameters.AddWithValue("@estado", cuenta.Estado);
                     comando.Parameters.AddWithValue("@listaDeTransacciones", cuenta.ListaDeTransacciones);
                     comando.ExecuteNonQuery();
@@ -89,7 +100,7 @@ namespace CapaPersistencia.ADO_SQLServer
         public Usuario buscarPorDni(string dni)
         {
             Usuario usuario;
-            string consultaSQL = "select * from Usuario where dni = '" + dni + "'";
+            string consultaSQL = "select * from Usuario where dni = \"" + dni + "\"";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
