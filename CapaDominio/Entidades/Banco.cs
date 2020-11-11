@@ -24,6 +24,16 @@ namespace CapaDominio.Entidades
         public string NombreBanco { get => nombreBanco; set => nombreBanco = value; }
         public List<Usuario> ListaDeUsuarios { get => listaDeUsuarios; set => listaDeUsuarios = value; }
 
+        public Usuario buscarUsuario(Usuario usuarioAux)
+        {
+            Usuario existente=usuarioAux;
+            foreach (Usuario usuario in listaDeUsuarios)
+            {
+                if (usuario.UsuarioID == existente.UsuarioID)
+                    return usuario;
+            }
+            return null;
+        }
         public bool validarUsuario(Usuario usuario)
         {
             foreach (var user in listaDeUsuarios)
@@ -47,6 +57,5 @@ namespace CapaDominio.Entidades
             }
             return null;
         }
-        ///ffffffff
     }
 }

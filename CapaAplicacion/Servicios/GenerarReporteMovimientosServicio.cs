@@ -19,8 +19,8 @@ namespace CapaAplicacion.Servicios
         private ITransaccion transaccionDAO;
         private IUsuario usarioDAO;
 
-
-        public GenerarReporteMovimientosServicio()
+        //sobrescrito de rama mario prueba 1
+        public GenerarReporteDeMovimientosServicio()
         {
             FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
@@ -35,7 +35,7 @@ namespace CapaAplicacion.Servicios
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
-        public Movimiento buscarMovimientoPorCodigo(string codigoDeMovimiento)
+        public Movimiento buscarMovimiento(string codigoDeMovimiento)
         {
             gestorDatos.abrirConexion();
             Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigoDeMovimiento);
@@ -43,10 +43,10 @@ namespace CapaAplicacion.Servicios
             return movimiento;
         }
 
-        public Transaccion buscarTransaccion(string transaccionID)
+        public Transaccion buscarTransaccion(string codigo)
         {
             gestorDatos.abrirConexion();
-            Transaccion transaccion = transaccionDAO.buscarPorID(transaccionID);
+            Transaccion transaccion = transaccionDAO.buscarPorCodigo(codigo);
             gestorDatos.cerrarConexion();
             return transaccion;
         }
