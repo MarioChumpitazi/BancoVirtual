@@ -17,6 +17,7 @@ namespace Presentacion.WinForms
     {
         private Cuenta cuenta;
         private Usuario usuario;
+        private Transaccion transaccion;
         public FormGenerarReporteMovimientos()
         {
             InitializeComponent();
@@ -119,16 +120,15 @@ namespace Presentacion.WinForms
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnCalcular_Click(object sender, EventArgs e)
         {
-            string cuentaID;
-            DataGridViewRow filaCuenta = dataMovimientosEntreCuentas.CurrentRow;
-            if (filaCuenta == null)
-            {
-                MessageBox.Show(this, "No existe cuenta seleccionada.", "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+            transaccionID = fila.Cells[0].Value.ToString();
+            Movimiento movimiento = movimiento.
+            txtNivelValorizacion = movimiento.calcularNivelValorizacion().ToString();
+            txtNivelMovimiento = movimiento.calcularNivelMovimiento().ToString();
+            txtTotalSoles = movimiento.calcularTotalTransaccionSoles().ToString();
+            txtTotalDolares = movimiento.calcularTotalTransaccionDolares().ToString();
         }
-
     }
 }

@@ -30,12 +30,6 @@
         {
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataMovimientosEntreCuentas = new System.Windows.Forms.DataGridView();
-            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_buscarTransaccionesOtraCuenta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +39,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCuenta = new System.Windows.Forms.ComboBox();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,8 +49,14 @@
             this.txtTotalSoles = new System.Windows.Forms.ComboBox();
             this.txtTotalDolares = new System.Windows.Forms.ComboBox();
             this.txtGeneral = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtNombreUsuario = new System.Windows.Forms.ComboBox();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,45 +77,14 @@
             this.TotalDolares,
             this.fecha,
             this.CuentaID,
+            this.TipoMoneda,
             this.TotalMonto,
             this.NivelValorizacion,
             this.tipodemoneda});
-            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(24, 169);
+            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(23, 154);
             this.dataMovimientosEntreCuentas.Name = "dataMovimientosEntreCuentas";
             this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(684, 152);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
-            // 
-            // TotalDolares
-            // 
-            this.TotalDolares.HeaderText = "TransaccionID";
-            this.TotalDolares.Name = "TotalDolares";
-            // 
-            // fecha
-            // 
-            this.fecha.HeaderText = "Hora y fecha";
-            this.fecha.Name = "fecha";
-            // 
-            // CuentaID
-            // 
-            this.CuentaID.HeaderText = "MontoTransferido";
-            this.CuentaID.Name = "CuentaID";
-            // 
-            // TotalMonto
-            // 
-            this.TotalMonto.HeaderText = "Valoracion";
-            this.TotalMonto.Name = "TotalMonto";
-            // 
-            // NivelValorizacion
-            // 
-            this.NivelValorizacion.HeaderText = "Cuenta Origen";
-            this.NivelValorizacion.Name = "NivelValorizacion";
-            this.NivelValorizacion.Width = 120;
-            // 
-            // tipodemoneda
-            // 
-            this.tipodemoneda.HeaderText = "Cuenta Destino";
-            this.tipodemoneda.Name = "tipodemoneda";
-            this.tipodemoneda.Width = 120;
             // 
             // label1
             // 
@@ -129,7 +97,7 @@
             // 
             // btn_buscarTransaccionesOtraCuenta
             // 
-            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(766, 109);
+            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(766, 121);
             this.btn_buscarTransaccionesOtraCuenta.Name = "btn_buscarTransaccionesOtraCuenta";
             this.btn_buscarTransaccionesOtraCuenta.Size = new System.Drawing.Size(129, 37);
             this.btn_buscarTransaccionesOtraCuenta.TabIndex = 51;
@@ -198,18 +166,8 @@
             this.txtCuenta.FormattingEnabled = true;
             this.txtCuenta.Location = new System.Drawing.Point(150, 83);
             this.txtCuenta.Name = "txtCuenta";
-            this.txtCuenta.Size = new System.Drawing.Size(121, 21);
+            this.txtCuenta.Size = new System.Drawing.Size(132, 21);
             this.txtCuenta.TabIndex = 58;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(300, 124);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(83, 30);
-            this.btnAgregar.TabIndex = 59;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label4
             // 
@@ -296,30 +254,59 @@
             this.txtGeneral.Size = new System.Drawing.Size(121, 21);
             this.txtGeneral.TabIndex = 69;
             // 
-            // label10
+            // btnCalcular
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(39, 133);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 13);
-            this.label10.TabIndex = 70;
-            this.label10.Text = "Nombre de Usuario:";
+            this.btnCalcular.Location = new System.Drawing.Point(375, 390);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 41);
+            this.btnCalcular.TabIndex = 72;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
-            // txtNombreUsuario
+            // TotalDolares
             // 
-            this.txtNombreUsuario.FormattingEnabled = true;
-            this.txtNombreUsuario.Location = new System.Drawing.Point(150, 130);
-            this.txtNombreUsuario.Name = "txtNombreUsuario";
-            this.txtNombreUsuario.Size = new System.Drawing.Size(121, 21);
-            this.txtNombreUsuario.TabIndex = 71;
+            this.TotalDolares.HeaderText = "TransaccionID";
+            this.TotalDolares.Name = "TotalDolares";
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Hora y fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // CuentaID
+            // 
+            this.CuentaID.HeaderText = "MontoTransferido";
+            this.CuentaID.Name = "CuentaID";
+            // 
+            // TipoMoneda
+            // 
+            this.TipoMoneda.HeaderText = "Tipo Moneda";
+            this.TipoMoneda.Name = "TipoMoneda";
+            // 
+            // TotalMonto
+            // 
+            this.TotalMonto.HeaderText = "Valoracion";
+            this.TotalMonto.Name = "TotalMonto";
+            // 
+            // NivelValorizacion
+            // 
+            this.NivelValorizacion.HeaderText = "Cuenta Origen";
+            this.NivelValorizacion.Name = "NivelValorizacion";
+            this.NivelValorizacion.Width = 120;
+            // 
+            // tipodemoneda
+            // 
+            this.tipodemoneda.HeaderText = "Cuenta Destino";
+            this.tipodemoneda.Name = "tipodemoneda";
+            this.tipodemoneda.Width = 120;
             // 
             // FormGenerarReporteMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 490);
-            this.Controls.Add(this.txtNombreUsuario);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.txtGeneral);
             this.Controls.Add(this.txtTotalDolares);
             this.Controls.Add(this.txtTotalSoles);
@@ -330,7 +317,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBuscar);
@@ -359,16 +345,9 @@
         public System.Windows.Forms.DataGridView dataMovimientosEntreCuentas;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CuentaID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox txtCuenta;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -379,7 +358,13 @@
         private System.Windows.Forms.ComboBox txtTotalSoles;
         private System.Windows.Forms.ComboBox txtTotalDolares;
         private System.Windows.Forms.ComboBox txtGeneral;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox txtNombreUsuario;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CuentaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoMoneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
     }
 }
