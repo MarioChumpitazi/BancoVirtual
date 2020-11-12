@@ -132,7 +132,7 @@ namespace Presentacion.WinForms
                                             if (transaccion != null)
                                             {
 
-                                                MessageBox.Show("Transaccion exitosa");
+                                                MessageBox.Show("Se realizo la transferencia");
                                             }
                                         }
                                         else

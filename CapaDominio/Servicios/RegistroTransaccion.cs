@@ -15,7 +15,7 @@ namespace CapaDominio.Servicios
         {
             if (!transaccion.validarMonto(cuenta))
             {
-                throw new Exception("El monto a transferir no es el indicado");
+                throw new Exception("El monto ingresado no es el correcto");
             }
             if (!transaccion.validarValoracion())
             {
