@@ -28,6 +28,7 @@ namespace Presentacion.WinForms
             try
             {
                 string usuarioID=txtusuarioID.Text;
+                string cuentaID = txt_cuentaID.Text;
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
 
                 Movimiento movimiento= new Movimiento();
@@ -36,7 +37,7 @@ namespace Presentacion.WinForms
 
                 List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuarioID);
                 dataMovimientosEntreCuentas.Rows.Clear();
-                List<Transaccion> listadeTransacciones = servicioMovimientos.obtenerListaDeTransacciones(usuarioID, true);
+                List<Transaccion> listadeTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, true);
                 dataMovimientosEntreCuentas.Rows.Clear();
 
    
@@ -47,8 +48,6 @@ namespace Presentacion.WinForms
                             dataMovimientosEntreCuentas.Rows.Add(fila);
                             dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                
-                    
-
 
                 }
 
@@ -68,34 +67,79 @@ namespace Presentacion.WinForms
             try
             {
                 string usuarioID = txtusuarioID.Text;
+                string cuentaID = txt_cuentaID.Text;
+                Movimiento movimiento = new Movimiento();
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
-
 
                 DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
 
-                List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuarioID);
-                dataMovimientosEntreCuentas.Rows.Clear();
-                List<Transaccion> listadeTransacciones = servicioMovimientos.obtenerListaDeTransacciones(usuarioID, false);
+             
+                movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, false);
                 dataMovimientosEntreCuentas.Rows.Clear();
 
 
-                foreach (Transaccion transaccion in listadeTransacciones)
+                foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                 {
 
-                    Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion,transaccion.CuentaOrigen.CuentaID,transaccion.CuentaDestino.CuentaID};
+                    Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
                     dataMovimientosEntreCuentas.Rows.Add(fila);
                     dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 }
-
-
-
 
             }
             catch (Exception err)
             {
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            string cuentaID = txt_cuentaID.Text;
+            Movimiento movimiento = new Movimiento();
+            GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
+
+
+            DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
+            RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
+
+           movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransaccionesPorCuenta(cuentaID);
+            dataMovimientosEntreCuentas.Rows.Clear();
+
+
+            foreach (Transaccion transaccion in movimiento.ListaTransacciones)
+            {
+
+                Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                dataMovimientosEntreCuentas.Rows.Add(fila);
+                dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+
+        }
+
+        private void btn_Calcular_Click(object sender, EventArgs e)
+        {
+
+            string cuentaID = txt_cuentaID.Text;
+         
+            Movimiento movimiento = new Movimiento();
+            GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
+
+            movimiento.ListaTransacciones =  servicioMovimientos.obtenerListaDeTransaccionesPorCuenta(cuentaID);
+            dataMovimientosEntreCuentas.Rows.Clear();
+            foreach (Transaccion transaccion in movimiento.ListaTransacciones)
+            {
+
+                Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                dataMovimientosEntreCuentas.Rows.Add(fila);
+                dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+
+
+            txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
+            txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+            txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
         }
     }
 }

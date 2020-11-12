@@ -61,7 +61,17 @@ namespace CapaDominio.Entidades
                 return false;
             }
         }
-
+        public bool CompararCuentasID(String cuentaOrigenID, string cuentaDestinoID)
+        {
+            if (cuentaOrigenID == cuentaDestinoID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 
