@@ -172,7 +172,7 @@ namespace CapaPersistencia.ADO_SQLServer
                 }
                 else
                 {
-                    throw new Exception("No existe cuenta.");
+                    throw new Exception("La cuenta no existe.");
                 }
             }
             catch (Exception err)
