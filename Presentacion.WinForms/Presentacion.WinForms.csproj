@@ -46,17 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormGenerarReporteMovimientos.cs">
+    <Compile Include="FormIniciarSesion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGenerarReporteMovimientos.Designer.cs">
-      <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormIniciar Sesion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormIniciar Sesion.Designer.cs">
-      <DependentUpon>FormIniciar Sesion.cs</DependentUpon>
+    <Compile Include="FormIniciarSesion.Designer.cs">
+      <DependentUpon>FormIniciarSesion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMenu.cs">
       <SubType>Form</SubType>
@@ -70,19 +64,16 @@
     <Compile Include="FormRealizarTransaccion.Designer.cs">
       <DependentUpon>FormRealizarTransaccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReporteMovimientos.cs">
+    <Compile Include="FormGenerarReporteMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormReporteMovimientos.Designer.cs">
-      <DependentUpon>FormReporteMovimientos.cs</DependentUpon>
+    <Compile Include="FormGenerarReporteMovimientos.Designer.cs">
+      <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormGenerarReporteMovimientos.resx">
-      <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormIniciar Sesion.resx">
-      <DependentUpon>FormIniciar Sesion.cs</DependentUpon>
+    <EmbeddedResource Include="FormIniciarSesion.resx">
+      <DependentUpon>FormIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
@@ -90,8 +81,8 @@
     <EmbeddedResource Include="FormRealizarTransaccion.resx">
       <DependentUpon>FormRealizarTransaccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormReporteMovimientos.resx">
-      <DependentUpon>FormReporteMovimientos.cs</DependentUpon>
+    <EmbeddedResource Include="FormGenerarReporteMovimientos.resx">
+      <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

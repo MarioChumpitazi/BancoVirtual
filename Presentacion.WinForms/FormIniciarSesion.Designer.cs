@@ -63,6 +63,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(330, 20);
             this.txtUsuario.TabIndex = 4;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // label3
             // 
@@ -124,11 +125,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtContrasenia;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Button btnSalir;
+        public System.Windows.Forms.TextBox txtUsuario;
     }
 }
 

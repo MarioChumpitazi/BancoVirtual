@@ -12,20 +12,17 @@ namespace CapaPersistencia.ADO_SQLServer
     public class MovimientoDAO: IMovimiento
     {
         private GestorSQL gestorSQL;
-
         public MovimientoDAO(IGestorAccesoDatos gestorSQL)
         {
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
-
-        public void guardarMovimiento(Movimiento movimiento)
+        public void guardarMovimiento(Movimiento movimiento, String transaccionID )
         {
-  
             // CREANDO LAS SENTENCIAS SQL
             string insertarMovimientoSQL;
 
-            insertarMovimientoSQL = "insert into Movimiento(codigo, hora, moneda, monto, nombreDestinatario) " +
-                 "values(@codigo, @hora, @moneda, @monto, @nombreDestinatario)";
+            insertarMovimientoSQL = "insert into Movimiento(mes,transaccionID) " +
+                 "values(@mes,@transaccionID)";
 
             try
             {
@@ -35,11 +32,8 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarMovimientoSQL);
                 }
-                comando.Parameters.AddWithValue("@movimientoID", movimiento.MovimientoID);
-                comando.Parameters.AddWithValue("@hora", movimiento.Hora.Date);
-                comando.Parameters.AddWithValue("@moneda", movimiento.Moneda);
-                comando.Parameters.AddWithValue("@monto", movimiento.Monto);
-                comando.Parameters.AddWithValue("@nombreDestinatario", movimiento.NombreDestinatario);
+                comando.Parameters.AddWithValue("@mes", movimiento.mes);
+                comando.Parameters.AddWithValue("@transaccionID",transaccionID);
                 comando.ExecuteNonQuery();
             }
             catch (Exception err)
@@ -48,33 +42,11 @@ namespace CapaPersistencia.ADO_SQLServer
             }
 
         }
-
-        public List<Movimiento> obtenerListaDeMovimientos()
-        {
-            List<Movimiento> movimientos = new List<Movimiento>();
-            Movimiento movimiento;
-            string consultaSQL = "select * from Movimiento";
-            try
-            {
-                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
-
-                while (resultadoSQL.Read())
-                {
-                    //movimientos.Add(obtenerMovimiento(resultadoSQL));
-                    movimiento = obtenerMovimiento(resultadoSQL);
-                }
-            }
-            catch (Exception err)
-            {
-                throw err;
-            }
-            return movimientos;
-        }
-
-        public Movimiento buscarPorCodigo(string movimientoID)
+       
+        public Movimiento buscarPorCodigo(string codigo)
         {
             Movimiento movimiento;
-            string consultaSQL = "select * from Movimiento where movimientoID = '" + movimientoID + "'";
+            string consultaSQL = "select * from Movimiento where codigo = \"" + codigo + "\"";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
@@ -98,11 +70,11 @@ namespace CapaPersistencia.ADO_SQLServer
         private Movimiento obtenerMovimiento(SqlDataReader resultadoSQL)
         {
             Movimiento movimiento = new Movimiento();
-            movimiento.MovimientoID = resultadoSQL.GetString(0);
-            movimiento.Hora = resultadoSQL.GetDateTime(1);
-            movimiento.Moneda = resultadoSQL.GetString(2);
-            movimiento.Monto = resultadoSQL.GetFloat(3);
-            movimiento.NombreDestinatario = resultadoSQL.GetString(4);
+            Transaccion transaccion = new Transaccion();
+            movimiento.MovimientoID = resultadoSQL.GetInt32(0).ToString();
+            movimiento.mes = resultadoSQL.GetDateTime(1);
+            transaccion.TransaccionID= resultadoSQL.GetString(2);
+            movimiento.Transaccion = transaccion;
             return movimiento;
         }
     }

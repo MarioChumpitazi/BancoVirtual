@@ -11,8 +11,14 @@ namespace CapaDominio.Contratos
     public interface ICuenta
     {
         void guardarCuenta(Cuenta cuenta);
-      //  Cuenta buscarPorNumeroInterbancario(string numero);
-        Cuenta buscarPorNumeroCuenta(string numero);
-        List<Cuenta> buscarCuentasDelUsuario(string usuarioID);
+        List<Cuenta> obtenerListaDeCuentas(string usuarioID);
+        Usuario buscarUsuarioPorCuenta(string cuentaID);
+        void GuardarNuevoSaldo(Cuenta cuenta);
+        Cuenta buscarPorNumeroCuenta(string cuentaID);
+        Cuenta buscarPorNumeroInterbancario(string numero);
+        void InhabilitarCuenta(Cuenta cuenta);
+
+        Cuenta buscarCuentaPorUsuario(string usuarioID);
+
     }
 }

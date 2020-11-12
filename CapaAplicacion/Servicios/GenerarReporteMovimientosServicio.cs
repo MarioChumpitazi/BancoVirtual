@@ -9,6 +9,7 @@ using CapaDominio.Entidades;
 using CapaDominio.Servicios;
 using CapaPersistencia.FabricaDatos;
 
+
 namespace CapaAplicacion.Servicios
 {
     public class GenerarReporteMovimientosServicio
@@ -19,10 +20,8 @@ namespace CapaAplicacion.Servicios
         private ITransaccion transaccionDAO;
         private IUsuario usarioDAO;
 
-        //sobrescrito de rama mario prueba 1
-        //GAAA
-        //prueba 2
-        public GenerarReporteDeMovimientosServicio()
+
+        public GenerarReporteMovimientosServicio()
         {
             FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
@@ -37,7 +36,7 @@ namespace CapaAplicacion.Servicios
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
-        public Movimiento buscarMovimiento(string codigoDeMovimiento)
+        public Movimiento buscarMovimientoPorCodigo(string codigoDeMovimiento)
         {
             gestorDatos.abrirConexion();
             Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigoDeMovimiento);
@@ -45,19 +44,30 @@ namespace CapaAplicacion.Servicios
             return movimiento;
         }
 
-        public Transaccion buscarTransaccion(string codigo)
+        public Transaccion buscarTransaccion(string usuarioID, bool tipoTransaccion)
         {
             gestorDatos.abrirConexion();
-            Transaccion transaccion = transaccionDAO.buscarPorCodigo(codigo);
+            Transaccion transaccion = transaccionDAO.buscarTransaccion(usuarioID,tipoTransaccion);
             gestorDatos.cerrarConexion();
             return transaccion;
         }
 
-        public void guardarMovimiento(Movimiento movimiento)
+        public void guardarMovimiento(Movimiento movimiento , string transaccionID)
         {
             gestorDatos.abrirConexion();
-            movimientoDAO.guardarMovimiento(movimiento);
+            movimientoDAO.guardarMovimiento(movimiento, transaccionID);
             gestorDatos.cerrarConexion();
         }
+
+        public List<Transaccion> obtenerListaDeTransacciones(string usuarioID, bool tipoTransaccion)
+        {
+            gestorDatos.abrirConexion();
+            List<Transaccion> transaccion = transaccionDAO.obtenerListaDeTransacciones(usuarioID, tipoTransaccion);
+            gestorDatos.cerrarConexion();
+            return transaccion;
+        }
+
+
+
     }
 }

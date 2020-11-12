@@ -22,14 +22,12 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
             // CREANDO LAS SENTENCIAS SQL
-            string insertarUsuarioSQL, insertarCuenta1SQL;
+            string insertarUsuarioSQL;
 
             insertarUsuarioSQL = "insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave, estado) " +
                  "values(@nombres, @apellidos, @dni, @numeroTarjeta, @clave, @estado)";
 
-            insertarCuenta1SQL = "insert into Cuenta(numero, saldo, moneda, estado, listaDeTransacciones) " +
-                 "values(@numero,@saldo,@moneda,@estado, @listaDeTransacciones)";
-
+  
             try
             {
                 SqlCommand comando;
@@ -46,18 +44,7 @@ namespace CapaPersistencia.ADO_SQLServer
                 comando.Parameters.AddWithValue("@estado", usuario.Estado);
                 comando.ExecuteNonQuery();
 
-                // GUARDANDO LOS OBJETOS CUENTAS
-                foreach (Cuenta cuenta in usuario.ListaDeCuentas)
-                {
-                    // Agregando una cuenta
-                    comando = gestorSQL.obtenerComandoSQL(insertarCuenta1SQL);
-                    comando.Parameters.AddWithValue("@cuentaID", cuenta.CuentaID);
-                    comando.Parameters.AddWithValue("@saldo", cuenta.Saldo);
-                    comando.Parameters.AddWithValue("@moneda", cuenta.TipoMoneda);
-                    comando.Parameters.AddWithValue("@estado", cuenta.Estado);
-                    comando.Parameters.AddWithValue("@listaDeTransacciones", cuenta.ListaDeTransacciones);
-                    comando.ExecuteNonQuery();
-                }
+              
             }
             catch (Exception err)
             {
@@ -86,10 +73,39 @@ namespace CapaPersistencia.ADO_SQLServer
             return usuarios;
         }
 
-        public Usuario buscarPorDni(string dni)
+        
+
+        public Usuario buscarPorID(string usuarioID)
         {
             Usuario usuario;
-            string consultaSQL = "select * from Usuario where dni = '" + dni + "'";
+            string consultaSQL = "select * from Usuario where usuarioID = '" + usuarioID + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+
+                if (resultadoSQL.Read())
+                {
+                    usuario = obtenerUsuario(resultadoSQL);
+                 
+                }
+                else
+                {
+                    throw new Exception("No existe usuario.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return usuario;
+        }
+
+
+
+        public Usuario buscarPorCuenta(string idcuenta)
+        {
+            Usuario usuario;
+            string consultaSQL = "select * from Usuario where cuentaID = '" + idcuenta + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
@@ -113,12 +129,15 @@ namespace CapaPersistencia.ADO_SQLServer
         private Usuario obtenerUsuario(SqlDataReader resultadoSQL)
         {
             Usuario usuario = new Usuario();
-            usuario.Nombres = resultadoSQL.GetString(0);
-            usuario.Apellidos = resultadoSQL.GetString(1);
-            usuario.Dni = resultadoSQL.GetString(2);
-            usuario.NumeroDeTarjeta = resultadoSQL.GetString(3);
-            usuario.Clave = resultadoSQL.GetString(4);
-            usuario.Estado = resultadoSQL.GetInt16(5) == 1 ? true : false;
+        
+            usuario.UsuarioID= resultadoSQL.GetString(0);
+            usuario.Nombres = resultadoSQL.GetString(1);
+            usuario.Apellidos = resultadoSQL.GetString(2);
+            usuario.Dni = resultadoSQL.GetString(3);
+            usuario.NumeroDeTarjeta = resultadoSQL.GetString(4);
+            usuario.Clave = resultadoSQL.GetString(5);
+            usuario.Estado = resultadoSQL.GetBoolean(6);
+     
             return usuario;
         }
     }

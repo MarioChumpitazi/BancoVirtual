@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaDominio.Entidades;
 using CapaDominio.Contratos;
+using System.Diagnostics;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
@@ -18,14 +19,14 @@ namespace CapaPersistencia.ADO_SQLServer
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
 
-        public void guardarTransaccion(Transaccion transaccion)
+        public void guardarTransaccion(Transaccion transaccion, String cuentaOrigenID, String cuentaDestinoID)
         {
 
             // CREANDO LAS SENTENCIAS SQL
             string insertarTransaccion1SQL;
 
-            insertarTransaccion1SQL = "insert into Transaccion(codigo, fecha, monto, tipo, valoracion, codigoDeMovimiento) " +
-                 "values(@codigo, @fecha, @monto, @tipo, @valoracion, @codigoDeMovimiento)";
+            insertarTransaccion1SQL = "insert into Transaccion(fechaTransaccion, monto, tipoTransaccion, valoracion, cuentaOrigenID, cuentaDestinoID) " +
+                 "values(@fechaTransaccion, @monto, @tipoTransaccion, @valoracion, @cuentaOrigenID,@cuentaDestinoID)";
 
             try
             {
@@ -35,12 +36,14 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
                 }
-                comando.Parameters.AddWithValue("@transaccionID", transaccion.TransaccionID);
-                comando.Parameters.AddWithValue("@fecha", transaccion.Fecha.Date);
+                comando.Parameters.AddWithValue("@fechaTransaccion", transaccion.Fecha);
                 comando.Parameters.AddWithValue("@monto", transaccion.Monto);
-                comando.Parameters.AddWithValue("@tipo", transaccion.TipoTransaccion);
+                comando.Parameters.AddWithValue("@tipoTransaccion", transaccion.TipoTransaccion);
                 comando.Parameters.AddWithValue("@valoracion", transaccion.Valoracion);
-                comando.Parameters.AddWithValue("@codigoDeMovimiento", transaccion.CodigoDeMovimiento);
+                comando.Parameters.AddWithValue("@cuentaOrigenID", cuentaOrigenID);
+                comando.Parameters.AddWithValue("@cuentaDestinoID", cuentaDestinoID);
+
+
                 comando.ExecuteNonQuery();
             }
             catch (Exception err)
@@ -50,28 +53,57 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
         }
-
-        public List<Transaccion> obtenerListaDeTransacciones()
+        public List<Transaccion> obtenerListaDeTransacciones(String usuarioID, bool tipoTransaccion)
         {
-            List<Transaccion> transacciones = new List<Transaccion>();
+            List<Transaccion> listaDeTransacciones = new List<Transaccion>();
             Transaccion transaccion;
-            string consultaSQL = "select * from Transaccion";
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Usuario u,Cuenta c where t.cuentaOrigenID=c.cuentaID and c.usuarioID=u.usuarioID and u.usuarioID='" + usuarioID + "' and t.tipoTransaccion= '" + tipoTransaccion + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
                 while (resultadoSQL.Read())
                 {
-                    //transacciones.Add(obtenerTransaccion(resultadoSQL));
                     transaccion = obtenerTransaccion(resultadoSQL);
+                    listaDeTransacciones.Add(transaccion);
+
                 }
             }
             catch (Exception err)
             {
                 throw err;
             }
-            return transacciones;
+            return listaDeTransacciones;
         }
+       
+
+        public Transaccion buscarTransaccion(string usuarioID, bool tipoTransaccion)
+        {
+            Transaccion transaccion;
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Usuario u,Cuenta c where t.cuentaOrigenID=c.cuentaID and c.usuarioID=u.usuarioID and u.usuarioID='" + usuarioID + "' and t.tipoTransaccion= '" + tipoTransaccion + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                if (resultadoSQL.Read())
+                {
+                    transaccion = obtenerTransaccion(resultadoSQL);
+
+                }
+                else
+                {
+                    throw new Exception("No existe cuenta.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return transaccion;
+        }
+
+
+
+
 
         public Transaccion buscarPorID(string transaccionID)
         {
@@ -100,12 +132,17 @@ namespace CapaPersistencia.ADO_SQLServer
         private Transaccion obtenerTransaccion(SqlDataReader resultadoSQL)
         {
             Transaccion transaccion = new Transaccion();
-            transaccion.TransaccionID = resultadoSQL.GetString(0);
+            Cuenta cuenta1 = new Cuenta();
+            Cuenta cuenta2 = new Cuenta();
+            transaccion.TransaccionID= resultadoSQL.GetInt32(0).ToString();
             transaccion.Fecha = resultadoSQL.GetDateTime(1);
-            transaccion.Monto = resultadoSQL.GetFloat(2);
-            transaccion.TipoTransaccion = resultadoSQL.GetInt32(3) == 1 ? true : false;
+            transaccion.Monto = double.Parse(resultadoSQL.GetDecimal(2).ToString());
+            transaccion.TipoTransaccion = resultadoSQL.GetBoolean(3);
             transaccion.Valoracion = resultadoSQL.GetInt32(4);
-            transaccion.CodigoDeMovimiento = resultadoSQL.GetInt32(5);
+            cuenta1.CuentaID= resultadoSQL.GetString(5);
+            transaccion.CuentaOrigen = cuenta1;
+            cuenta2.CuentaID = resultadoSQL.GetString(6);
+            transaccion.CuentaDestino = cuenta2;
             return transaccion;
         }
     }

@@ -10,8 +10,11 @@ namespace CapaDominio.Contratos
 {
     public interface IMovimiento
     {
-        void guardarMovimiento(Movimiento movimiento);
-        List<Movimiento> obtenerListaDeMovimientos();
+        void guardarMovimiento(Movimiento movimiento, String transaccionID);
+     
         Movimiento buscarPorCodigo(string movimientoID);
+
+
+
     }
 }

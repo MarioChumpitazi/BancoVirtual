@@ -9,13 +9,33 @@ namespace CapaDominio.Servicios
 {
     public class RegistroTransaccion
     {
-        Cuenta cuenta = new Cuenta ();
-        public void validarTransaccion(Transaccion transaccion)
+
+
+        public void validarTransaccion(Transaccion transaccion, Cuenta cuenta)
         {
             if (!transaccion.validarMonto(cuenta))
             {
-                throw new Exception("ERROR en Transaccion");
+                throw new Exception("El monto a transferir no es el indicado");
+            }
+            if (!transaccion.validarValoracion())
+            {
+                throw new Exception("La valoracion debe ser entre 1 y 5");
             }
         }
+        public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
+        {
+            if (!transaccion.verificarMontoDestino(cuenta))
+            {
+                throw new Exception("El monto del destinatario ah superado la maxima cantidad");
+            }
+
+        }
+        
     }
+
+
+
+
+
 }
+
