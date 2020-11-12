@@ -81,7 +81,7 @@ namespace Presentacion.WinForms
 
                     String cuentaaux = txtVerificarCuenta.Text;
 
-                    if (cuenta1.CompararCuentasID(cuenta1.CuentaID,cuenta2.CuentaID))
+                    if (!cuenta1.CompararCuentasID(cuenta1.CuentaID,cuenta2.CuentaID))
                     {
                         if (cuenta1.ValidarCuenta())
                         {
