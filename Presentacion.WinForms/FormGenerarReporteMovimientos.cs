@@ -46,7 +46,7 @@ namespace Presentacion.WinForms
                 }
 
                 txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
-                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
                 txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
             }
@@ -82,7 +82,7 @@ namespace Presentacion.WinForms
                 }
 
                 txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
-                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
                 txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
             }
@@ -167,7 +167,7 @@ namespace Presentacion.WinForms
 
 
             txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
-            txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+            txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
             txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
         }
     }

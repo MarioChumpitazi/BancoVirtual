@@ -29,7 +29,7 @@ namespace CapaDominio.Entidades
             return totalMontoTransferido;
         }
 
-        public String calcularNivelDeValoracion()
+        public int calcularNivelDeValoracion()
         {
             double puntosValoracion = 0;
             int cont = 0;
@@ -39,19 +39,32 @@ namespace CapaDominio.Entidades
                 cont = cont + 1;
             }
             double promedioValoracion = (puntosValoracion / cont);
-            if (promedioValoracion < 2)
+
+            double verificar = promedioValoracion - (int)promedioValoracion;
+            if (verificar >= 0.5)
             {
-                return "bajo";
-            }
-            else if (promedioValoracion < 4)
-            {
-                return "medio";
+                return (int)promedioValoracion + 1;
             }
             else
             {
-                return "alto";
+                return (int)promedioValoracion;
             }
         }
+            /*
+          
+            int NivelValoracion = int.Parse(promedioValoracion) ;
+            double valor = promedioValoracion % cont;
+            if (valor<0.5)
+            {
+                return NivelValoracion + 1;
+            }
+            else 
+            {
+                return NivelValoracion;
+            */
+
+        
+        
 
 
         public String calcularNivelMovimiento()
