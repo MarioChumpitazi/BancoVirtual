@@ -35,18 +35,19 @@ namespace Presentacion.WinForms
                movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, true);
                 dataMovimientosEntreCuentas.Rows.Clear();
 
-   
-                    foreach (Transaccion transaccion in movimiento.ListaTransacciones)
+                foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                 {
 
                             Object[] fila = { transaccion.TransaccionID, transaccion.Fecha,  transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
                             dataMovimientosEntreCuentas.Rows.Add(fila);
                             dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-               
+                         
 
                 }
 
-
+                txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
+                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+                txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
             }
             catch (Exception err)
@@ -79,6 +80,10 @@ namespace Presentacion.WinForms
                     dataMovimientosEntreCuentas.Rows.Add(fila);
                     dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 }
+
+                txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
+                txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion();
+                txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
             }
             catch (Exception err)
@@ -127,6 +132,8 @@ namespace Presentacion.WinForms
                             dataMovimientosEntreCuentas.Rows.Add(fila);
                             dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                         }
+
+
                     }
                     else
                     {
