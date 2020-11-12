@@ -30,24 +30,40 @@
         {
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataMovimientosEntreCuentas = new System.Windows.Forms.DataGridView();
+            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_buscarTransaccionesOtraCuenta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBuscarTransaccionesCuentaPropia = new System.Windows.Forms.Button();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCuenta = new System.Windows.Forms.ComboBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtNivelValorizacion = new System.Windows.Forms.ComboBox();
+            this.txtNivelMovimiento = new System.Windows.Forms.ComboBox();
+            this.txtTotalSoles = new System.Windows.Forms.ComboBox();
+            this.txtTotalDolares = new System.Windows.Forms.ComboBox();
+            this.txtGeneral = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtNombreUsuario = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(383, 419);
+            this.btnSalir.Location = new System.Drawing.Point(724, 419);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(141, 48);
             this.btnSalir.TabIndex = 44;
@@ -65,10 +81,42 @@
             this.TotalMonto,
             this.NivelValorizacion,
             this.tipodemoneda});
-            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(134, 149);
+            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(24, 169);
             this.dataMovimientosEntreCuentas.Name = "dataMovimientosEntreCuentas";
-            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(684, 224);
+            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(684, 152);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
+            // 
+            // TotalDolares
+            // 
+            this.TotalDolares.HeaderText = "TransaccionID";
+            this.TotalDolares.Name = "TotalDolares";
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Hora y fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // CuentaID
+            // 
+            this.CuentaID.HeaderText = "MontoTransferido";
+            this.CuentaID.Name = "CuentaID";
+            // 
+            // TotalMonto
+            // 
+            this.TotalMonto.HeaderText = "Valoracion";
+            this.TotalMonto.Name = "TotalMonto";
+            // 
+            // NivelValorizacion
+            // 
+            this.NivelValorizacion.HeaderText = "Cuenta Origen";
+            this.NivelValorizacion.Name = "NivelValorizacion";
+            this.NivelValorizacion.Width = 120;
+            // 
+            // tipodemoneda
+            // 
+            this.tipodemoneda.HeaderText = "Cuenta Destino";
+            this.tipodemoneda.Name = "tipodemoneda";
+            this.tipodemoneda.Width = 120;
             // 
             // label1
             // 
@@ -81,7 +129,7 @@
             // 
             // btn_buscarTransaccionesOtraCuenta
             // 
-            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(554, 84);
+            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(766, 109);
             this.btn_buscarTransaccionesOtraCuenta.Name = "btn_buscarTransaccionesOtraCuenta";
             this.btn_buscarTransaccionesOtraCuenta.Size = new System.Drawing.Size(129, 37);
             this.btn_buscarTransaccionesOtraCuenta.TabIndex = 51;
@@ -101,7 +149,7 @@
             // 
             // btnBuscarTransaccionesCuentaPropia
             // 
-            this.btnBuscarTransaccionesCuentaPropia.Location = new System.Drawing.Point(228, 84);
+            this.btnBuscarTransaccionesCuentaPropia.Location = new System.Drawing.Point(766, 178);
             this.btnBuscarTransaccionesCuentaPropia.Name = "btnBuscarTransaccionesCuentaPropia";
             this.btnBuscarTransaccionesCuentaPropia.Size = new System.Drawing.Size(129, 37);
             this.btnBuscarTransaccionesCuentaPropia.TabIndex = 53;
@@ -126,43 +174,166 @@
             this.label9.TabIndex = 54;
             this.label9.Text = "Usuario ID:";
             // 
-            // tipodemoneda
+            // btnBuscar
             // 
-            this.tipodemoneda.HeaderText = "Cuenta Destino";
-            this.tipodemoneda.Name = "tipodemoneda";
-            this.tipodemoneda.Width = 120;
+            this.btnBuscar.Location = new System.Drawing.Point(300, 80);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(83, 30);
+            this.btnBuscar.TabIndex = 56;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // NivelValorizacion
+            // label3
             // 
-            this.NivelValorizacion.HeaderText = "Cuenta Origen";
-            this.NivelValorizacion.Name = "NivelValorizacion";
-            this.NivelValorizacion.Width = 120;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 87);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 57;
+            this.label3.Text = "Cuenta Origen:";
             // 
-            // TotalMonto
+            // txtCuenta
             // 
-            this.TotalMonto.HeaderText = "Valoracion";
-            this.TotalMonto.Name = "TotalMonto";
+            this.txtCuenta.FormattingEnabled = true;
+            this.txtCuenta.Location = new System.Drawing.Point(150, 83);
+            this.txtCuenta.Name = "txtCuenta";
+            this.txtCuenta.Size = new System.Drawing.Size(121, 21);
+            this.txtCuenta.TabIndex = 58;
             // 
-            // CuentaID
+            // btnAgregar
             // 
-            this.CuentaID.HeaderText = "MontoTransferido";
-            this.CuentaID.Name = "CuentaID";
+            this.btnAgregar.Location = new System.Drawing.Point(300, 124);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(83, 30);
+            this.btnAgregar.TabIndex = 59;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // fecha
+            // label4
             // 
-            this.fecha.HeaderText = "Hora y fecha";
-            this.fecha.Name = "fecha";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(49, 344);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 13);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Nivel de Valorización:";
             // 
-            // TotalDolares
+            // label5
             // 
-            this.TotalDolares.HeaderText = "TransaccionID";
-            this.TotalDolares.Name = "TotalDolares";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(49, 376);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 13);
+            this.label5.TabIndex = 61;
+            this.label5.Text = "Nivel de Movimiento:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 404);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(125, 13);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "Total Transaccion Soles:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(49, 430);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 13);
+            this.label7.TabIndex = 63;
+            this.label7.Text = "Total Transaccion Dolares:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(49, 457);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(131, 13);
+            this.label8.TabIndex = 64;
+            this.label8.Text = "Total Movimiento General:";
+            // 
+            // txtNivelValorizacion
+            // 
+            this.txtNivelValorizacion.FormattingEnabled = true;
+            this.txtNivelValorizacion.Location = new System.Drawing.Point(175, 344);
+            this.txtNivelValorizacion.Name = "txtNivelValorizacion";
+            this.txtNivelValorizacion.Size = new System.Drawing.Size(121, 21);
+            this.txtNivelValorizacion.TabIndex = 65;
+            // 
+            // txtNivelMovimiento
+            // 
+            this.txtNivelMovimiento.FormattingEnabled = true;
+            this.txtNivelMovimiento.Location = new System.Drawing.Point(161, 376);
+            this.txtNivelMovimiento.Name = "txtNivelMovimiento";
+            this.txtNivelMovimiento.Size = new System.Drawing.Size(121, 21);
+            this.txtNivelMovimiento.TabIndex = 66;
+            // 
+            // txtTotalSoles
+            // 
+            this.txtTotalSoles.FormattingEnabled = true;
+            this.txtTotalSoles.Location = new System.Drawing.Point(180, 403);
+            this.txtTotalSoles.Name = "txtTotalSoles";
+            this.txtTotalSoles.Size = new System.Drawing.Size(121, 21);
+            this.txtTotalSoles.TabIndex = 67;
+            // 
+            // txtTotalDolares
+            // 
+            this.txtTotalDolares.FormattingEnabled = true;
+            this.txtTotalDolares.Location = new System.Drawing.Point(190, 427);
+            this.txtTotalDolares.Name = "txtTotalDolares";
+            this.txtTotalDolares.Size = new System.Drawing.Size(121, 21);
+            this.txtTotalDolares.TabIndex = 68;
+            // 
+            // txtGeneral
+            // 
+            this.txtGeneral.FormattingEnabled = true;
+            this.txtGeneral.Location = new System.Drawing.Point(186, 457);
+            this.txtGeneral.Name = "txtGeneral";
+            this.txtGeneral.Size = new System.Drawing.Size(121, 21);
+            this.txtGeneral.TabIndex = 69;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(39, 133);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(101, 13);
+            this.label10.TabIndex = 70;
+            this.label10.Text = "Nombre de Usuario:";
+            // 
+            // txtNombreUsuario
+            // 
+            this.txtNombreUsuario.FormattingEnabled = true;
+            this.txtNombreUsuario.Location = new System.Drawing.Point(150, 130);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(121, 21);
+            this.txtNombreUsuario.TabIndex = 71;
             // 
             // FormGenerarReporteMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 490);
+            this.Controls.Add(this.txtNombreUsuario);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtGeneral);
+            this.Controls.Add(this.txtTotalDolares);
+            this.Controls.Add(this.txtTotalSoles);
+            this.Controls.Add(this.txtNivelMovimiento);
+            this.Controls.Add(this.txtNivelValorizacion);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.txtCuenta);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnBuscarTransaccionesCuentaPropia);
@@ -194,5 +365,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox txtCuenta;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox txtNivelValorizacion;
+        private System.Windows.Forms.ComboBox txtNivelMovimiento;
+        private System.Windows.Forms.ComboBox txtTotalSoles;
+        private System.Windows.Forms.ComboBox txtTotalDolares;
+        private System.Windows.Forms.ComboBox txtGeneral;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox txtNombreUsuario;
     }
 }

@@ -67,7 +67,13 @@ namespace CapaAplicacion.Servicios
             return transaccion;
         }
 
-
+        public Cuenta buscarCuenta(string cuentaID)
+        {
+            gestorDatos.abrirConexion();
+            Usuario usuario = cuentaDAO.buscarCuentasDelUsuario(cuentaID);
+            gestorDatos.cerrarConexion();
+            return cuenta;
+        }
 
     }
 }

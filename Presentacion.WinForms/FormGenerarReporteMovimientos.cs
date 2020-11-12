@@ -15,6 +15,8 @@ namespace Presentacion.WinForms
 {
     public partial class FormGenerarReporteMovimientos : Form
     {
+        private Cuenta cuenta;
+        private Usuario usuario;
         public FormGenerarReporteMovimientos()
         {
             InitializeComponent();
@@ -97,5 +99,36 @@ namespace Presentacion.WinForms
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string cuentaID = txtCuenta.Text.Trim();
+            try
+            {
+                GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
+                usuario = servicioMovimientos.buscarUsuario(cuentaID);
+                txtNombreUsuario.Text = usuario.Nombres;
+            }
+
+            catch(Exception err)
+            {
+                MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                usuario = null;
+                txtNombreUsuario.Text = "";
+
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string cuentaID;
+            DataGridViewRow filaCuenta = dataMovimientosEntreCuentas.CurrentRow;
+            if (filaCuenta == null)
+            {
+                MessageBox.Show(this, "No existe cuenta seleccionada.", "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
     }
 }
