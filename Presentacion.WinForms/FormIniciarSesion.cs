@@ -27,15 +27,12 @@ namespace Presentacion.WinForms
         public void btnIngresar_Click(object sender, EventArgs e)
         {
             
-
-
             string usuarioID = txtUsuario.Text.Trim();
             string clave = txtContrasenia.Text.Trim();
             
             try
             {
                
-
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
                 Usuario usuario = servicio.buscarUsuario(usuarioID);
                 if (usuario!= null)

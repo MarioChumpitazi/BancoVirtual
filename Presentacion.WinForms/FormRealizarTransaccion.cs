@@ -80,93 +80,101 @@ namespace Presentacion.WinForms
 
 
                     String cuentaaux = txtVerificarCuenta.Text;
-                    if (cuenta1.Estado == true)
+
+                    if (!cuenta1.CompararCuentasID(cuenta1.CuentaID,cuenta2.CuentaID))
                     {
-                        if (cuenta2.Estado == true)
+                        if (cuenta1.ValidarCuenta())
                         {
-
-                            if (Intentos.intento < 3)
+                            if (cuenta2.ValidarCuenta())
                             {
-                                if (txtVerificarCuenta.Text != "")
+
+                                if (Intentos.intento < 3)
                                 {
-                                    if (cuenta1.verificarCuenta(cuentaaux) == true)
+                                    if (txtVerificarCuenta.Text != "")
                                     {
-                                        txtComision.Text = transaccion.calcularComision().ToString();
-                                        txtMontoDescontado.Text = transaccion.Monto.ToString();
-                                        double MontoAuxiliar = transaccion.calcularMontoTotal();
-                                        cuenta1.Saldo = cuenta1.Saldo - MontoAuxiliar;
-                                        transaccion.Monto = transaccion.calcularTransferencia(cuenta1, cuenta2);
-                                        txtMontoTransferido.Text = transaccion.Monto.ToString();
-                                        cuenta2.Saldo = cuenta2.Saldo + transaccion.Monto;
-
-
-                                        servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuenta1,cuenta2);
-
-                                        servicio.GuardarNuevoSaldo(cuenta1);
-                                        servicio.GuardarNuevoSaldo(cuenta2);
-
-                                        fila.Cells[1].Value = cuenta1.Saldo;
-
-                                        foreach (DataGridViewRow filas in dataTransaccion.Rows)
+                                        if (cuenta1.verificarCuenta(cuentaaux))
                                         {
+                                            txtComision.Text = transaccion.calcularComision().ToString();
+                                            txtMontoDescontado.Text = transaccion.Monto.ToString();
+                                            double MontoAuxiliar = transaccion.calcularMontoTotal();
+                                            cuenta1.Saldo = cuenta1.Saldo - MontoAuxiliar;
+                                            transaccion.Monto = transaccion.calcularTransferencia(cuenta1, cuenta2);
+                                            txtMontoTransferido.Text = transaccion.Monto.ToString();
+                                            cuenta2.Saldo = cuenta2.Saldo + transaccion.Monto;
 
 
-                                            if (filas.Cells[0].Value.ToString() == cuenta2.CuentaID)
+                                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuenta1, cuenta2);
+
+                                            servicio.GuardarNuevoSaldo(cuenta1);
+                                            servicio.GuardarNuevoSaldo(cuenta2);
+
+                                            fila.Cells[1].Value = cuenta1.Saldo;
+
+                                            foreach (DataGridViewRow filas in dataTransaccion.Rows)
                                             {
-                                                filas.Cells[1].Value = cuenta2.Saldo;
+
+
+                                                if (filas.Cells[0].Value.ToString() == cuenta2.CuentaID)
+                                                {
+                                                    filas.Cells[1].Value = cuenta2.Saldo;
+
+                                                }
 
                                             }
+                                            txtCuentaOrigen.Text = cuenta1.CuentaID.ToString();
+                                            txtCuentaDestino.Text = cuenta2.CuentaID.ToString();
+                                            txtNombreUsuario.Text = usuario1.Nombres.ToString();
+                                            txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
+                                            String monedaOrigen = cuenta1.TipoMoneda ? "Sol" : "Dolar";
+                                            txtTipoMoneda.Text = monedaOrigen;
+                                            String monedaDestino = cuenta2.TipoMoneda ? "Sol" : "Dolar";
+                                            txtMonedaDestino.Text = monedaDestino;
+                                            if (transaccion != null)
+                                            {
 
+                                                MessageBox.Show("Se realizo la transferencia");
+                                            }
                                         }
-                                        txtCuentaOrigen.Text = cuenta1.CuentaID.ToString();
-                                        txtCuentaDestino.Text = cuenta2.CuentaID.ToString();
-                                        txtNombreUsuario.Text = usuario1.Nombres.ToString();
-                                        txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
-                                        String monedaOrigen = cuenta1.TipoMoneda ? "Sol" : "Dolar";
-                                        txtTipoMoneda.Text = monedaOrigen;
-                                        String monedaDestino = cuenta2.TipoMoneda ? "Sol" : "Dolar";
-                                        txtMonedaDestino.Text = monedaDestino;
-                                        if (transaccion != null)
+                                        else
                                         {
-
-                                            MessageBox.Show("Transaccion exitosa");
+                                            Intentos.intento = Intentos.intento + 1;
+                                            throw new Exception("Error al ingresar Codigocuenta");
                                         }
                                     }
                                     else
                                     {
-                                        Intentos.intento = Intentos.intento + 1;
-                                        throw new Exception("Error al ingresar Codigocuenta");
+                                        throw new Exception("Ingrese su clave de cuenta para realizar transaccion");
+
                                     }
                                 }
                                 else
                                 {
-                                    throw new Exception("Ingrese su clave de cuenta para realizar transaccion");
+                                    servicio.InhabilitarCuenta(cuenta1);
+                                    if (Intentos.intento >= 3)
+                                    {
+                                        Intentos.intento = 0;
+                                    }
+                                    throw new Exception("Ha excedido el numero de errores, Su cuenta ah sido inhabilitada por el momento");
 
                                 }
                             }
                             else
                             {
-                                servicio.InhabilitarCuenta(cuenta1);
-                                if (Intentos.intento >= 3)
-                                {
-                                    Intentos.intento = 0;
-                                }
-                                throw new Exception("Ha excedido el numero de errores, Su cuenta ah sido inhabilitada por el momento");
-
+                                throw new Exception("Cuenta Del Destinatario Inhabilitada");
                             }
                         }
                         else
                         {
-                            throw new Exception("Cuenta Del Destinatario Inhabilitada");
+                            throw new Exception("Cuenta Inhabilitada");
+
+
                         }
+
                     }
                     else
                     {
-                        throw new Exception("Cuenta Inhabilitada");
-
-
+                        throw new Exception("Cuenta destino debe ser diferente a la cuenta origen");
                     }
-                   
                 }
             } catch (Exception err)
             {
