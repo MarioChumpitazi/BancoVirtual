@@ -48,10 +48,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_promedioValorización = new System.Windows.Forms.TextBox();
-            this.txt_TotalTransferido = new System.Windows.Forms.TextBox();
+            this.txt_TotalTransferidoSoles = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_NivelMovimiento = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txt_TotalTransferidoDolares = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -209,11 +211,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(92, 412);
+            this.label5.Location = new System.Drawing.Point(59, 409);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 16);
+            this.label5.Size = new System.Drawing.Size(222, 16);
             this.label5.TabIndex = 61;
-            this.label5.Text = "Monto Total Transferido:";
+            this.label5.Text = "Monto Total Transferido Soles:";
             // 
             // txt_promedioValorización
             // 
@@ -222,12 +224,12 @@
             this.txt_promedioValorización.Size = new System.Drawing.Size(111, 20);
             this.txt_promedioValorización.TabIndex = 62;
             // 
-            // txt_TotalTransferido
+            // txt_TotalTransferidoSoles
             // 
-            this.txt_TotalTransferido.Location = new System.Drawing.Point(287, 408);
-            this.txt_TotalTransferido.Name = "txt_TotalTransferido";
-            this.txt_TotalTransferido.Size = new System.Drawing.Size(111, 20);
-            this.txt_TotalTransferido.TabIndex = 63;
+            this.txt_TotalTransferidoSoles.Location = new System.Drawing.Point(287, 409);
+            this.txt_TotalTransferidoSoles.Name = "txt_TotalTransferidoSoles";
+            this.txt_TotalTransferidoSoles.Size = new System.Drawing.Size(111, 20);
+            this.txt_TotalTransferidoSoles.TabIndex = 63;
             // 
             // label6
             // 
@@ -243,7 +245,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(93, 448);
+            this.label7.Location = new System.Drawing.Point(93, 471);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(157, 16);
             this.label7.TabIndex = 65;
@@ -251,20 +253,39 @@
             // 
             // txt_NivelMovimiento
             // 
-            this.txt_NivelMovimiento.Location = new System.Drawing.Point(287, 444);
+            this.txt_NivelMovimiento.Location = new System.Drawing.Point(287, 467);
             this.txt_NivelMovimiento.Name = "txt_NivelMovimiento";
             this.txt_NivelMovimiento.Size = new System.Drawing.Size(111, 20);
             this.txt_NivelMovimiento.TabIndex = 66;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(44, 439);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(237, 16);
+            this.label8.TabIndex = 67;
+            this.label8.Text = "Monto Total Transferido Dolares:";
+            // 
+            // txt_TotalTransferidoDolares
+            // 
+            this.txt_TotalTransferidoDolares.Location = new System.Drawing.Point(287, 435);
+            this.txt_TotalTransferidoDolares.Name = "txt_TotalTransferidoDolares";
+            this.txt_TotalTransferidoDolares.Size = new System.Drawing.Size(111, 20);
+            this.txt_TotalTransferidoDolares.TabIndex = 68;
             // 
             // FormGenerarReporteMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 514);
+            this.Controls.Add(this.txt_TotalTransferidoDolares);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_NivelMovimiento);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txt_TotalTransferido);
+            this.Controls.Add(this.txt_TotalTransferidoSoles);
             this.Controls.Add(this.txt_promedioValorización);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -281,6 +302,7 @@
             this.Controls.Add(this.dataMovimientosEntreCuentas);
             this.Name = "FormGenerarReporteMovimientos";
             this.Text = "FormReporteMovimientoEntreCuentas";
+            this.Load += new System.EventHandler(this.FormGenerarReporteMovimientos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -308,9 +330,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox txt_promedioValorización;
-        public System.Windows.Forms.TextBox txt_TotalTransferido;
+        public System.Windows.Forms.TextBox txt_TotalTransferidoSoles;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.TextBox txt_NivelMovimiento;
+        private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox txt_TotalTransferidoDolares;
     }
 }

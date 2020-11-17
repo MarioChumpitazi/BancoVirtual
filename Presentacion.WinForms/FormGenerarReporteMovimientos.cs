@@ -29,23 +29,37 @@ namespace Presentacion.WinForms
             {
                 string usuarioID=txtusuarioID.Text;
                 string cuentaID = txt_cuentaID.Text;
+                double totalTransferidoSoles = 0;
+                double totalTransferidoDolares = 0;
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
                 Movimiento movimiento = new Movimiento();
-             
-               movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, true);
+                RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
+                movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, true);
                 dataMovimientosEntreCuentas.Rows.Clear();
 
                 foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                 {
 
-                            Object[] fila = { transaccion.TransaccionID, transaccion.Fecha,  transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
-                            dataMovimientosEntreCuentas.Rows.Add(fila);
+                     Object[] fila = { transaccion.TransaccionID, transaccion.Fecha,  transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+
+                    Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+                    if (movimiento.ValidarTipoDeMoneda(cuentaDestino))
+                    {
+                        totalTransferidoSoles = transaccion.Monto + totalTransferidoSoles;
+                    }
+                    else
+                    {
+                        totalTransferidoDolares = transaccion.Monto + totalTransferidoDolares;
+                    }
+
+                    dataMovimientosEntreCuentas.Rows.Add(fila);
                             dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                          
 
                 }
 
-                txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
+                txt_TotalTransferidoSoles.Text = totalTransferidoSoles.ToString();
+                txt_TotalTransferidoDolares.Text = totalTransferidoDolares.ToString();
                 txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
                 txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
@@ -62,26 +76,36 @@ namespace Presentacion.WinForms
             {
                 string usuarioID = txtusuarioID.Text;
                 string cuentaID = txt_cuentaID.Text;
+                double totalTransferidoSoles = 0;
+                double totalTransferidoDolares = 0;
                 Movimiento movimiento = new Movimiento();
                 GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
-
                 DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
 
-             
                 movimiento.ListaTransacciones = servicioMovimientos.obtenerListaDeTransacciones(cuentaID, false);
                 dataMovimientosEntreCuentas.Rows.Clear();
-
 
                 foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                 {
 
                     Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                    Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+                    if (movimiento.ValidarTipoDeMoneda(cuentaDestino))
+                    {
+                        totalTransferidoSoles = transaccion.Monto + totalTransferidoSoles;
+                    }
+                    else
+                    {
+                        totalTransferidoDolares = transaccion.Monto + totalTransferidoDolares;
+                    }
+
                     dataMovimientosEntreCuentas.Rows.Add(fila);
                     dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 }
 
-                txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
+                txt_TotalTransferidoSoles.Text = totalTransferidoSoles.ToString();
+                txt_TotalTransferidoDolares.Text = totalTransferidoDolares.ToString();
                 txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
                 txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
 
@@ -124,7 +148,6 @@ namespace Presentacion.WinForms
 
                         dataMovimientosEntreCuentas.Rows.Clear();
 
-
                         foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                         {
 
@@ -153,22 +176,41 @@ namespace Presentacion.WinForms
             string cuentaID = txt_cuentaID.Text;
          
             Movimiento movimiento = new Movimiento();
+           
             GenerarReporteMovimientosServicio servicioMovimientos = new GenerarReporteMovimientosServicio();
-
+            RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
+            double totalTransferidoSoles = 0;
+            double totalTransferidoDolares = 0;
             movimiento.ListaTransacciones =  servicioMovimientos.obtenerListaDeTransaccionesPorCuenta(cuentaID);
             dataMovimientosEntreCuentas.Rows.Clear();
             foreach (Transaccion transaccion in movimiento.ListaTransacciones)
             {
 
                 Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+                    if(movimiento.ValidarTipoDeMoneda(cuentaDestino))
+                {
+                    totalTransferidoSoles = transaccion.Monto + totalTransferidoSoles;
+                }
+                else
+                {
+                    totalTransferidoDolares= transaccion.Monto + totalTransferidoDolares;
+                }
+
                 dataMovimientosEntreCuentas.Rows.Add(fila);
                 dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
 
+            txt_TotalTransferidoSoles.Text = totalTransferidoSoles.ToString();
+            txt_TotalTransferidoDolares.Text = totalTransferidoDolares.ToString();
 
-            txt_TotalTransferido.Text = movimiento.calcularTotalMontoTransferido().ToString();
             txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
             txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
+        }
+
+        private void FormGenerarReporteMovimientos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

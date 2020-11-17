@@ -18,18 +18,45 @@ namespace CapaDominio.Entidades
         public Transaccion Transaccion { get => transaccion; set => transaccion = value; }
         public List<Transaccion> ListaTransacciones { get => listaTransacciones; set => listaTransacciones = value; }
 
+
+        public bool ValidarTipoDeMoneda(Cuenta cuentaDestino)
+        {
+            if (cuentaDestino.TipoMoneda == true)
+            {
+                return true;
+            }
+            else
+            { 
+                return false;
+            }
+
+        }
+
+      
+
+        /*
         public double calcularTotalMontoTransferido()
         {
             double totalMontoTransferido = 0;
             foreach (Transaccion transaccion in listaTransacciones)
             {
-                totalMontoTransferido += transaccion.Monto;
+
+                if (transaccion.CuentaDestino.TipoMoneda == true)
+                {
+                    totalMontoTransferido += transaccion.Monto;
+                }
+                else
+                {
+                    totalMontoTransferido += (transaccion.Monto) * 3.45;
+                }
+
             }
 
             return totalMontoTransferido;
         }
+        */
 
-        public int calcularNivelDeValoracion()
+    public int calcularNivelDeValoracion()
         {
             double puntosValoracion = 0;
             int cont = 0;
@@ -38,16 +65,23 @@ namespace CapaDominio.Entidades
                 puntosValoracion += transaccion.Valoracion;
                 cont = cont + 1;
             }
-            double promedioValoracion = (puntosValoracion / cont);
-
-            double verificar = promedioValoracion - (int)promedioValoracion;
-            if (verificar >= 0.5)
+            if (puntosValoracion!= 0)
             {
-                return (int)promedioValoracion + 1;
+                double promedioValoracion = (puntosValoracion / cont);
+
+                double verificar = promedioValoracion - (int)promedioValoracion;
+                if (verificar >= 0.5)
+                {
+                    return (int)promedioValoracion + 1;
+                }
+                else
+                {
+                    return (int)promedioValoracion;
+                }
             }
             else
             {
-                return (int)promedioValoracion;
+                return 0;
             }
         }
             /*
