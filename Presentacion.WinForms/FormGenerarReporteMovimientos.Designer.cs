@@ -29,16 +29,8 @@
         private void InitializeComponent()
         {
             this.dataMovimientosEntreCuentas = new System.Windows.Forms.DataGridView();
-            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_buscarTransaccionesOtraCuenta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnBuscarTransaccionesCuentaPropia = new System.Windows.Forms.Button();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_cuentaID = new System.Windows.Forms.TextBox();
@@ -54,6 +46,13 @@
             this.txt_NivelMovimiento = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_TotalTransferidoDolares = new System.Windows.Forms.TextBox();
+            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,43 +66,13 @@
             this.CuentaID,
             this.TotalMonto,
             this.NivelValorizacion,
-            this.tipodemoneda});
-            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(103, 133);
+            this.tipodemoneda,
+            this.Column1});
+            this.dataMovimientosEntreCuentas.Location = new System.Drawing.Point(47, 144);
             this.dataMovimientosEntreCuentas.Name = "dataMovimientosEntreCuentas";
-            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(684, 228);
+            this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(804, 228);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
-            // 
-            // TotalDolares
-            // 
-            this.TotalDolares.HeaderText = "TransaccionID";
-            this.TotalDolares.Name = "TotalDolares";
-            // 
-            // fecha
-            // 
-            this.fecha.HeaderText = "Hora y fecha";
-            this.fecha.Name = "fecha";
-            // 
-            // CuentaID
-            // 
-            this.CuentaID.HeaderText = "MontoTransferido";
-            this.CuentaID.Name = "CuentaID";
-            // 
-            // TotalMonto
-            // 
-            this.TotalMonto.HeaderText = "Valoracion";
-            this.TotalMonto.Name = "TotalMonto";
-            // 
-            // NivelValorizacion
-            // 
-            this.NivelValorizacion.HeaderText = "Cuenta Origen";
-            this.NivelValorizacion.Name = "NivelValorizacion";
-            this.NivelValorizacion.Width = 120;
-            // 
-            // tipodemoneda
-            // 
-            this.tipodemoneda.HeaderText = "Cuenta Destino";
-            this.tipodemoneda.Name = "tipodemoneda";
-            this.tipodemoneda.Width = 120;
+            this.dataMovimientosEntreCuentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMovimientosEntreCuentas_CellContentClick);
             // 
             // label1
             // 
@@ -114,16 +83,6 @@
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 50;
             // 
-            // btn_buscarTransaccionesOtraCuenta
-            // 
-            this.btn_buscarTransaccionesOtraCuenta.Location = new System.Drawing.Point(810, 230);
-            this.btn_buscarTransaccionesOtraCuenta.Name = "btn_buscarTransaccionesOtraCuenta";
-            this.btn_buscarTransaccionesOtraCuenta.Size = new System.Drawing.Size(129, 37);
-            this.btn_buscarTransaccionesOtraCuenta.TabIndex = 51;
-            this.btn_buscarTransaccionesOtraCuenta.Text = "Transacciones a otra cuenta";
-            this.btn_buscarTransaccionesOtraCuenta.UseVisualStyleBackColor = true;
-            this.btn_buscarTransaccionesOtraCuenta.Click += new System.EventHandler(this.btn_buscarTransaccionesOtraCuenta_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -133,16 +92,6 @@
             this.label2.Size = new System.Drawing.Size(399, 24);
             this.label2.TabIndex = 52;
             this.label2.Text = "GENERAR REPORTE DE MOVIMIENTOS";
-            // 
-            // btnBuscarTransaccionesCuentaPropia
-            // 
-            this.btnBuscarTransaccionesCuentaPropia.Location = new System.Drawing.Point(809, 170);
-            this.btnBuscarTransaccionesCuentaPropia.Name = "btnBuscarTransaccionesCuentaPropia";
-            this.btnBuscarTransaccionesCuentaPropia.Size = new System.Drawing.Size(129, 37);
-            this.btnBuscarTransaccionesCuentaPropia.TabIndex = 53;
-            this.btnBuscarTransaccionesCuentaPropia.Text = "Transacciones a cuenta propia";
-            this.btnBuscarTransaccionesCuentaPropia.UseVisualStyleBackColor = true;
-            this.btnBuscarTransaccionesCuentaPropia.Click += new System.EventHandler(this.btnBuscarTransaccionesCuentaPropia_Click);
             // 
             // txtusuarioID
             // 
@@ -190,7 +139,7 @@
             // 
             // btn_Calcular
             // 
-            this.btn_Calcular.Location = new System.Drawing.Point(462, 382);
+            this.btn_Calcular.Location = new System.Drawing.Point(483, 395);
             this.btn_Calcular.Name = "btn_Calcular";
             this.btn_Calcular.Size = new System.Drawing.Size(113, 46);
             this.btn_Calcular.TabIndex = 59;
@@ -211,7 +160,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(59, 409);
+            this.label5.Location = new System.Drawing.Point(44, 421);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(222, 16);
             this.label5.TabIndex = 61;
@@ -219,14 +168,14 @@
             // 
             // txt_promedioValorización
             // 
-            this.txt_promedioValorización.Location = new System.Drawing.Point(287, 378);
+            this.txt_promedioValorización.Location = new System.Drawing.Point(287, 394);
             this.txt_promedioValorización.Name = "txt_promedioValorización";
             this.txt_promedioValorización.Size = new System.Drawing.Size(111, 20);
             this.txt_promedioValorización.TabIndex = 62;
             // 
             // txt_TotalTransferidoSoles
             // 
-            this.txt_TotalTransferidoSoles.Location = new System.Drawing.Point(287, 409);
+            this.txt_TotalTransferidoSoles.Location = new System.Drawing.Point(287, 421);
             this.txt_TotalTransferidoSoles.Name = "txt_TotalTransferidoSoles";
             this.txt_TotalTransferidoSoles.Size = new System.Drawing.Size(111, 20);
             this.txt_TotalTransferidoSoles.TabIndex = 63;
@@ -235,7 +184,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(93, 382);
+            this.label6.Location = new System.Drawing.Point(95, 395);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(168, 16);
             this.label6.TabIndex = 64;
@@ -245,7 +194,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(93, 471);
+            this.label7.Location = new System.Drawing.Point(106, 482);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(157, 16);
             this.label7.TabIndex = 65;
@@ -253,7 +202,7 @@
             // 
             // txt_NivelMovimiento
             // 
-            this.txt_NivelMovimiento.Location = new System.Drawing.Point(287, 467);
+            this.txt_NivelMovimiento.Location = new System.Drawing.Point(287, 482);
             this.txt_NivelMovimiento.Name = "txt_NivelMovimiento";
             this.txt_NivelMovimiento.Size = new System.Drawing.Size(111, 20);
             this.txt_NivelMovimiento.TabIndex = 66;
@@ -262,7 +211,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(44, 439);
+            this.label8.Location = new System.Drawing.Point(26, 456);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(237, 16);
             this.label8.TabIndex = 67;
@@ -270,10 +219,48 @@
             // 
             // txt_TotalTransferidoDolares
             // 
-            this.txt_TotalTransferidoDolares.Location = new System.Drawing.Point(287, 435);
+            this.txt_TotalTransferidoDolares.Location = new System.Drawing.Point(287, 452);
             this.txt_TotalTransferidoDolares.Name = "txt_TotalTransferidoDolares";
             this.txt_TotalTransferidoDolares.Size = new System.Drawing.Size(111, 20);
             this.txt_TotalTransferidoDolares.TabIndex = 68;
+            // 
+            // TotalDolares
+            // 
+            this.TotalDolares.HeaderText = "TransaccionID";
+            this.TotalDolares.Name = "TotalDolares";
+            this.TotalDolares.Width = 120;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Hora y fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // CuentaID
+            // 
+            this.CuentaID.HeaderText = "MontoTransferido";
+            this.CuentaID.Name = "CuentaID";
+            // 
+            // TotalMonto
+            // 
+            this.TotalMonto.HeaderText = "Valoracion";
+            this.TotalMonto.Name = "TotalMonto";
+            // 
+            // NivelValorizacion
+            // 
+            this.NivelValorizacion.HeaderText = "Cuenta Origen";
+            this.NivelValorizacion.Name = "NivelValorizacion";
+            this.NivelValorizacion.Width = 120;
+            // 
+            // tipodemoneda
+            // 
+            this.tipodemoneda.HeaderText = "Cuenta Destino";
+            this.tipodemoneda.Name = "tipodemoneda";
+            this.tipodemoneda.Width = 120;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Tipo De Moneda";
+            this.Column1.Name = "Column1";
             // 
             // FormGenerarReporteMovimientos
             // 
@@ -295,9 +282,7 @@
             this.Controls.Add(this.txt_cuentaID);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.btnBuscarTransaccionesCuentaPropia);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btn_buscarTransaccionesOtraCuenta);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataMovimientosEntreCuentas);
             this.Name = "FormGenerarReporteMovimientos";
@@ -311,18 +296,10 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_buscarTransaccionesOtraCuenta;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnBuscarTransaccionesCuentaPropia;
         public System.Windows.Forms.DataGridView dataMovimientosEntreCuentas;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CuentaID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
         public System.Windows.Forms.TextBox txt_cuentaID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_Buscar;
@@ -336,5 +313,12 @@
         public System.Windows.Forms.TextBox txt_NivelMovimiento;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox txt_TotalTransferidoDolares;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolares;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CuentaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

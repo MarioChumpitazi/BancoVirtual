@@ -21,7 +21,7 @@ namespace Presentacion.WinForms
 
         }
 
-
+        /*
         private void btnBuscarTransaccionesCuentaPropia_Click(object sender, EventArgs e)
         {
 
@@ -115,7 +115,7 @@ namespace Presentacion.WinForms
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+      */
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
             try
@@ -127,7 +127,7 @@ namespace Presentacion.WinForms
                 DataGridViewRow filas = dataMovimientosEntreCuentas.CurrentRow;
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
                 Cuenta cuenta = new Cuenta();
-
+                String tipoDeMoneda;
                 List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuarioID);
                 int cont = 0;
                 foreach (Cuenta cuentaAux in listaDeCuentas)
@@ -150,8 +150,18 @@ namespace Presentacion.WinForms
 
                         foreach (Transaccion transaccion in movimiento.ListaTransacciones)
                         {
+                            Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+                            if (cuentaDestino.TipoMoneda == true)
+                            {
+                                tipoDeMoneda = "Sol";
+                            }
+                            else
+                            {
+                                tipoDeMoneda = "Dolar";
+                            }
+                        
 
-                            Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
+                            Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID,tipoDeMoneda };
                             dataMovimientosEntreCuentas.Rows.Add(fila);
                             dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                         }
@@ -183,11 +193,21 @@ namespace Presentacion.WinForms
             double totalTransferidoDolares = 0;
             movimiento.ListaTransacciones =  servicioMovimientos.obtenerListaDeTransaccionesPorCuenta(cuentaID);
             dataMovimientosEntreCuentas.Rows.Clear();
+            String tipoDeMoneda;
             foreach (Transaccion transaccion in movimiento.ListaTransacciones)
             {
-
-                Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID };
                 Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+                if (cuentaDestino.TipoMoneda == true)
+                {
+                    tipoDeMoneda = "Sol";
+                }
+                else
+                {
+                    tipoDeMoneda = "Dolar";
+                }
+
+                Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID,tipoDeMoneda };
+              //  Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
                     if(movimiento.ValidarTipoDeMoneda(cuentaDestino))
                 {
                     totalTransferidoSoles = transaccion.Monto + totalTransferidoSoles;
@@ -209,6 +229,11 @@ namespace Presentacion.WinForms
         }
 
         private void FormGenerarReporteMovimientos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataMovimientosEntreCuentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
