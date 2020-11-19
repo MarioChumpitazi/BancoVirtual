@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.dataMovimientosEntreCuentas = new System.Windows.Forms.DataGridView();
+            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
@@ -46,13 +53,8 @@
             this.txt_NivelMovimiento = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_TotalTransferidoDolares = new System.Windows.Forms.TextBox();
-            this.TotalDolares = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuentaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NivelValorizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipodemoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txt_totalGeneral = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +75,44 @@
             this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(804, 228);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
             this.dataMovimientosEntreCuentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMovimientosEntreCuentas_CellContentClick);
+            // 
+            // TotalDolares
+            // 
+            this.TotalDolares.HeaderText = "TransaccionID";
+            this.TotalDolares.Name = "TotalDolares";
+            this.TotalDolares.Width = 120;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Hora y fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // CuentaID
+            // 
+            this.CuentaID.HeaderText = "MontoTransferido";
+            this.CuentaID.Name = "CuentaID";
+            // 
+            // TotalMonto
+            // 
+            this.TotalMonto.HeaderText = "Valoracion";
+            this.TotalMonto.Name = "TotalMonto";
+            // 
+            // NivelValorizacion
+            // 
+            this.NivelValorizacion.HeaderText = "Cuenta Origen";
+            this.NivelValorizacion.Name = "NivelValorizacion";
+            this.NivelValorizacion.Width = 120;
+            // 
+            // tipodemoneda
+            // 
+            this.tipodemoneda.HeaderText = "Cuenta Destino";
+            this.tipodemoneda.Name = "tipodemoneda";
+            this.tipodemoneda.Width = 120;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Tipo De Moneda";
+            this.Column1.Name = "Column1";
             // 
             // label1
             // 
@@ -224,49 +264,30 @@
             this.txt_TotalTransferidoDolares.Size = new System.Drawing.Size(111, 20);
             this.txt_TotalTransferidoDolares.TabIndex = 68;
             // 
-            // TotalDolares
+            // label10
             // 
-            this.TotalDolares.HeaderText = "TransaccionID";
-            this.TotalDolares.Name = "TotalDolares";
-            this.TotalDolares.Width = 120;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(106, 514);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 16);
+            this.label10.TabIndex = 69;
+            this.label10.Text = "Total General :";
             // 
-            // fecha
+            // txt_totalGeneral
             // 
-            this.fecha.HeaderText = "Hora y fecha";
-            this.fecha.Name = "fecha";
-            // 
-            // CuentaID
-            // 
-            this.CuentaID.HeaderText = "MontoTransferido";
-            this.CuentaID.Name = "CuentaID";
-            // 
-            // TotalMonto
-            // 
-            this.TotalMonto.HeaderText = "Valoracion";
-            this.TotalMonto.Name = "TotalMonto";
-            // 
-            // NivelValorizacion
-            // 
-            this.NivelValorizacion.HeaderText = "Cuenta Origen";
-            this.NivelValorizacion.Name = "NivelValorizacion";
-            this.NivelValorizacion.Width = 120;
-            // 
-            // tipodemoneda
-            // 
-            this.tipodemoneda.HeaderText = "Cuenta Destino";
-            this.tipodemoneda.Name = "tipodemoneda";
-            this.tipodemoneda.Width = 120;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Tipo De Moneda";
-            this.Column1.Name = "Column1";
+            this.txt_totalGeneral.Location = new System.Drawing.Point(287, 510);
+            this.txt_totalGeneral.Name = "txt_totalGeneral";
+            this.txt_totalGeneral.Size = new System.Drawing.Size(111, 20);
+            this.txt_totalGeneral.TabIndex = 70;
             // 
             // FormGenerarReporteMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 514);
+            this.ClientSize = new System.Drawing.Size(950, 573);
+            this.Controls.Add(this.txt_totalGeneral);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_TotalTransferidoDolares);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_NivelMovimiento);
@@ -320,5 +341,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NivelValorizacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipodemoneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox txt_totalGeneral;
     }
 }

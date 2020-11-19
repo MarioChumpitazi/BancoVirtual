@@ -194,9 +194,11 @@ namespace Presentacion.WinForms
             movimiento.ListaTransacciones =  servicioMovimientos.obtenerListaDeTransaccionesPorCuenta(cuentaID);
             dataMovimientosEntreCuentas.Rows.Clear();
             String tipoDeMoneda;
+            double totalGeneral = 0;
             foreach (Transaccion transaccion in movimiento.ListaTransacciones)
             {
                 Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+               
                 if (cuentaDestino.TipoMoneda == true)
                 {
                     tipoDeMoneda = "Sol";
@@ -205,9 +207,10 @@ namespace Presentacion.WinForms
                 {
                     tipoDeMoneda = "Dolar";
                 }
+           
 
                 Object[] fila = { transaccion.TransaccionID, transaccion.Fecha, transaccion.Monto, transaccion.Valoracion, transaccion.CuentaOrigen.CuentaID, transaccion.CuentaDestino.CuentaID,tipoDeMoneda };
-              //  Cuenta cuentaDestino = servicio.buscarCuenta(transaccion.CuentaDestino.CuentaID);
+             
                     if(movimiento.ValidarTipoDeMoneda(cuentaDestino))
                 {
                     totalTransferidoSoles = transaccion.Monto + totalTransferidoSoles;
@@ -216,6 +219,9 @@ namespace Presentacion.WinForms
                 {
                     totalTransferidoDolares= transaccion.Monto + totalTransferidoDolares;
                 }
+
+                Cuenta cuentaOrigen = servicio.buscarCuenta(transaccion.CuentaOrigen.CuentaID);
+                totalGeneral+= movimiento.calcularTotalGeneral(cuentaOrigen, cuentaDestino,transaccion.Monto);
 
                 dataMovimientosEntreCuentas.Rows.Add(fila);
                 dataMovimientosEntreCuentas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
@@ -226,6 +232,7 @@ namespace Presentacion.WinForms
 
             txt_promedioValorización.Text = movimiento.calcularNivelDeValoracion().ToString();
             txt_NivelMovimiento.Text = movimiento.calcularNivelMovimiento();
+            txt_totalGeneral.Text = totalGeneral.ToString();
         }
 
         private void FormGenerarReporteMovimientos_Load(object sender, EventArgs e)

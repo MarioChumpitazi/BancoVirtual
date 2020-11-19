@@ -34,27 +34,35 @@ namespace CapaDominio.Entidades
 
       
 
-        /*
-        public double calcularTotalMontoTransferido()
+        
+        public double calcularTotalGeneral(Cuenta cuentaOrigen,Cuenta cuentaDestino,double monto)
         {
-            double totalMontoTransferido = 0;
-            foreach (Transaccion transaccion in listaTransacciones)
-            {
-
-                if (transaccion.CuentaDestino.TipoMoneda == true)
+            double totalGeneral = 0;
+            
+                if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == true)
                 {
-                    totalMontoTransferido += transaccion.Monto;
+                    totalGeneral = monto + totalGeneral;
+                }
+                else if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == false)
+                {
+                    totalGeneral = monto * 3.45 + totalGeneral;
+
+                }
+                else if (cuentaOrigen.TipoMoneda == false && cuentaDestino.TipoMoneda == true)
+                {
+                    totalGeneral = monto / 3.45 + totalGeneral;
+
                 }
                 else
                 {
-                    totalMontoTransferido += (transaccion.Monto) * 3.45;
+                    totalGeneral = monto + totalGeneral;
                 }
 
-            }
+            
 
-            return totalMontoTransferido;
+            return totalGeneral;
         }
-        */
+        
 
     public int calcularNivelDeValoracion()
         {
