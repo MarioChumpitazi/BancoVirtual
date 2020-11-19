@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace CapaDominio.Entidades
         private Transaccion transaccion;
         private List<Transaccion> listaTransacciones;
 
-        public string MovimientoID { get => movimientoID; set => movimientoID = value; }
+        //public string MovimientoID { get => movimientoID; set => movimientoID = value; }
         public DateTime Mes { get => mes; set => mes = value; }
         public Transaccion Transaccion { get => transaccion; set => transaccion = value; }
         public List<Transaccion> ListaTransacciones { get => listaTransacciones; set => listaTransacciones = value; }
