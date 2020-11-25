@@ -21,10 +21,6 @@ namespace Presentacion.WinForms
             InitializeComponent();
 
             }
-        static class Intentos
-        {
-            public static int intento=0;
-        }
         private void btnBuscarID_Click(object sender, EventArgs e)
         {
             string idCuentaDestino = text_idDestino.Text.Trim();
@@ -79,20 +75,21 @@ namespace Presentacion.WinForms
                     }
 
 
-                    String cuentaaux = txtVerificarCuenta.Text;
+                    String clave = txtVerificarClave.Text;
+                    int intentos=0;
 
-                    if (!cuenta1.CompararCuentasID(cuenta1.CuentaID,cuenta2.CuentaID))
+                    if (!cuenta1.compararCuentasID(cuenta1.CuentaID,cuenta2.CuentaID))
                     {
-                        if (cuenta1.ValidarCuenta())
+                        if (cuenta1.validarCuenta())
                         {
-                            if (cuenta2.ValidarCuenta())
+                            if (cuenta2.validarCuenta())
                             {
 
-                                if (Intentos.intento < 3)
+                                if (transaccion.validarIntentos(intentos))
                                 {
-                                    if (txtVerificarCuenta.Text != "")
+                                    if (txtVerificarClave.Text != "")
                                     {
-                                        if (cuenta1.verificarCuenta(cuentaaux))
+                                        if (cuenta1.validarClave(clave,intentos))
                                         {
                                             txtComision.Text = transaccion.calcularComision().ToString();
                                             txtMontoDescontado.Text = transaccion.Monto.ToString();
@@ -137,7 +134,7 @@ namespace Presentacion.WinForms
                                         }
                                         else
                                         {
-                                            Intentos.intento = Intentos.intento + 1;
+                                            intentos = cuenta1.calcularintentos(clave, intentos);
                                             throw new Exception("Error al ingresar Codigocuenta");
                                         }
                                     }
@@ -150,10 +147,10 @@ namespace Presentacion.WinForms
                                 else
                                 {
                                     servicio.InhabilitarCuenta(cuenta1);
-                                    if (Intentos.intento >= 3)
+                                    /*if (Intentos.intento >= 3)
                                     {
                                         Intentos.intento = 0;
-                                    }
+                                    }*/
                                     throw new Exception("Ha excedido el numero de errores, Su cuenta ah sido inhabilitada por el momento");
 
                                 }
@@ -183,20 +180,5 @@ namespace Presentacion.WinForms
 
         }
 
-        private void btnTercero_Click(object sender, EventArgs e)
-        {
-
-            txtComision.Text = dataTransaccion.Rows.Count.ToString();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void FormRealizarTransaccion_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

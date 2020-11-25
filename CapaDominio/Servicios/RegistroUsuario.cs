@@ -16,10 +16,6 @@ namespace CapaDominio.Servicios
                 throw new Exception("ERROR en Usuario ID");
             }
 
-            if (!usuario.validarNumeroTarjeta(usuario))
-            {
-                throw new Exception("ERROR en Numero de Tarjeta");
-            }
 
             if (!usuario.validarClave(usuario))
             {

@@ -74,7 +74,7 @@
             this.dataMovimientosEntreCuentas.Name = "dataMovimientosEntreCuentas";
             this.dataMovimientosEntreCuentas.Size = new System.Drawing.Size(804, 228);
             this.dataMovimientosEntreCuentas.TabIndex = 43;
-            this.dataMovimientosEntreCuentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMovimientosEntreCuentas_CellContentClick);
+
             // 
             // TotalDolares
             // 
@@ -308,7 +308,6 @@
             this.Controls.Add(this.dataMovimientosEntreCuentas);
             this.Name = "FormGenerarReporteMovimientos";
             this.Text = "FormReporteMovimientoEntreCuentas";
-            this.Load += new System.EventHandler(this.FormGenerarReporteMovimientos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataMovimientosEntreCuentas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

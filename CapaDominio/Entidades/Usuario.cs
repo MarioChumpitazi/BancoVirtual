@@ -44,12 +44,6 @@ namespace CapaDominio.Entidades
         public Banco Banco { get => banco; set => banco = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
-        public float calcularComision()
-        {
-            //return 0.5f * dia;
-            return 0.0f;
-        }
-
 
 
         public bool validarUsuarioID(Usuario usuario)
@@ -62,15 +56,7 @@ namespace CapaDominio.Entidades
             }
         }
 
-        public bool validarNumeroTarjeta(Usuario usuario)
-        {
-            if (usuario.NumeroDeTarjeta == numeroDeTarjeta)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
+        
 
         public bool validarClave(Usuario usuario)
         {

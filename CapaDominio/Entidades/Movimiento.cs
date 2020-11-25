@@ -1,4 +1,4 @@
-﻿//using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace CapaDominio.Entidades
         public List<Transaccion> ListaTransacciones { get => listaTransacciones; set => listaTransacciones = value; }
 
 
-        public bool ValidarTipoDeMoneda(Cuenta cuentaDestino)
+        public bool validarTipoDeMoneda(Cuenta cuentaDestino)
         {
             if (cuentaDestino.TipoMoneda == true)
             {
@@ -92,19 +92,6 @@ namespace CapaDominio.Entidades
                 return 0;
             }
         }
-            /*
-          
-            int NivelValoracion = int.Parse(promedioValoracion) ;
-            double valor = promedioValoracion % cont;
-            if (valor<0.5)
-            {
-                return NivelValoracion + 1;
-            }
-            else 
-            {
-                return NivelValoracion;
-            */
-
         
         
 

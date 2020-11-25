@@ -24,7 +24,7 @@ namespace CapaDominio.Servicios
         }
         public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
         {
-            if (!transaccion.verificarMontoDestino(cuenta))
+            if (!transaccion.validarMontoDestino(cuenta))
             {
                 throw new Exception("El monto del destinatario ah superado la maxima cantidad");
             }
