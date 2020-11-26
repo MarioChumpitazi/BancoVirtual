@@ -11,9 +11,14 @@ namespace CapaDominio.Servicios
     {
 
 
-        public void validarTransaccion(Transaccion transaccion, Cuenta cuenta)
+        public void validarTransaccion(Transaccion transaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String clave)
         {
-            if (!transaccion.validarMonto(cuenta))
+            if(!cuentaOrigen.compararCuentasID(cuentaOrigen.CuentaID, cuentaDestino.CuentaID))
+            {
+                throw new Exception("Cuenta destino debe ser diferente a la cuenta origen");
+            }
+
+            if (!transaccion.validarMonto(cuentaOrigen))
             {
                 throw new Exception("El monto ingresado no es el correcto");
             }
@@ -21,6 +26,15 @@ namespace CapaDominio.Servicios
             {
                 throw new Exception("La valoracion debe ser entre 1 y 5");
             }
+            if (!cuentaOrigen.validarCuenta())
+            {
+                throw new Exception("Su cuenta está Inhabilitada");
+            }
+            if (!cuentaDestino.validarCuenta())
+            {
+                throw new Exception("Cuenta Del Destinatario Inhabilitada");
+            }
+       
         }
         public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
         {

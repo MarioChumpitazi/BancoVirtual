@@ -83,6 +83,16 @@ namespace CapaDominio.Entidades
             return transferencia;
         }
 
-        
+        public bool validarTipoTransaccion(String usuario1ID, String usuario2ID)
+        {
+            if (usuario1ID == usuario2ID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

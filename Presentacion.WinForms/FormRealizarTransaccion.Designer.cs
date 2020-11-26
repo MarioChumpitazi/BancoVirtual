@@ -69,6 +69,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtMonedaDestino = new System.Windows.Forms.TextBox();
+            this.txtintento = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransaccion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -429,11 +430,20 @@
             this.txtMonedaDestino.Size = new System.Drawing.Size(165, 20);
             this.txtMonedaDestino.TabIndex = 89;
             // 
+            // txtintento
+            // 
+            this.txtintento.Location = new System.Drawing.Point(520, 607);
+            this.txtintento.Name = "txtintento";
+            this.txtintento.ReadOnly = true;
+            this.txtintento.Size = new System.Drawing.Size(151, 20);
+            this.txtintento.TabIndex = 90;
+            // 
             // FormRealizarTransaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 749);
+            this.Controls.Add(this.txtintento);
             this.Controls.Add(this.txtMonedaDestino);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
@@ -522,5 +532,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtMonedaDestino;
+        private System.Windows.Forms.TextBox txtintento;
     }
 }

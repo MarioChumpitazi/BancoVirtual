@@ -50,7 +50,7 @@ namespace CapaDominio.Entidades
 
         }
 
-        public bool validarClave(String claveCuenta,int intentos)
+        public bool validarClave(String claveCuenta)
         {
              if (clave == claveCuenta)
             {
@@ -58,14 +58,13 @@ namespace CapaDominio.Entidades
             }
             else
             {
-                intentos++;
                 return false;
             }
         }
 
         public int calcularintentos(String claveCuenta,int intentos)
         {
-            if(!validarClave(claveCuenta, intentos) && intentos<3){
+            if(!validarClave(claveCuenta) && intentos<3){
                 intentos++;
                 return intentos;
             }
@@ -79,15 +78,15 @@ namespace CapaDominio.Entidades
         {
             if (cuentaOrigenID == cuentaDestinoID)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
-
+      
+        
     }
 
-
-}
+    }

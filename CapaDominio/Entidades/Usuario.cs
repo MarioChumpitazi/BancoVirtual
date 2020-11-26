@@ -67,5 +67,9 @@ namespace CapaDominio.Entidades
                 return false;
             }
         }
+
+     
+
+
     }
 }
