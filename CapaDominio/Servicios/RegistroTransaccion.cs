@@ -11,7 +11,7 @@ namespace CapaDominio.Servicios
     {
 
 
-        public void validarTransaccion(Transaccion transaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String clave)
+        public void validarTransaccion(Transaccion transaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino)
         {
             if(!cuentaOrigen.compararCuentasID(cuentaOrigen.CuentaID, cuentaDestino.CuentaID))
             {
@@ -34,20 +34,15 @@ namespace CapaDominio.Servicios
             {
                 throw new Exception("Cuenta Del Destinatario Inhabilitada");
             }
-       
-        }
-        public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
-        {
-            if (!transaccion.validarMontoDestino(cuenta))
+            if (!transaccion.validarMontoDestino(cuentaDestino))
             {
                 throw new Exception("El monto del destinatario ah superado la maxima cantidad");
             }
 
         }
+     
         
     }
-
-
 
 
 

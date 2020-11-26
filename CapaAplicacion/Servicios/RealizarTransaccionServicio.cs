@@ -72,8 +72,8 @@ namespace CapaAplicacion.Servicios
         {
             RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
            
-            registroDeTransaccion.validarTransaccion(transaccion, cuentaOrigen, cuentaDestino, clave);
-            registroDeTransaccion.verificarMontoDestinatario(transaccion, cuentaDestino);
+            registroDeTransaccion.validarTransaccion(transaccion, cuentaOrigen, cuentaDestino);
+
             gestorDatos.iniciarTransaccion();
             transaccionDAO.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID);
             gestorDatos.terminarTransaccion();

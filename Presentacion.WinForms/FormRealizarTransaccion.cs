@@ -70,7 +70,6 @@ namespace Presentacion.WinForms
                     Usuario usuario2 = servicio.buscarUsuarioPorCuenta(cuentaDestinoID);
                     transaccion.TipoTransaccion = transaccion.validarTipoTransaccion(usuario1.UsuarioID,usuario2.UsuarioID);
 
-
                    String clave = txtVerificarClave.Text;
                    if (Intentos.intento < 3)
                       {
@@ -81,7 +80,7 @@ namespace Presentacion.WinForms
                             transaccion.Monto = transaccion.calcularTransferencia(cuentaOrigen, cuentaDestino);
                             cuentaDestino.Saldo = cuentaDestino.Saldo + transaccion.Monto;
 
-                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuentaOrigen, cuentaDestino, clave);
+                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuentaOrigen, cuentaDestino);
                             servicio.GuardarNuevoSaldo(cuentaOrigen);
                             servicio.GuardarNuevoSaldo(cuentaDestino);
                             fila.Cells[1].Value = cuentaOrigen.Saldo;
