@@ -80,7 +80,7 @@ namespace Presentacion.WinForms
                             transaccion.Monto = transaccion.calcularTransferencia(cuentaOrigen, cuentaDestino);
                             cuentaDestino.Saldo = cuentaDestino.Saldo + transaccion.Monto;
 
-                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuentaOrigen, cuentaDestino);
+                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuentaOrigen, cuentaDestino,clave);
                             servicio.GuardarNuevoSaldo(cuentaOrigen);
                             servicio.GuardarNuevoSaldo(cuentaDestino);
                             fila.Cells[1].Value = cuentaOrigen.Saldo;
