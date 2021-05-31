@@ -84,11 +84,6 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
 
-
-
-
-
-
         public Usuario buscarUsuarioPorCuenta(string cuentaID)
         {
             Usuario usuario;
