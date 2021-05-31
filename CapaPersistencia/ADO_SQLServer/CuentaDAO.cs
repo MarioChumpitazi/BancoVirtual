@@ -79,12 +79,6 @@ namespace CapaPersistencia.ADO_SQLServer
             return listaDecuentas;
         }
 
-        public Cuenta buscarCuentaPorID(string cuentaID)
-        {
-            Cuenta cuenta
-        }
-
-
 
 
 
