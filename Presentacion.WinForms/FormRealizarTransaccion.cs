@@ -20,7 +20,7 @@ namespace Presentacion.WinForms
            
             InitializeComponent();
 
-            }
+        }
         static class Intentos
         {
             public static int intento=0;
