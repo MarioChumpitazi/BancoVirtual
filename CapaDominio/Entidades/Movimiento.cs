@@ -10,99 +10,114 @@ namespace CapaDominio.Entidades
     {
         private string movimientoID;
         public DateTime mes;
-
-
-        public string MovimientoID { get => movimientoID; set => movimientoID = value; }
-        public DateTime Mes { get => mes; set => mes = value; }
-
+        private Transaccion transaccion;
         private List<Transaccion> listaTransacciones;
+
+        //public string MovimientoID { get => movimientoID; set => movimientoID = value; }
+        public DateTime Mes { get => mes; set => mes = value; }
+        public Transaccion Transaccion { get => transaccion; set => transaccion = value; }
         public List<Transaccion> ListaTransacciones { get => listaTransacciones; set => listaTransacciones = value; }
 
 
-
-        //regla 3
-        public bool verificarMes(Movimiento movimiento)
+        public bool validarTipoDeMoneda(Cuenta cuentaDestino)
         {
-            if (movimiento.Mes.Month <= 12 && movimiento.Mes.Month >= 1)
+            if (cuentaDestino.TipoMoneda == true)
             {
                 return true;
             }
-            return false;
-        }
-
-        public Transaccion existeTransaccion()
-        {
-            foreach (Transaccion transaccion in listaTransacciones)
-            {
-                return transaccion;
-            }
-            return null;
-        }
-
-        //regla 11
-        public float calcularTotalTransaccionSoles()
-        {
-            float totalSoles = 0f;
-            foreach (Transaccion transaccion in listaTransacciones)
-            {
-                if (transaccion.Moneda == false)
-                    totalSoles += transaccion.calcularMontoTotal();
+            else
+            { 
+                return false;
             }
 
-            return totalSoles;
         }
 
-        //regla 12
-        public float calcularTotalTransaccionDolares()
-        {
-            float totalDolares = 0f;
-            foreach (Transaccion transaccion in listaTransacciones)
-            {
-                if (transaccion.Moneda == true)
-                    totalDolares += transaccion.calcularMontoTotal();
-            }
+      
 
-            return totalDolares;
+        
+        public double calcularTotalGeneral(Cuenta cuentaOrigen,Cuenta cuentaDestino,double monto)
+        {
+            double totalGeneral = 0;
+            
+                if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == true)
+                {
+                    totalGeneral = monto + totalGeneral;
+                }
+                else if (cuentaOrigen.TipoMoneda == true && cuentaDestino.TipoMoneda == false)
+                {
+                    totalGeneral = monto * 3.45 + totalGeneral;
+
+                }
+                else if (cuentaOrigen.TipoMoneda == false && cuentaDestino.TipoMoneda == true)
+                {
+                    totalGeneral = monto / 3.45 + totalGeneral;
+
+                }
+                else
+                {
+                    totalGeneral = monto + totalGeneral;
+                }
+
+            
+
+            return totalGeneral;
         }
+        
 
-        //regla 13
-        public double calcularTotalGeneral()
+    public int calcularNivelDeValoracion()
         {
-            return calcularTotalTransaccionSoles() + (calcularTotalTransaccionDolares() * 3.45);
-        }
-
-        // regla 9
-        public float calcularNivelValorizacion()
-        {
-            float nivelValorizacion = 0f;
-            float sumaValoracion = 0f;
+            double puntosValoracion = 0;
             int cont = 0;
             foreach (Transaccion transaccion in listaTransacciones)
             {
-                cont = 0;
-                sumaValoracion += transaccion.Valoracion;
+                puntosValoracion += transaccion.Valoracion;
+                cont = cont + 1;
             }
-            nivelValorizacion = sumaValoracion / cont;
-            return nivelValorizacion;
-        }
+            if (puntosValoracion!= 0)
+            {
+                double promedioValoracion = (puntosValoracion / cont);
 
-        //regla 10
-        public float calcularNivelMovimiento()
+                double verificar = promedioValoracion - (int)promedioValoracion;
+                if (verificar >= 0.5)
+                {
+                    return (int)promedioValoracion + 1;
+                }
+                else
+                {
+                    return (int)promedioValoracion;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        
+        
+
+
+        public String calcularNivelMovimiento()
         {
-            float nivelMovimiento = 0f;
-            int cont = 0, contPorMes = 0;
-            DateTime fechaActual = DateTime.Today;
+
+            int cont = 0;
             foreach (Transaccion transaccion in listaTransacciones)
             {
                 cont++;
-                if (fechaActual.Month == transaccion.Fecha.Month)
-                {
-                    contPorMes++;
-                }
-
             }
-            nivelMovimiento = cont / contPorMes;
-            return nivelMovimiento;
+            if (cont < 4)
+            {
+                return "bajo";
+            }
+            else if (cont < 7)
+            {
+                return "medio";
+            }
+            else
+            {
+                return "alto";
+            }
         }
+
     }
 }
+

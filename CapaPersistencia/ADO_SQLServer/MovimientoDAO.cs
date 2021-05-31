@@ -71,7 +71,6 @@ namespace CapaPersistencia.ADO_SQLServer
         {
             Movimiento movimiento = new Movimiento();
             Transaccion transaccion = new Transaccion();
-            movimiento.MovimientoID = resultadoSQL.GetInt32(0).ToString();
             movimiento.mes = resultadoSQL.GetDateTime(1);
             transaccion.TransaccionID= resultadoSQL.GetString(2);
             movimiento.Transaccion = transaccion;

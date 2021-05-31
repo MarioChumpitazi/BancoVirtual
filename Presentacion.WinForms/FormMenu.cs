@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaAplicacion.Servicios;
-using CapaDominio.Entidades;
+
 
 namespace Presentacion.WinForms
 {
@@ -58,13 +58,6 @@ namespace Presentacion.WinForms
             formGenerarReporteMovimientos.ShowDialog();
         }
 
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
-        {
-            
-
-
-
-
-        }
+    
     }
 }

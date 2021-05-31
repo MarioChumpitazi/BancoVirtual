@@ -25,16 +25,23 @@ namespace CapaDominio.Entidades
         public Cuenta CuentaOrigen { get => cuentaOrigen; set => cuentaOrigen = value; }
         public Cuenta CuentaDestino { get => cuentaDestino; set => cuentaDestino = value; }
 
-        public void realizarTransaccion()
-        {
 
+        public bool validarIntentos(int intentos)
+        {
+            if (intentos < 3)
+                return true;
+            else
+            {
+                return false;
+            }
         }
+
         public bool validarMonto(Cuenta cuenta)
         {
-            return monto>=5 && monto<=cuenta.Saldo && monto<=100;
+            return monto>=5 && monto<=cuenta.Saldo && monto<101;
         }
 
-        public bool verificarMontoDestino(Cuenta cuenta)
+        public bool validarMontoDestino(Cuenta cuenta)
         {
             return cuenta.Saldo+monto<= 1000;
         }
@@ -76,6 +83,16 @@ namespace CapaDominio.Entidades
             return transferencia;
         }
 
-        
+        public bool validarTipoTransaccion(String usuario1ID, String usuario2ID)
+        {
+            if (usuario1ID == usuario2ID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

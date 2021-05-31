@@ -65,10 +65,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtMontoTransferido = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtVerificarCuenta = new System.Windows.Forms.TextBox();
+            this.txtVerificarClave = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtMonedaDestino = new System.Windows.Forms.TextBox();
+            this.txtintento = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransaccion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,7 +107,6 @@
             this.dataTransaccion.Name = "dataTransaccion";
             this.dataTransaccion.Size = new System.Drawing.Size(646, 124);
             this.dataTransaccion.TabIndex = 10;
-            this.dataTransaccion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // IDCuenta
             // 
@@ -395,12 +395,12 @@
             this.label16.TabIndex = 68;
             this.label16.Text = "Monto Transferido:";
             // 
-            // txtVerificarCuenta
+            // txtVerificarClave
             // 
-            this.txtVerificarCuenta.Location = new System.Drawing.Point(195, 312);
-            this.txtVerificarCuenta.Name = "txtVerificarCuenta";
-            this.txtVerificarCuenta.Size = new System.Drawing.Size(144, 20);
-            this.txtVerificarCuenta.TabIndex = 86;
+            this.txtVerificarClave.Location = new System.Drawing.Point(195, 312);
+            this.txtVerificarClave.Name = "txtVerificarClave";
+            this.txtVerificarClave.Size = new System.Drawing.Size(144, 20);
+            this.txtVerificarClave.TabIndex = 86;
             // 
             // label10
             // 
@@ -430,15 +430,24 @@
             this.txtMonedaDestino.Size = new System.Drawing.Size(165, 20);
             this.txtMonedaDestino.TabIndex = 89;
             // 
+            // txtintento
+            // 
+            this.txtintento.Location = new System.Drawing.Point(520, 607);
+            this.txtintento.Name = "txtintento";
+            this.txtintento.ReadOnly = true;
+            this.txtintento.Size = new System.Drawing.Size(151, 20);
+            this.txtintento.TabIndex = 90;
+            // 
             // FormRealizarTransaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 749);
+            this.Controls.Add(this.txtintento);
             this.Controls.Add(this.txtMonedaDestino);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtVerificarCuenta);
+            this.Controls.Add(this.txtVerificarClave);
             this.Controls.Add(this.txtCuentaOrigen);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtMontoDescontado);
@@ -474,7 +483,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormRealizarTransaccion";
             this.Text = "FormRealizarTransaccion";
-            this.Load += new System.EventHandler(this.FormRealizarTransaccion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataTransaccion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -520,9 +528,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtMontoTransferido;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtVerificarCuenta;
+        private System.Windows.Forms.TextBox txtVerificarClave;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtMonedaDestino;
+        private System.Windows.Forms.TextBox txtintento;
     }
 }

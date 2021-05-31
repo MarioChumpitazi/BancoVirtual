@@ -37,7 +37,7 @@ namespace CapaDominio.Entidades
         public string Clave { get => clave; set => clave = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
 
-        public Boolean ValidarCuenta()
+        public Boolean validarCuenta()
         {
             if (Estado == true)
             {
@@ -50,9 +50,9 @@ namespace CapaDominio.Entidades
 
         }
 
-        public bool verificarCuenta(String cuentaaux)
+        public bool validarClave(String claveCuenta)
         {
-             if (clave == cuentaaux)
+             if (clave == claveCuenta)
             {
                 return true;
             }
@@ -62,8 +62,31 @@ namespace CapaDominio.Entidades
             }
         }
 
-
+        public int calcularintentos(String claveCuenta,int intentos)
+        {
+            if(!validarClave(claveCuenta) && intentos<3){
+                intentos++;
+                return intentos;
+            }
+            else
+            {
+                return -1;
+            }
+            
+        }
+        public bool compararCuentasID(String cuentaOrigenID, string cuentaDestinoID)
+        {
+            if (cuentaOrigenID == cuentaDestinoID)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+      
+        
     }
 
-
-}
+    }

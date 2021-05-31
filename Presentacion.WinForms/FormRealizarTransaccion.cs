@@ -23,7 +23,7 @@ namespace Presentacion.WinForms
         }
         static class Intentos
         {
-            public static int intento=0;
+            public static int intento = 0;
         }
         private void btnBuscarID_Click(object sender, EventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Presentacion.WinForms
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        
         private void btnEntreCuentas_Click(object sender, EventArgs e)
         {
             try
@@ -64,131 +64,70 @@ namespace Presentacion.WinForms
                     cuentaOrigenID = fila.Cells[0].Value.ToString();
                     cuentaDestinoID = text_idDestino.Text.Trim();
                     RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
-                    Cuenta cuenta1 = servicio.buscarCuenta(cuentaOrigenID);
-                    Cuenta cuenta2 = servicio.buscarCuenta(cuentaDestinoID);
+                    Cuenta cuentaOrigen = servicio.buscarCuenta(cuentaOrigenID);
+                    Cuenta cuentaDestino = servicio.buscarCuenta(cuentaDestinoID);
                     Usuario usuario1 = servicio.buscarUsuarioPorCuenta(cuentaOrigenID);
                     Usuario usuario2 = servicio.buscarUsuarioPorCuenta(cuentaDestinoID);
+                    transaccion.TipoTransaccion = transaccion.validarTipoTransaccion(usuario1.UsuarioID,usuario2.UsuarioID);
 
-                    if (usuario1.UsuarioID == usuario2.UsuarioID)
-                    {
-                        transaccion.TipoTransaccion = true;
-                    }
-                    else
-                    {
-                        transaccion.TipoTransaccion = false;
-                    }
-
-
-                    String cuentaaux = txtVerificarCuenta.Text;
-                    if (cuenta1.Estado == true)
-                    {
-                        if (cuenta2.Estado == true)
+                   String clave = txtVerificarClave.Text;
+                   if (Intentos.intento < 3)
+                      {
+                        if (cuentaOrigen.validarClave(clave))
                         {
+                            double MontoAuxiliar = transaccion.calcularMontoTotal();
+                            cuentaOrigen.Saldo = cuentaOrigen.Saldo - MontoAuxiliar;
+                            transaccion.Monto = transaccion.calcularTransferencia(cuentaOrigen, cuentaDestino);
+                            cuentaDestino.Saldo = cuentaDestino.Saldo + transaccion.Monto;
 
-                            if (Intentos.intento < 3)
+                            servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuentaOrigen, cuentaDestino,clave);
+                            servicio.GuardarNuevoSaldo(cuentaOrigen);
+                            servicio.GuardarNuevoSaldo(cuentaDestino);
+                            fila.Cells[1].Value = cuentaOrigen.Saldo;
+                            foreach (DataGridViewRow filas in dataTransaccion.Rows)
                             {
-                                if (txtVerificarCuenta.Text != "")
+                                if (filas.Cells[0].Value.ToString() == cuentaDestino.CuentaID)
                                 {
-                                    if (cuenta1.verificarCuenta(cuentaaux) == true)
-                                    {
-                                        txtComision.Text = transaccion.calcularComision().ToString();
-                                        txtMontoDescontado.Text = transaccion.Monto.ToString();
-                                        double MontoAuxiliar = transaccion.calcularMontoTotal();
-                                        cuenta1.Saldo = cuenta1.Saldo - MontoAuxiliar;
-                                        transaccion.Monto = transaccion.calcularTransferencia(cuenta1, cuenta2);
-                                        txtMontoTransferido.Text = transaccion.Monto.ToString();
-                                        cuenta2.Saldo = cuenta2.Saldo + transaccion.Monto;
-
-
-                                        servicio.guardarTransaccion(transaccion, cuentaOrigenID, cuentaDestinoID, cuenta1,cuenta2);
-
-                                        servicio.GuardarNuevoSaldo(cuenta1);
-                                        servicio.GuardarNuevoSaldo(cuenta2);
-
-                                        fila.Cells[1].Value = cuenta1.Saldo;
-
-                                        foreach (DataGridViewRow filas in dataTransaccion.Rows)
-                                        {
-
-
-                                            if (filas.Cells[0].Value.ToString() == cuenta2.CuentaID)
-                                            {
-                                                filas.Cells[1].Value = cuenta2.Saldo;
-
-                                            }
-
-                                        }
-                                        txtCuentaOrigen.Text = cuenta1.CuentaID.ToString();
-                                        txtCuentaDestino.Text = cuenta2.CuentaID.ToString();
-                                        txtNombreUsuario.Text = usuario1.Nombres.ToString();
-                                        txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
-                                        String monedaOrigen = cuenta1.TipoMoneda ? "Sol" : "Dolar";
-                                        txtTipoMoneda.Text = monedaOrigen;
-                                        String monedaDestino = cuenta2.TipoMoneda ? "Sol" : "Dolar";
-                                        txtMonedaDestino.Text = monedaDestino;
-                                        if (transaccion != null)
-                                        {
-
-                                            MessageBox.Show("Transaccion exitosa");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Intentos.intento = Intentos.intento + 1;
-                                        throw new Exception("Error al ingresar Codigocuenta");
-                                    }
-                                }
-                                else
-                                {
-                                    throw new Exception("Ingrese su clave de cuenta para realizar transaccion");
-
+                                    filas.Cells[1].Value = cuentaDestino.Saldo;
                                 }
                             }
-                            else
+
+                            txtComision.Text = transaccion.calcularComision().ToString();
+                            txtMontoDescontado.Text = transaccion.Monto.ToString();
+                            txtMontoTransferido.Text = transaccion.Monto.ToString();
+                            txtCuentaOrigen.Text = cuentaOrigen.CuentaID.ToString();
+                            txtCuentaDestino.Text = cuentaDestino.CuentaID.ToString();
+                            txtNombreUsuario.Text = usuario1.Nombres.ToString();
+                            txtApellidosUsuario.Text = usuario1.Apellidos.ToString();
+                            String monedaOrigen = cuentaOrigen.TipoMoneda ? "Sol" : "Dolar";
+                            txtTipoMoneda.Text = monedaOrigen;
+                            String monedaDestino = cuentaDestino.TipoMoneda ? "Sol" : "Dolar";
+                            txtMonedaDestino.Text = monedaDestino;
+                            if (transaccion != null)
                             {
-                                servicio.InhabilitarCuenta(cuenta1);
-                                if (Intentos.intento >= 3)
-                                {
-                                    Intentos.intento = 0;
-                                }
-                                throw new Exception("Ha excedido el numero de errores, Su cuenta ah sido inhabilitada por el momento");
-
+                                MessageBox.Show("Se realizo la transferencia");
                             }
+                        }else{
+                            Intentos.intento++;
+                            txtintento.Text = Intentos.intento.ToString();
+                            throw new Exception("Error al ingresar clave de cuenta");
                         }
-                        else
+                   }else{
+                        servicio.InhabilitarCuenta(cuentaOrigen);
+                        if (Intentos.intento >= 3)
                         {
-                            throw new Exception("Cuenta Del Destinatario Inhabilitada");
+                            Intentos.intento = 0;
                         }
+                        throw new Exception("Ha excedido el numero de errores, Su cuenta ah sido inhabilitada por el momento");
                     }
-                    else
-                    {
-                        throw new Exception("Cuenta Inhabilitada");
-
-
-                    }
-                   
                 }
             } catch (Exception err)
             {
+
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private void btnTercero_Click(object sender, EventArgs e)
-        {
-
-            txtComision.Text = dataTransaccion.Rows.Count.ToString();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void FormRealizarTransaccion_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

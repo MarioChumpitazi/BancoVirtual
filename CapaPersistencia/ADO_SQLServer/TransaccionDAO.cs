@@ -53,11 +53,37 @@ namespace CapaPersistencia.ADO_SQLServer
 
 
         }
-        public List<Transaccion> obtenerListaDeTransacciones(String usuarioID, bool tipoTransaccion)
+
+        public List<Transaccion> obtenerListaDeTransaccionesPorCuenta(String cuentaID)
         {
             List<Transaccion> listaDeTransacciones = new List<Transaccion>();
             Transaccion transaccion;
-            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Usuario u,Cuenta c where t.cuentaOrigenID=c.cuentaID and c.usuarioID=u.usuarioID and u.usuarioID='" + usuarioID + "' and t.tipoTransaccion= '" + tipoTransaccion + "'";
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Cuenta c where t.cuentaOrigenID=c.cuentaID and cuentaID='" + cuentaID + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+
+                while (resultadoSQL.Read())
+                {
+                    transaccion = obtenerTransaccion(resultadoSQL);
+                    listaDeTransacciones.Add(transaccion);
+
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return listaDeTransacciones;
+        }
+
+
+
+        public List<Transaccion> obtenerListaDeTransacciones(String cuentaID, bool tipoTransaccion)
+        {
+            List<Transaccion> listaDeTransacciones = new List<Transaccion>();
+            Transaccion transaccion;
+            string consultaSQL = "select t.transaccionID,t.fechaTransaccion,t.monto,t.tipoTransaccion,t.valoracion,t.cuentaOrigenID,cuentaDestinoID from Transaccion t,Cuenta c where t.cuentaOrigenID=c.cuentaID and  cuentaID='" + cuentaID + "' and t.tipoTransaccion='" + tipoTransaccion + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);

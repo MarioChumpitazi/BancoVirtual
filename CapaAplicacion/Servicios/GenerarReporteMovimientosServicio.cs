@@ -59,21 +59,22 @@ namespace CapaAplicacion.Servicios
             gestorDatos.cerrarConexion();
         }
 
-        public List<Transaccion> obtenerListaDeTransacciones(string usuarioID, bool tipoTransaccion)
+        public List<Transaccion> obtenerListaDeTransacciones(string cuentaID, bool tipoTransaccion)
         {
             gestorDatos.abrirConexion();
-            List<Transaccion> transaccion = transaccionDAO.obtenerListaDeTransacciones(usuarioID, tipoTransaccion);
+            List<Transaccion> transaccion = transaccionDAO.obtenerListaDeTransacciones(cuentaID, tipoTransaccion);
             gestorDatos.cerrarConexion();
             return transaccion;
         }
 
-        public Cuenta buscarCuenta(string cuentaID)
+        public List<Transaccion> obtenerListaDeTransaccionesPorCuenta(string cuentaID)
         {
             gestorDatos.abrirConexion();
-            Usuario usuario = cuentaDAO.buscarCuentasDelUsuario(cuentaID);
+            List<Transaccion> transaccion = transaccionDAO.obtenerListaDeTransaccionesPorCuenta(cuentaID);
             gestorDatos.cerrarConexion();
-            return cuenta;
+            return transaccion;
         }
+
 
     }
 }

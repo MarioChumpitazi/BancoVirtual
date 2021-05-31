@@ -11,29 +11,38 @@ namespace CapaDominio.Servicios
     {
 
 
-        public void validarTransaccion(Transaccion transaccion, Cuenta cuenta)
+        public void validarTransaccion(Transaccion transaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino)
         {
-            if (!transaccion.validarMonto(cuenta))
+            if(!cuentaOrigen.compararCuentasID(cuentaOrigen.CuentaID, cuentaDestino.CuentaID))
             {
-                throw new Exception("El monto a transferir no es el indicado");
+                throw new Exception("Cuenta destino debe ser diferente a la cuenta origen");
+            }
+
+            if (!transaccion.validarMonto(cuentaOrigen))
+            {
+                throw new Exception("El monto ingresado no es el correcto");
             }
             if (!transaccion.validarValoracion())
             {
                 throw new Exception("La valoracion debe ser entre 1 y 5");
             }
-        }
-        public void verificarMontoDestinatario(Transaccion transaccion, Cuenta cuenta)
-        {
-            if (!transaccion.verificarMontoDestino(cuenta))
+            if (!cuentaOrigen.validarCuenta())
+            {
+                throw new Exception("Su cuenta está Inhabilitada");
+            }
+            if (!cuentaDestino.validarCuenta())
+            {
+                throw new Exception("Cuenta Del Destinatario Inhabilitada");
+            }
+            if (!transaccion.validarMontoDestino(cuentaDestino))
             {
                 throw new Exception("El monto del destinatario ah superado la maxima cantidad");
             }
 
         }
+     
         
     }
-
-
 
 
 
