@@ -17,6 +17,6 @@ namespace CapaDominio.Entidades
         public string NombreBanco { get => nombreBanco; set => nombreBanco = value; }
         public List<Usuario> ListaDeUsuarios { get => listaDeUsuarios; set => listaDeUsuarios = value; }
 
-       
+
     }
 }

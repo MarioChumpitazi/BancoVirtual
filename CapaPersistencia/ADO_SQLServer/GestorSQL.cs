@@ -81,6 +81,7 @@ namespace CapaPersistencia.ADO_SQLServer
             }
         }
 
+
         public SqlDataReader ejecutarConsulta(string sentenciaSQL)
         {
             try

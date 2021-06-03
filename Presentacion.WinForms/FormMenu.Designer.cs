@@ -36,6 +36,8 @@
             this.btnGenerarReporteMovimientos = new System.Windows.Forms.Button();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnCambiarClaveUsuario = new System.Windows.Forms.Button();
+            this.btnAnularUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
@@ -107,11 +109,33 @@
             this.label9.TabIndex = 43;
             this.label9.Text = "Usuario ID:";
             // 
+            // btnCambiarClaveUsuario
+            // 
+            this.btnCambiarClaveUsuario.Location = new System.Drawing.Point(676, 387);
+            this.btnCambiarClaveUsuario.Name = "btnCambiarClaveUsuario";
+            this.btnCambiarClaveUsuario.Size = new System.Drawing.Size(112, 51);
+            this.btnCambiarClaveUsuario.TabIndex = 45;
+            this.btnCambiarClaveUsuario.Text = "Cambiar Clave";
+            this.btnCambiarClaveUsuario.UseVisualStyleBackColor = true;
+            this.btnCambiarClaveUsuario.Click += new System.EventHandler(this.btnCambiarClaveUsuario_Click);
+            // 
+            // btnAnularUsuario
+            // 
+            this.btnAnularUsuario.Location = new System.Drawing.Point(523, 387);
+            this.btnAnularUsuario.Name = "btnAnularUsuario";
+            this.btnAnularUsuario.Size = new System.Drawing.Size(98, 51);
+            this.btnAnularUsuario.TabIndex = 46;
+            this.btnAnularUsuario.Text = "Anular Usuario";
+            this.btnAnularUsuario.UseVisualStyleBackColor = true;
+            this.btnAnularUsuario.Click += new System.EventHandler(this.btnAnularUsuario_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAnularUsuario);
+            this.Controls.Add(this.btnCambiarClaveUsuario);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnGenerarReporteMovimientos);
@@ -137,5 +161,7 @@
         private System.Windows.Forms.Button btnGenerarReporteMovimientos;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnCambiarClaveUsuario;
+        private System.Windows.Forms.Button btnAnularUsuario;
     }
 }

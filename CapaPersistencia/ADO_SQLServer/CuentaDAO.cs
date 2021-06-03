@@ -89,7 +89,7 @@ namespace CapaPersistencia.ADO_SQLServer
         public Usuario buscarUsuarioPorCuenta(string cuentaID)
         {
             Usuario usuario;
-            string consultaSQL = "select usuario.usuarioID,usuario.nombres,usuario.apellidos,usuario.dni,usuario.numeroTarjeta,usuario.clave,usuario.estado,usuario.bancoID from Cuenta cuenta,Usuario usuario where usuario.usuarioID=cuenta.usuarioID and cuenta.cuentaID= '" + cuentaID + "'";
+            string consultaSQL = "select usuario.usuarioID,usuario.nombres,usuario.apellidos,usuario.dni,usuario.numeroTarjeta,usuario.clave,usuario.estado from Cuenta cuenta,Usuario usuario where usuario.usuarioID=cuenta.usuarioID and cuenta.cuentaID= '" + cuentaID + "'";
             try
             {
                 SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
@@ -263,7 +263,7 @@ namespace CapaPersistencia.ADO_SQLServer
         {
             Usuario usuario = new Usuario();
 
-            usuario.UsuarioID = resultadoSQL.GetString(0);
+            usuario.UsuarioID = resultadoSQL.GetInt32(0).ToString();
             usuario.Nombres = resultadoSQL.GetString(1);
             usuario.Apellidos = resultadoSQL.GetString(2);
             usuario.Dni = resultadoSQL.GetString(3);
@@ -273,10 +273,6 @@ namespace CapaPersistencia.ADO_SQLServer
 
             return usuario;
         }
-
-
-
-
 
     }
 }

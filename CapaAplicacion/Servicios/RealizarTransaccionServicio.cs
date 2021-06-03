@@ -18,7 +18,7 @@ namespace CapaAplicacion.Servicios
         private ICuenta cuentaDAO;
         private IMovimiento movimientoDAO;
         private ITransaccion transaccionDAO;
-        private IUsuario usarioDAO;
+        private IUsuario usuarioDAO;
 
         public RealizarTransaccionServicio()
         {
@@ -32,7 +32,7 @@ namespace CapaAplicacion.Servicios
 
             transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
 
-            usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
+            usuarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
         
@@ -56,10 +56,11 @@ namespace CapaAplicacion.Servicios
         public Usuario buscarUsuario(string usuarioID)
         {
             gestorDatos.abrirConexion();
-            Usuario usuario = usarioDAO.buscarPorID(usuarioID);
+            Usuario usuario = usuarioDAO.buscarPorID(usuarioID);
             gestorDatos.cerrarConexion();
             return usuario;
         }
+
         public Usuario buscarUsuarioPorCuenta(string idCuenta)
         {
             gestorDatos.abrirConexion();

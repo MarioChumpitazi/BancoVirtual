@@ -27,7 +27,7 @@ namespace Presentacion.WinForms
         }
         private void btnBuscarID_Click(object sender, EventArgs e)
         {
-            string idCuentaDestino = text_idDestino.Text.Trim();
+            string idCuentaDestino = text_idDestino.Text;
             try
             {
                 RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();

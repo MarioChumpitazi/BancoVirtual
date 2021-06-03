@@ -27,7 +27,7 @@ namespace Presentacion.WinForms
         public void btnIngresar_Click(object sender, EventArgs e)
         {
             
-            string usuarioID = txtUsuario.Text.Trim();
+            string usuarioID = txtUsuario.Text;
             string clave = txtContrasenia.Text.Trim();
             
             try
@@ -37,7 +37,7 @@ namespace Presentacion.WinForms
                 Usuario usuario = servicio.buscarUsuario(usuarioID);
                 if (usuario!= null)
                 {
-                    if (usuario.Clave == clave)
+                    if (usuario.Clave == clave && usuario.Estado!=false)
                     {
                         FormMenu formMenu = new FormMenu();
                   
@@ -61,12 +61,31 @@ namespace Presentacion.WinForms
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
-        {
 
+        private void btnRegistrarUsuario_Click(object sender, EventArgs e)
+        {
+            FormRegistrarUsuario formRegistrarUsuario = new FormRegistrarUsuario();
+
+            formRegistrarUsuario.ShowDialog();
+        }
+
+        private void chcbContraseñaUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chcbContraseñaUsuario.Checked == true)
+            {
+                if (txtContrasenia.PasswordChar == '*')
+                {
+                    //cambiar passwordchar a nulo
+                    txtContrasenia.PasswordChar = '\0';
+                }
+            }
+            else
+            {
+                txtContrasenia.PasswordChar = '*';
+            }
         }
     }
 }

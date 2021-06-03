@@ -17,12 +17,15 @@ namespace CapaDominio.Servicios
             }
 
 
-            if (!usuario.validarClave(usuario))
+            if (!usuario.validarClave(usuario.Clave))
             {
                 throw new Exception("ERROR en Clave Usuario");
             }
 
-
+            if(!usuario.validarNumeroDeTarjeta(usuario.NumeroDeTarjeta))
+            {
+                throw new Exception("ERROR en Numero de Tarjeta");
+            }
         }
     }
 }

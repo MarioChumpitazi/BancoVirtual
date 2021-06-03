@@ -15,12 +15,13 @@ namespace CapaDominio.Entidades
         private string numeroDeTarjeta;
         private string clave;
         private bool estado;
-        private Banco banco;
+        //private Banco banco;
         private List<Cuenta> listaDeCuentas;
 
 
         public Usuario() { }
 
+        /*
         public Usuario(string usuarioID, string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave, bool estado, Banco banco, List<Cuenta> listaDeCuentas)
         {
             this.usuarioID = usuarioID;
@@ -32,7 +33,7 @@ namespace CapaDominio.Entidades
             this.estado = estado;
             this.banco = banco;
             this.listaDeCuentas = listaDeCuentas;
-        }
+        }*/
 
         public string UsuarioID { get => usuarioID; set => usuarioID = value; }
         public string Nombres { get => nombres; set => nombres = value; }
@@ -41,7 +42,7 @@ namespace CapaDominio.Entidades
         public string NumeroDeTarjeta { get => numeroDeTarjeta; set => numeroDeTarjeta = value; }
         public string Clave { get => clave; set => clave = value; }
         public bool Estado { get => estado; set => estado = value; }
-        public Banco Banco { get => banco; set => banco = value; }
+        //public Banco Banco { get => banco; set => banco = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
 
@@ -56,20 +57,30 @@ namespace CapaDominio.Entidades
             }
         }
 
-        
 
-        public bool validarClave(Usuario usuario)
+
+        public bool validarClave(String claveUsuario)
         {
-            if (usuario.Clave == clave)
+            if (clave == claveUsuario)
+            {
                 return true;
+            }
             else
             {
                 return false;
             }
         }
 
-     
 
+        public bool validarNumeroDeTarjeta(string numeroDeTarjetaUsuario)
+        {
+            if (NumeroDeTarjeta == numeroDeTarjetaUsuario)
+                return true;
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

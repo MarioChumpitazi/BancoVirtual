@@ -10,7 +10,9 @@ namespace CapaDominio.Contratos
     public interface IUsuario
     {
         Usuario buscarPorID(string usuarioID);
-      
 
+        void guardarUsuario(Usuario usuario);
+        void editarUsuarioClave(Usuario usuario);
+        void anularUsuario(Usuario usuario);
     }
 }

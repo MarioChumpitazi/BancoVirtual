@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO_SQLServer\BancoDAO.cs" />
     <Compile Include="ADO_SQLServer\CuentaDAO.cs" />
     <Compile Include="ADO_SQLServer\GestorSQL.cs" />
     <Compile Include="ADO_SQLServer\MovimientoDAO.cs" />

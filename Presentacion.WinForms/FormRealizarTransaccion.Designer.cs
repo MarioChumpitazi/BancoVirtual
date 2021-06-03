@@ -399,6 +399,7 @@
             // 
             this.txtVerificarClave.Location = new System.Drawing.Point(195, 312);
             this.txtVerificarClave.Name = "txtVerificarClave";
+            this.txtVerificarClave.PasswordChar = '*';
             this.txtVerificarClave.Size = new System.Drawing.Size(144, 20);
             this.txtVerificarClave.TabIndex = 86;
             // 

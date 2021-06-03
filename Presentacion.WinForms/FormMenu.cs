@@ -58,6 +58,33 @@ namespace Presentacion.WinForms
             formGenerarReporteMovimientos.ShowDialog();
         }
 
-    
+        private void btnCambiarClaveUsuario_Click(object sender, EventArgs e)
+        {
+            string usuarioID = txtusuarioID.Text.Trim();
+
+            MantenedorUsuarioServicio servicio = new MantenedorUsuarioServicio();
+            Usuario usuario = servicio.buscarUsuario(usuarioID);
+
+            FormCambiarClaveUsuario formCambiarClaveUsuario = new FormCambiarClaveUsuario();
+            formCambiarClaveUsuario.txtusuarioID.Text = usuario.UsuarioID;
+            //usuario.UsuarioID = txtusuarioID.Text;
+            //MantenedorUsuarioServicio servicio = new MantenedorUsuarioServicio();
+            //Usuario usuario = servicio.buscarUsuario(usuario.UsuarioID);
+            //usuario.UsuarioID = txtusuarioID.Text;
+   
+            
+            formCambiarClaveUsuario.ShowDialog();
+        }
+
+        private void btnAnularUsuario_Click(object sender, EventArgs e)
+        {
+            string usuarioID = txtusuarioID.Text.Trim();
+
+            MantenedorUsuarioServicio servicio = new MantenedorUsuarioServicio();
+            Usuario usuario = servicio.buscarUsuario(usuarioID);
+            servicio.anularUsuario(usuario);
+            MessageBox.Show("Se anulo este usuario");
+            this.Close();
+        }
     }
 }

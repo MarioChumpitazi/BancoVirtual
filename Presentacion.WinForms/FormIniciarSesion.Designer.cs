@@ -35,6 +35,8 @@
             this.txtContrasenia = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnRegistrarUsuario = new System.Windows.Forms.Button();
+            this.chcbContraseñaUsuario = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +65,6 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(330, 20);
             this.txtUsuario.TabIndex = 4;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // label3
             // 
@@ -79,6 +80,7 @@
             // 
             this.txtContrasenia.Location = new System.Drawing.Point(240, 196);
             this.txtContrasenia.Name = "txtContrasenia";
+            this.txtContrasenia.PasswordChar = '*';
             this.txtContrasenia.Size = new System.Drawing.Size(330, 20);
             this.txtContrasenia.TabIndex = 6;
             // 
@@ -102,11 +104,34 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnRegistrarUsuario
+            // 
+            this.btnRegistrarUsuario.Location = new System.Drawing.Point(671, 233);
+            this.btnRegistrarUsuario.Name = "btnRegistrarUsuario";
+            this.btnRegistrarUsuario.Size = new System.Drawing.Size(80, 35);
+            this.btnRegistrarUsuario.TabIndex = 9;
+            this.btnRegistrarUsuario.Text = "Registrarse";
+            this.btnRegistrarUsuario.UseVisualStyleBackColor = true;
+            this.btnRegistrarUsuario.Click += new System.EventHandler(this.btnRegistrarUsuario_Click);
+            // 
+            // chcbContraseñaUsuario
+            // 
+            this.chcbContraseñaUsuario.AutoSize = true;
+            this.chcbContraseñaUsuario.Location = new System.Drawing.Point(240, 233);
+            this.chcbContraseñaUsuario.Name = "chcbContraseñaUsuario";
+            this.chcbContraseñaUsuario.Size = new System.Drawing.Size(118, 17);
+            this.chcbContraseñaUsuario.TabIndex = 10;
+            this.chcbContraseñaUsuario.Text = "Mostrar Contraseña";
+            this.chcbContraseñaUsuario.UseVisualStyleBackColor = true;
+            this.chcbContraseñaUsuario.CheckedChanged += new System.EventHandler(this.chcbContraseñaUsuario_CheckedChanged);
+            // 
             // IniciarSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chcbContraseñaUsuario);
+            this.Controls.Add(this.btnRegistrarUsuario);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtContrasenia);
@@ -130,6 +155,8 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Button btnSalir;
         public System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.Button btnRegistrarUsuario;
+        private System.Windows.Forms.CheckBox chcbContraseñaUsuario;
     }
 }
 

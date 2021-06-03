@@ -36,12 +36,14 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarUsuarioSQL);
                 }
+                //comando.Parameters.AddWithValue("@usuarioID", usuario.UsuarioID);
                 comando.Parameters.AddWithValue("@nombres", usuario.Nombres);
                 comando.Parameters.AddWithValue("@apellidos", usuario.Apellidos);
                 comando.Parameters.AddWithValue("@dni", usuario.Dni);
                 comando.Parameters.AddWithValue("@numeroTarjeta", usuario.NumeroDeTarjeta);
                 comando.Parameters.AddWithValue("@clave", usuario.Clave);
                 comando.Parameters.AddWithValue("@estado", usuario.Estado);
+                //comando.Parameters.AddWithValue("@bancoID", usuario.Banco);
                 comando.ExecuteNonQuery();
 
               
@@ -50,6 +52,54 @@ namespace CapaPersistencia.ADO_SQLServer
             {
                 throw new Exception("Ocurrio un problema al intentar guardar.", err);
             }
+        }
+
+        public void editarUsuarioClave(Usuario usuario)
+        {
+            string editarUsuarioClaveSQL;
+
+
+            editarUsuarioClaveSQL = "update Usuario set clave=@clave where usuarioID='"+usuario.UsuarioID+"'";
+            try
+            {
+                SqlCommand comando;
+
+                // GUARDANDO EL OBJETO Usuario
+                {
+                    comando = gestorSQL.obtenerComandoSQL(editarUsuarioClaveSQL);
+                }
+
+
+                comando.Parameters.AddWithValue("@clave", usuario.Clave);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar editar.", err);
+            }
+
+        }
+
+
+        public void anularUsuario(Usuario usuario)
+        {
+            string eliminarUsuarioSQL;
+            eliminarUsuarioSQL = "update Usuario set estado=0 where usuarioID='" + usuario.UsuarioID + "'";
+            try
+            {
+                SqlCommand comando;
+
+                comando = gestorSQL.obtenerComandoSQL(eliminarUsuarioSQL);
+                comando.Parameters.AddWithValue("@estado", usuario.Estado);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar anular.", err);
+            }
+
         }
 
         public List<Usuario> obtenerListaDeUsuarios()
@@ -130,7 +180,7 @@ namespace CapaPersistencia.ADO_SQLServer
         {
             Usuario usuario = new Usuario();
         
-            usuario.UsuarioID= resultadoSQL.GetString(0);
+            usuario.UsuarioID= resultadoSQL.GetInt32(0).ToString();
             usuario.Nombres = resultadoSQL.GetString(1);
             usuario.Apellidos = resultadoSQL.GetString(2);
             usuario.Dni = resultadoSQL.GetString(3);

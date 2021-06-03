@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCambiarClaveUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCambiarClaveUsuario.Designer.cs">
+      <DependentUpon>FormCambiarClaveUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormIniciarSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,8 +76,17 @@
     <Compile Include="FormGenerarReporteMovimientos.Designer.cs">
       <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRegistrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarUsuario.Designer.cs">
+      <DependentUpon>FormRegistrarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCambiarClaveUsuario.resx">
+      <DependentUpon>FormCambiarClaveUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormIniciarSesion.resx">
       <DependentUpon>FormIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGenerarReporteMovimientos.resx">
       <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarUsuario.resx">
+      <DependentUpon>FormRegistrarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

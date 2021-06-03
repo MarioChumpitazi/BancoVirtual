@@ -13,5 +13,6 @@ namespace CapaDominio.Contratos
         void iniciarTransaccion();
         void terminarTransaccion();
         void cancelarTransaccion();
+
     }
 }
