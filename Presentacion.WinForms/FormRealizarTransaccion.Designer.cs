@@ -61,7 +61,6 @@
             this.txtCuentaDestino = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.txtMontoTransferido = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -70,6 +69,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtMonedaDestino = new System.Windows.Forms.TextBox();
             this.txtintento = new System.Windows.Forms.TextBox();
+            this.btnRegresarMenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataTransaccion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,9 +137,9 @@
             // 
             // btnEntreCuentas
             // 
-            this.btnEntreCuentas.Location = new System.Drawing.Point(255, 351);
+            this.btnEntreCuentas.Location = new System.Drawing.Point(413, 351);
             this.btnEntreCuentas.Name = "btnEntreCuentas";
-            this.btnEntreCuentas.Size = new System.Drawing.Size(130, 43);
+            this.btnEntreCuentas.Size = new System.Drawing.Size(134, 43);
             this.btnEntreCuentas.TabIndex = 30;
             this.btnEntreCuentas.Text = "Realizar Transferencia ";
             this.btnEntreCuentas.UseVisualStyleBackColor = true;
@@ -358,15 +358,6 @@
             this.label14.TabIndex = 73;
             this.label14.Text = "Nombre:";
             // 
-            // btnSalir
-            // 
-            this.btnSalir.Location = new System.Drawing.Point(446, 351);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(126, 43);
-            this.btnSalir.TabIndex = 72;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -439,11 +430,22 @@
             this.txtintento.Size = new System.Drawing.Size(16, 20);
             this.txtintento.TabIndex = 90;
             // 
+            // btnRegresarMenu
+            // 
+            this.btnRegresarMenu.Location = new System.Drawing.Point(195, 351);
+            this.btnRegresarMenu.Name = "btnRegresarMenu";
+            this.btnRegresarMenu.Size = new System.Drawing.Size(106, 43);
+            this.btnRegresarMenu.TabIndex = 91;
+            this.btnRegresarMenu.Text = "Regresar";
+            this.btnRegresarMenu.UseVisualStyleBackColor = true;
+            this.btnRegresarMenu.Click += new System.EventHandler(this.btnRegresarMenu_Click);
+            // 
             // FormRealizarTransaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 749);
+            this.Controls.Add(this.btnRegresarMenu);
             this.Controls.Add(this.txtintento);
             this.Controls.Add(this.txtMonedaDestino);
             this.Controls.Add(this.label17);
@@ -462,7 +464,6 @@
             this.Controls.Add(this.txtCuentaDestino);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtMontoTransferido);
             this.Controls.Add(this.label16);
@@ -525,7 +526,6 @@
         private System.Windows.Forms.TextBox txtCuentaDestino;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtMontoTransferido;
         private System.Windows.Forms.Label label16;
@@ -534,5 +534,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtMonedaDestino;
         private System.Windows.Forms.TextBox txtintento;
+        private System.Windows.Forms.Button btnRegresarMenu;
     }
 }

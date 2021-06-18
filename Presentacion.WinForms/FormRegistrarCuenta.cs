@@ -73,6 +73,20 @@ namespace Presentacion.WinForms
             }
         }
 
-
+        private void chkMostrarClaveCuenta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMostrarClaveCuenta.Checked == true)
+            {
+                if (txtClaveCuenta.PasswordChar == '*')
+                {
+                    //cambiar passwordchar a nulo
+                    txtClaveCuenta.PasswordChar = '\0';
+                }
+            }
+            else
+            {
+                txtClaveCuenta.PasswordChar = '*';
+            }
+        }
     }
 }

@@ -36,6 +36,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
+            this.chkMostrarClaveCuenta = new System.Windows.Forms.CheckBox();
+            this.btnRegresarMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,14 +74,16 @@
             // 
             this.txtClaveActualUsuario.Location = new System.Drawing.Point(207, 145);
             this.txtClaveActualUsuario.Name = "txtClaveActualUsuario";
-            this.txtClaveActualUsuario.Size = new System.Drawing.Size(105, 20);
+            this.txtClaveActualUsuario.PasswordChar = '*';
+            this.txtClaveActualUsuario.Size = new System.Drawing.Size(161, 20);
             this.txtClaveActualUsuario.TabIndex = 47;
             // 
             // txtClaveNuevaUsuario
             // 
             this.txtClaveNuevaUsuario.Location = new System.Drawing.Point(207, 187);
             this.txtClaveNuevaUsuario.Name = "txtClaveNuevaUsuario";
-            this.txtClaveNuevaUsuario.Size = new System.Drawing.Size(105, 20);
+            this.txtClaveNuevaUsuario.PasswordChar = '*';
+            this.txtClaveNuevaUsuario.Size = new System.Drawing.Size(161, 20);
             this.txtClaveNuevaUsuario.TabIndex = 48;
             // 
             // btnGuardar
@@ -109,11 +113,34 @@
             this.txtusuarioID.Size = new System.Drawing.Size(51, 20);
             this.txtusuarioID.TabIndex = 76;
             // 
+            // chkMostrarClaveCuenta
+            // 
+            this.chkMostrarClaveCuenta.AutoSize = true;
+            this.chkMostrarClaveCuenta.Location = new System.Drawing.Point(207, 213);
+            this.chkMostrarClaveCuenta.Name = "chkMostrarClaveCuenta";
+            this.chkMostrarClaveCuenta.Size = new System.Drawing.Size(91, 17);
+            this.chkMostrarClaveCuenta.TabIndex = 80;
+            this.chkMostrarClaveCuenta.Text = "Mostrar Clave";
+            this.chkMostrarClaveCuenta.UseVisualStyleBackColor = true;
+            this.chkMostrarClaveCuenta.CheckedChanged += new System.EventHandler(this.chkMostrarClaveCuenta_CheckedChanged);
+            // 
+            // btnRegresarMenu
+            // 
+            this.btnRegresarMenu.Location = new System.Drawing.Point(12, 328);
+            this.btnRegresarMenu.Name = "btnRegresarMenu";
+            this.btnRegresarMenu.Size = new System.Drawing.Size(87, 34);
+            this.btnRegresarMenu.TabIndex = 81;
+            this.btnRegresarMenu.Text = "Regresar";
+            this.btnRegresarMenu.UseVisualStyleBackColor = true;
+            this.btnRegresarMenu.Click += new System.EventHandler(this.btnRegresarMenu_Click);
+            // 
             // FormCambiarClaveUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 374);
+            this.Controls.Add(this.btnRegresarMenu);
+            this.Controls.Add(this.chkMostrarClaveCuenta);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGuardar);
@@ -140,5 +167,7 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtusuarioID;
+        private System.Windows.Forms.CheckBox chkMostrarClaveCuenta;
+        private System.Windows.Forms.Button btnRegresarMenu;
     }
 }

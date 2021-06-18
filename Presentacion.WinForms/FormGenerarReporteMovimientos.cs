@@ -140,6 +140,9 @@ namespace Presentacion.WinForms
             txt_totalGeneral.Text = totalGeneral.ToString();
         }
 
-
+        private void btnRegresarMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

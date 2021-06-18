@@ -54,5 +54,26 @@ namespace Presentacion.WinForms
                 MessageBox.Show(this, err.Message, "Sistema BancoVirtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void chkMostrarClaveCuenta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMostrarClaveCuenta.Checked == true)
+            {
+                if (txtClaveNuevaUsuario.PasswordChar == '*')
+                {
+                    //cambiar passwordchar a nulo
+                    txtClaveNuevaUsuario.PasswordChar = '\0';
+                }
+            }
+            else
+            {
+                txtClaveNuevaUsuario.PasswordChar = '*';
+            }
+        }
+
+        private void btnRegresarMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

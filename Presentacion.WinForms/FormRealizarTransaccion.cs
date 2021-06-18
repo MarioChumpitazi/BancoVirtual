@@ -129,5 +129,9 @@ namespace Presentacion.WinForms
 
         }
 
+        private void btnRegresarMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

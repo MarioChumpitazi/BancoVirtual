@@ -39,12 +39,14 @@
             this.chkDolar = new System.Windows.Forms.CheckBox();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkMostrarClaveCuenta = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtClaveCuenta
             // 
-            this.txtClaveCuenta.Location = new System.Drawing.Point(132, 227);
+            this.txtClaveCuenta.Location = new System.Drawing.Point(132, 197);
             this.txtClaveCuenta.Name = "txtClaveCuenta";
+            this.txtClaveCuenta.PasswordChar = '*';
             this.txtClaveCuenta.Size = new System.Drawing.Size(112, 20);
             this.txtClaveCuenta.TabIndex = 26;
             // 
@@ -52,14 +54,14 @@
             // 
             this.txtSaldoCuenta.Location = new System.Drawing.Point(132, 116);
             this.txtSaldoCuenta.Name = "txtSaldoCuenta";
-            this.txtSaldoCuenta.Size = new System.Drawing.Size(183, 20);
+            this.txtSaldoCuenta.Size = new System.Drawing.Size(112, 20);
             this.txtSaldoCuenta.TabIndex = 23;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 225);
+            this.label5.Location = new System.Drawing.Point(62, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 20);
             this.label5.TabIndex = 22;
@@ -88,7 +90,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(114, 47);
+            this.label1.Location = new System.Drawing.Point(85, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 30);
             this.label1.TabIndex = 18;
@@ -96,7 +98,7 @@
             // 
             // btnRegresarMenu
             // 
-            this.btnRegresarMenu.Location = new System.Drawing.Point(12, 346);
+            this.btnRegresarMenu.Location = new System.Drawing.Point(12, 315);
             this.btnRegresarMenu.Name = "btnRegresarMenu";
             this.btnRegresarMenu.Size = new System.Drawing.Size(87, 34);
             this.btnRegresarMenu.TabIndex = 17;
@@ -106,7 +108,7 @@
             // 
             // btnCrearCuenta
             // 
-            this.btnCrearCuenta.Location = new System.Drawing.Point(281, 306);
+            this.btnCrearCuenta.Location = new System.Drawing.Point(303, 269);
             this.btnCrearCuenta.Name = "btnCrearCuenta";
             this.btnCrearCuenta.Size = new System.Drawing.Size(90, 34);
             this.btnCrearCuenta.TabIndex = 16;
@@ -130,7 +132,7 @@
             // 
             this.txtusuarioID.Location = new System.Drawing.Point(390, 12);
             this.txtusuarioID.Name = "txtusuarioID";
-            this.txtusuarioID.Size = new System.Drawing.Size(76, 20);
+            this.txtusuarioID.Size = new System.Drawing.Size(52, 20);
             this.txtusuarioID.TabIndex = 78;
             // 
             // label4
@@ -143,11 +145,23 @@
             this.label4.TabIndex = 77;
             this.label4.Text = "Usuario:";
             // 
+            // chkMostrarClaveCuenta
+            // 
+            this.chkMostrarClaveCuenta.AutoSize = true;
+            this.chkMostrarClaveCuenta.Location = new System.Drawing.Point(132, 223);
+            this.chkMostrarClaveCuenta.Name = "chkMostrarClaveCuenta";
+            this.chkMostrarClaveCuenta.Size = new System.Drawing.Size(91, 17);
+            this.chkMostrarClaveCuenta.TabIndex = 79;
+            this.chkMostrarClaveCuenta.Text = "Mostrar Clave";
+            this.chkMostrarClaveCuenta.UseVisualStyleBackColor = true;
+            this.chkMostrarClaveCuenta.CheckedChanged += new System.EventHandler(this.chkMostrarClaveCuenta_CheckedChanged);
+            // 
             // FormRegistrarCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 392);
+            this.ClientSize = new System.Drawing.Size(457, 356);
+            this.Controls.Add(this.chkMostrarClaveCuenta);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chkDolar);
@@ -178,5 +192,6 @@
         private System.Windows.Forms.CheckBox chkDolar;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkMostrarClaveCuenta;
     }
 }

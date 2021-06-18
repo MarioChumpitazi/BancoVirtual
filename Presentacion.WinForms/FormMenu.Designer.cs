@@ -39,6 +39,7 @@
             this.btnCambiarClaveUsuario = new System.Windows.Forms.Button();
             this.btnAnularUsuario = new System.Windows.Forms.Button();
             this.btnCrearCuenta = new System.Windows.Forms.Button();
+            this.btnRegresarLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
@@ -112,9 +113,9 @@
             // 
             // btnCambiarClaveUsuario
             // 
-            this.btnCambiarClaveUsuario.Location = new System.Drawing.Point(602, 381);
+            this.btnCambiarClaveUsuario.Location = new System.Drawing.Point(681, 270);
             this.btnCambiarClaveUsuario.Name = "btnCambiarClaveUsuario";
-            this.btnCambiarClaveUsuario.Size = new System.Drawing.Size(112, 51);
+            this.btnCambiarClaveUsuario.Size = new System.Drawing.Size(97, 42);
             this.btnCambiarClaveUsuario.TabIndex = 45;
             this.btnCambiarClaveUsuario.Text = "Cambiar Clave de Usuario";
             this.btnCambiarClaveUsuario.UseVisualStyleBackColor = true;
@@ -122,9 +123,9 @@
             // 
             // btnAnularUsuario
             // 
-            this.btnAnularUsuario.Location = new System.Drawing.Point(434, 381);
+            this.btnAnularUsuario.Location = new System.Drawing.Point(680, 387);
             this.btnAnularUsuario.Name = "btnAnularUsuario";
-            this.btnAnularUsuario.Size = new System.Drawing.Size(98, 51);
+            this.btnAnularUsuario.Size = new System.Drawing.Size(98, 45);
             this.btnAnularUsuario.TabIndex = 46;
             this.btnAnularUsuario.Text = "Anular Usuario";
             this.btnAnularUsuario.UseVisualStyleBackColor = true;
@@ -132,19 +133,30 @@
             // 
             // btnCrearCuenta
             // 
-            this.btnCrearCuenta.Location = new System.Drawing.Point(28, 387);
+            this.btnCrearCuenta.Location = new System.Drawing.Point(681, 330);
             this.btnCrearCuenta.Name = "btnCrearCuenta";
-            this.btnCrearCuenta.Size = new System.Drawing.Size(92, 39);
+            this.btnCrearCuenta.Size = new System.Drawing.Size(97, 41);
             this.btnCrearCuenta.TabIndex = 47;
             this.btnCrearCuenta.Text = "Crear Cuenta";
             this.btnCrearCuenta.UseVisualStyleBackColor = true;
             this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
+            // 
+            // btnRegresarLogin
+            // 
+            this.btnRegresarLogin.Location = new System.Drawing.Point(21, 393);
+            this.btnRegresarLogin.Name = "btnRegresarLogin";
+            this.btnRegresarLogin.Size = new System.Drawing.Size(93, 39);
+            this.btnRegresarLogin.TabIndex = 48;
+            this.btnRegresarLogin.Text = "Cerrar Sesión";
+            this.btnRegresarLogin.UseVisualStyleBackColor = true;
+            this.btnRegresarLogin.Click += new System.EventHandler(this.btnRegresarLogin_Click);
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRegresarLogin);
             this.Controls.Add(this.btnCrearCuenta);
             this.Controls.Add(this.btnAnularUsuario);
             this.Controls.Add(this.btnCambiarClaveUsuario);
@@ -176,5 +188,6 @@
         private System.Windows.Forms.Button btnCambiarClaveUsuario;
         private System.Windows.Forms.Button btnAnularUsuario;
         private System.Windows.Forms.Button btnCrearCuenta;
+        private System.Windows.Forms.Button btnRegresarLogin;
     }
 }

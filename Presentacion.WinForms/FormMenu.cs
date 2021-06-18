@@ -97,5 +97,10 @@ namespace Presentacion.WinForms
 
             formRegistrarCuenta.ShowDialog();
         }
+
+        private void btnRegresarLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
