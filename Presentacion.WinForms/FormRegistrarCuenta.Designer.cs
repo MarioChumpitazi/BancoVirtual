@@ -36,8 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegresarMenu = new System.Windows.Forms.Button();
             this.btnCrearCuenta = new System.Windows.Forms.Button();
-            this.cbMoneda = new System.Windows.Forms.CheckBox();
-            this.cbSol = new System.Windows.Forms.CheckBox();
+            this.chkDolar = new System.Windows.Forms.CheckBox();
             this.txtusuarioID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -115,29 +114,17 @@
             this.btnCrearCuenta.UseVisualStyleBackColor = true;
             this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
             // 
-            // cbMoneda
+            // chkDolar
             // 
-            this.cbMoneda.AutoSize = true;
-            this.cbMoneda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMoneda.Location = new System.Drawing.Point(139, 158);
-            this.cbMoneda.Name = "cbMoneda";
-            this.cbMoneda.Size = new System.Drawing.Size(66, 24);
-            this.cbMoneda.TabIndex = 27;
-            this.cbMoneda.Text = "Dolar";
-            this.cbMoneda.UseVisualStyleBackColor = true;
-            this.cbMoneda.UseWaitCursor = true;
-            // 
-            // cbSol
-            // 
-            this.cbSol.AutoSize = true;
-            this.cbSol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSol.Location = new System.Drawing.Point(139, 181);
-            this.cbSol.Name = "cbSol";
-            this.cbSol.Size = new System.Drawing.Size(51, 24);
-            this.cbSol.TabIndex = 28;
-            this.cbSol.Text = "Sol";
-            this.cbSol.UseVisualStyleBackColor = true;
-            this.cbSol.UseWaitCursor = true;
+            this.chkDolar.AutoSize = true;
+            this.chkDolar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDolar.Location = new System.Drawing.Point(139, 158);
+            this.chkDolar.Name = "chkDolar";
+            this.chkDolar.Size = new System.Drawing.Size(66, 24);
+            this.chkDolar.TabIndex = 27;
+            this.chkDolar.Text = "Dolar";
+            this.chkDolar.UseVisualStyleBackColor = true;
+            this.chkDolar.UseWaitCursor = true;
             // 
             // txtusuarioID
             // 
@@ -163,8 +150,7 @@
             this.ClientSize = new System.Drawing.Size(478, 392);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbSol);
-            this.Controls.Add(this.cbMoneda);
+            this.Controls.Add(this.chkDolar);
             this.Controls.Add(this.txtClaveCuenta);
             this.Controls.Add(this.txtSaldoCuenta);
             this.Controls.Add(this.label5);
@@ -189,8 +175,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRegresarMenu;
         private System.Windows.Forms.Button btnCrearCuenta;
-        private System.Windows.Forms.CheckBox cbMoneda;
-        private System.Windows.Forms.CheckBox cbSol;
+        private System.Windows.Forms.CheckBox chkDolar;
         public System.Windows.Forms.TextBox txtusuarioID;
         private System.Windows.Forms.Label label4;
     }

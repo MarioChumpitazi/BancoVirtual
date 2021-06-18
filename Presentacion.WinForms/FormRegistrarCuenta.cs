@@ -36,8 +36,20 @@ namespace Presentacion.WinForms
                 
 
                 cuenta.Saldo = double.Parse(txtSaldoCuenta.Text.Trim());
-                cuenta.TipoMoneda = true;
+                //cuenta.TipoMoneda = true;
                 cuenta.Clave = txtClaveCuenta.Text;
+
+                
+                if (chkDolar.Checked==true)
+                {
+                    cuenta.TipoMoneda = false;
+                }
+                else
+                {
+                    cuenta.TipoMoneda = true;
+                }
+
+
 
                 MantenedorUsuarioServicio serivicioU = new MantenedorUsuarioServicio();
                 Usuario usuario = serivicioU.buscarUsuario(usuarioID);
@@ -46,16 +58,7 @@ namespace Presentacion.WinForms
                 MantenedorCuentaServicio servicio = new MantenedorCuentaServicio();
                 cuenta.Estado = true;
                 servicio.guardarCuenta(cuenta);
-                /*
-                cuenta.Saldo = double.Parse(txtSaldoCuenta.Text.Trim());
-                if (Convert.ToBoolean(chcbMoneda.CheckedIndices[0]))
-                {
-                    cuenta.TipoMoneda = true;
-                }
-                else
-                {
-                    cuenta.TipoMoneda = false;
-                }*/
+                
 
 
                 if (cuenta != null)
