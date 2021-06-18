@@ -38,6 +38,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnCambiarClaveUsuario = new System.Windows.Forms.Button();
             this.btnAnularUsuario = new System.Windows.Forms.Button();
+            this.btnCrearCuenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(124, 120);
+            this.pictureBox2.Location = new System.Drawing.Point(129, 120);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(141, 141);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -65,7 +66,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(523, 120);
+            this.pictureBox4.Location = new System.Drawing.Point(502, 120);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(141, 141);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -74,7 +75,7 @@
             // 
             // btnRealizarTransferencia
             // 
-            this.btnRealizarTransferencia.Location = new System.Drawing.Point(133, 292);
+            this.btnRealizarTransferencia.Location = new System.Drawing.Point(138, 292);
             this.btnRealizarTransferencia.Name = "btnRealizarTransferencia";
             this.btnRealizarTransferencia.Size = new System.Drawing.Size(123, 35);
             this.btnRealizarTransferencia.TabIndex = 11;
@@ -84,7 +85,7 @@
             // 
             // btnGenerarReporteMovimientos
             // 
-            this.btnGenerarReporteMovimientos.Location = new System.Drawing.Point(523, 285);
+            this.btnGenerarReporteMovimientos.Location = new System.Drawing.Point(502, 285);
             this.btnGenerarReporteMovimientos.Name = "btnGenerarReporteMovimientos";
             this.btnGenerarReporteMovimientos.Size = new System.Drawing.Size(126, 48);
             this.btnGenerarReporteMovimientos.TabIndex = 12;
@@ -111,17 +112,17 @@
             // 
             // btnCambiarClaveUsuario
             // 
-            this.btnCambiarClaveUsuario.Location = new System.Drawing.Point(676, 387);
+            this.btnCambiarClaveUsuario.Location = new System.Drawing.Point(602, 381);
             this.btnCambiarClaveUsuario.Name = "btnCambiarClaveUsuario";
             this.btnCambiarClaveUsuario.Size = new System.Drawing.Size(112, 51);
             this.btnCambiarClaveUsuario.TabIndex = 45;
-            this.btnCambiarClaveUsuario.Text = "Cambiar Clave";
+            this.btnCambiarClaveUsuario.Text = "Cambiar Clave de Usuario";
             this.btnCambiarClaveUsuario.UseVisualStyleBackColor = true;
             this.btnCambiarClaveUsuario.Click += new System.EventHandler(this.btnCambiarClaveUsuario_Click);
             // 
             // btnAnularUsuario
             // 
-            this.btnAnularUsuario.Location = new System.Drawing.Point(523, 387);
+            this.btnAnularUsuario.Location = new System.Drawing.Point(434, 381);
             this.btnAnularUsuario.Name = "btnAnularUsuario";
             this.btnAnularUsuario.Size = new System.Drawing.Size(98, 51);
             this.btnAnularUsuario.TabIndex = 46;
@@ -129,11 +130,22 @@
             this.btnAnularUsuario.UseVisualStyleBackColor = true;
             this.btnAnularUsuario.Click += new System.EventHandler(this.btnAnularUsuario_Click);
             // 
+            // btnCrearCuenta
+            // 
+            this.btnCrearCuenta.Location = new System.Drawing.Point(28, 387);
+            this.btnCrearCuenta.Name = "btnCrearCuenta";
+            this.btnCrearCuenta.Size = new System.Drawing.Size(92, 39);
+            this.btnCrearCuenta.TabIndex = 47;
+            this.btnCrearCuenta.Text = "Crear Cuenta";
+            this.btnCrearCuenta.UseVisualStyleBackColor = true;
+            this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCrearCuenta);
             this.Controls.Add(this.btnAnularUsuario);
             this.Controls.Add(this.btnCambiarClaveUsuario);
             this.Controls.Add(this.txtusuarioID);
@@ -163,5 +175,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCambiarClaveUsuario;
         private System.Windows.Forms.Button btnAnularUsuario;
+        private System.Windows.Forms.Button btnCrearCuenta;
     }
 }

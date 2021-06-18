@@ -23,13 +23,10 @@ namespace CapaPersistencia.ADO_SQLServer
   
 
             // CREANDO LAS SENTENCIAS SQL
-            string insertarCuentaSQL, insertarTransaccionSQL;
+            string insertarCuentaSQL/*, insertarTransaccionSQL*/;
 
-            insertarCuentaSQL = "insert into Cuenta(numero, saldo, moneda, estado ,usuario) " +
-                 "values(@numero,@saldo,@moneda,@estado,@usuario)";
-
-            insertarTransaccionSQL = "insert into Transaccion(codigo, fecha, monto, tipo, valoracion, codigoDeMovimiento) " +
-                 "values(@codigo, @fecha, @monto, @tipo, @valoracion, @codigoDeMovimiento)";
+            insertarCuentaSQL = "insert into Cuenta(saldo, tipoMoneda, estado, clave, usuarioID) " +
+                 "values(@saldo,@tipoMoneda,@estado,@clave,@usuarioID)";
 
             try
             {
@@ -39,10 +36,11 @@ namespace CapaPersistencia.ADO_SQLServer
                 {
                     comando = gestorSQL.obtenerComandoSQL(insertarCuentaSQL);
                 }
-                comando.Parameters.AddWithValue("@cuentaID", cuenta.CuentaID);
                 comando.Parameters.AddWithValue("@saldo", cuenta.Saldo);
-                comando.Parameters.AddWithValue("@moneda", cuenta.TipoMoneda);
+                comando.Parameters.AddWithValue("@tipoMoneda", cuenta.TipoMoneda);
                 comando.Parameters.AddWithValue("@estado", cuenta.Estado);
+                comando.Parameters.AddWithValue("@clave", cuenta.Clave);
+                comando.Parameters.AddWithValue("@usuarioID", cuenta.Usuario.UsuarioID);
                 comando.ExecuteNonQuery();
 
 
@@ -54,6 +52,81 @@ namespace CapaPersistencia.ADO_SQLServer
             }
 
         }
+
+        public Cuenta buscarPorID(string cuentaID)
+        {
+            Cuenta cuenta;
+            string consultaSQL = "select * from Cuenta where cuentaID = '" + cuentaID + "'";
+            try
+            {
+                SqlDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+
+                if (resultadoSQL.Read())
+                {
+                    cuenta = obtenerCuenta(resultadoSQL);
+
+                }
+                else
+                {
+                    throw new Exception("No existe cuenta.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return cuenta;
+        }
+
+
+        public void editarCuentaClave(Cuenta cuenta)
+        {
+            string editarCuentaClaveSQL;
+
+
+            editarCuentaClaveSQL = "update Cuenta set clave=@clave where cuentaID='" + cuenta.CuentaID + "'";
+            try
+            {
+                SqlCommand comando;
+
+                // GUARDANDO EL OBJETO Usuario
+                {
+                    comando = gestorSQL.obtenerComandoSQL(editarCuentaClaveSQL);
+                }
+
+
+                comando.Parameters.AddWithValue("@clave", cuenta.Clave);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar editar.", err);
+            }
+
+        }
+
+
+        public void anularCuenta(Cuenta cuenta)
+        {
+            string eliminarCuentaSQL;
+            eliminarCuentaSQL = "update Cuenta set estado=0 where cuentaID='" + cuenta.CuentaID + "'";
+            try
+            {
+                SqlCommand comando;
+
+                comando = gestorSQL.obtenerComandoSQL(eliminarCuentaSQL);
+                comando.Parameters.AddWithValue("@estado", cuenta.Estado);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar anular.", err);
+            }
+
+        }
+
 
         public List<Cuenta> obtenerListaDeCuentas(String usuarioID)
         {
@@ -78,11 +151,6 @@ namespace CapaPersistencia.ADO_SQLServer
             }
             return listaDecuentas;
         }
-
-
-
-
-
 
 
 
@@ -250,11 +318,13 @@ namespace CapaPersistencia.ADO_SQLServer
         private Cuenta obtenerCuenta(SqlDataReader resultadoSQL)
         {
             Cuenta cuenta = new Cuenta();
-            cuenta.CuentaID = resultadoSQL.GetString(0);
+            cuenta.CuentaID = resultadoSQL.GetInt32(0).ToString();
             cuenta.Saldo = double.Parse(resultadoSQL.GetDecimal(1).ToString());
             cuenta.TipoMoneda = resultadoSQL.GetBoolean(2);
             cuenta.Estado = resultadoSQL.GetBoolean(3);
             cuenta.Clave = resultadoSQL.GetString(4);
+            
+            
 
             return cuenta;
         }

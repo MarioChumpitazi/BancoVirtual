@@ -36,7 +36,7 @@ namespace Presentacion.WinForms
             RealizarTransaccionServicio servicio = new RealizarTransaccionServicio();
             List<Cuenta> listaDeCuentas = servicio.buscarCuentasUsuario(usuario.UsuarioID);
             formRealizarTransaccion.dataTransaccion.Rows.Clear();
-
+            
             foreach (Cuenta cuenta in listaDeCuentas)
             {
                 String moneda = cuenta.TipoMoneda ? "Sol" : "Dolar";
@@ -85,6 +85,17 @@ namespace Presentacion.WinForms
             servicio.anularUsuario(usuario);
             MessageBox.Show("Se anulo este usuario");
             this.Close();
+        }
+
+        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        {
+            string usuarioID = txtusuarioID.Text.Trim();
+            MantenedorUsuarioServicio servicio = new MantenedorUsuarioServicio();
+            Usuario usuario = servicio.buscarUsuario(usuarioID);
+            FormRegistrarCuenta formRegistrarCuenta = new FormRegistrarCuenta();
+            formRegistrarCuenta.txtusuarioID.Text = usuario.UsuarioID;
+
+            formRegistrarCuenta.ShowDialog();
         }
     }
 }

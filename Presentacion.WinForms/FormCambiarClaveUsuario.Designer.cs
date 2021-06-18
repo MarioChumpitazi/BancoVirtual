@@ -42,7 +42,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 34);
+            this.label1.Location = new System.Drawing.Point(59, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(270, 24);
             this.label1.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(418, 259);
+            this.btnGuardar.Location = new System.Drawing.Point(219, 285);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(93, 38);
             this.btnGuardar.TabIndex = 74;
@@ -96,7 +96,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(426, 40);
+            this.label4.Location = new System.Drawing.Point(368, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 16);
             this.label4.TabIndex = 75;
@@ -104,16 +104,16 @@
             // 
             // txtusuarioID
             // 
-            this.txtusuarioID.Location = new System.Drawing.Point(489, 38);
+            this.txtusuarioID.Location = new System.Drawing.Point(431, 23);
             this.txtusuarioID.Name = "txtusuarioID";
-            this.txtusuarioID.Size = new System.Drawing.Size(105, 20);
+            this.txtusuarioID.Size = new System.Drawing.Size(51, 20);
             this.txtusuarioID.TabIndex = 76;
             // 
             // FormCambiarClaveUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 374);
+            this.ClientSize = new System.Drawing.Size(494, 374);
             this.Controls.Add(this.txtusuarioID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGuardar);

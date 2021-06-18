@@ -76,6 +76,12 @@
     <Compile Include="FormGenerarReporteMovimientos.Designer.cs">
       <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRegistrarCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarCuenta.Designer.cs">
+      <DependentUpon>FormRegistrarCuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegistrarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGenerarReporteMovimientos.resx">
       <DependentUpon>FormGenerarReporteMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarCuenta.resx">
+      <DependentUpon>FormRegistrarCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistrarUsuario.resx">
       <DependentUpon>FormRegistrarUsuario.cs</DependentUpon>

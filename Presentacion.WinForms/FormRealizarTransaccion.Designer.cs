@@ -433,10 +433,10 @@
             // 
             // txtintento
             // 
-            this.txtintento.Location = new System.Drawing.Point(520, 607);
+            this.txtintento.Location = new System.Drawing.Point(435, 638);
             this.txtintento.Name = "txtintento";
             this.txtintento.ReadOnly = true;
-            this.txtintento.Size = new System.Drawing.Size(151, 20);
+            this.txtintento.Size = new System.Drawing.Size(16, 20);
             this.txtintento.TabIndex = 90;
             // 
             // FormRealizarTransaccion

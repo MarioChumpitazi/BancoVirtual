@@ -165,9 +165,9 @@ namespace CapaPersistencia.ADO_SQLServer
             transaccion.Monto = double.Parse(resultadoSQL.GetDecimal(2).ToString());
             transaccion.TipoTransaccion = resultadoSQL.GetBoolean(3);
             transaccion.Valoracion = resultadoSQL.GetInt32(4);
-            cuenta1.CuentaID= resultadoSQL.GetString(5);
+            cuenta1.CuentaID= resultadoSQL.GetInt32(5).ToString();
             transaccion.CuentaOrigen = cuenta1;
-            cuenta2.CuentaID = resultadoSQL.GetString(6);
+            cuenta2.CuentaID = resultadoSQL.GetInt32(6).ToString();
             transaccion.CuentaDestino = cuenta2;
             return transaccion;
         }
