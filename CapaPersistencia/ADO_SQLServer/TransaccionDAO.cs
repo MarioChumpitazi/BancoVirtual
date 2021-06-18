@@ -170,6 +170,7 @@ namespace CapaPersistencia.ADO_SQLServer
             cuenta2.CuentaID = resultadoSQL.GetInt32(6).ToString();
             transaccion.CuentaDestino = cuenta2;
             return transaccion;
+
         }
     }
 }
