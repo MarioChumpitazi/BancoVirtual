@@ -106,15 +106,15 @@ namespace CapaDominio.Entidades
             }
             if (cont < 4)
             {
-                return "bajo";
+                return "Bajo";
             }
             else if (cont < 7)
             {
-                return "medio";
+                return "Medio";
             }
             else
             {
-                return "alto";
+                return "Alto";
             }
         }
 

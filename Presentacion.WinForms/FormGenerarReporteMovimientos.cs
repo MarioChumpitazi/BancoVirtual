@@ -144,5 +144,10 @@ namespace Presentacion.WinForms
         {
             this.Close();
         }
+
+        private void txt_NivelMovimiento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

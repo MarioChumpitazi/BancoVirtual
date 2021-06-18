@@ -246,6 +246,7 @@
             this.txt_NivelMovimiento.Name = "txt_NivelMovimiento";
             this.txt_NivelMovimiento.Size = new System.Drawing.Size(111, 20);
             this.txt_NivelMovimiento.TabIndex = 66;
+            this.txt_NivelMovimiento.TextChanged += new System.EventHandler(this.txt_NivelMovimiento_TextChanged);
             // 
             // label8
             // 
